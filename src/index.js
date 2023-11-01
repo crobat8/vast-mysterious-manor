@@ -14,11 +14,9 @@ root.render(
     <ChatContextProvider>
       <UserContextProvider>
         <GameContextProvider>
-          <SearchingContextProvider>
-            <React.StrictMode>
-              <App />
-            </React.StrictMode>
-          </SearchingContextProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
         </GameContextProvider>
       </UserContextProvider>
     </ChatContextProvider>

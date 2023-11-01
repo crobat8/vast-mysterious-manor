@@ -12,7 +12,6 @@ import { GameContext } from '../context/GameContext';
 const Home = () =>{ 
   
   const{userInfo} =useContext(UserContext);
-  const{SearchInfo} = useContext(SearchingContext)
   const{gameInfo} = useContext(GameContext);
   const{gameID} = useContext(GameContext);
   const[mode,setMode]=useState("Online")
@@ -70,19 +69,10 @@ const Home = () =>{
       // console.log(error) 
     }
   }
-
-  if(!userInfo){
-    return(
-      <h1>
-        Loading user Info
-      </h1>
-    )
-  }
-  return (
-    <div className="home" >
-      <header className='topBar'>
+  function UserCorner()  {
+    try {
+      return(
         <div>
-          
           <p>
             name: {userInfo[0].displayName}
           </p>
@@ -93,6 +83,28 @@ const Home = () =>{
             logout
           </button>
         </div>
+      )
+    } catch (error) {
+      return(
+        <div>
+          <p>
+            name: loading
+          </p>
+          <p>
+            mmr: loading
+          </p>
+          <button onClick={()=>signOut(auth)}> 
+            logout
+          </button>
+        </div>
+      )
+    }
+  }
+
+  return (
+    <div className="home" >
+      <header className='topBar'>
+        <UserCorner/>
         <div>
           <h1>
             Super TicTacToe 
@@ -127,6 +139,9 @@ const Home = () =>{
       </footer>
     </div>
   )
+  
+
+  
 }
 
 export default Home;
