@@ -1,12 +1,12 @@
 import React from "react";
 
 const Pill = (props) =>{
+  const borderInfo = "5px solid "+props.data.color
   if(props.count%2==0){
     
     return(
-      <article className="pill">
-
-        <div className="text">
+      <article className="pill" style={{border: borderInfo}}>
+        <div className="text" style={{backgroundColor:props.data.color}}>
           <h2>
             {props.data.title}
           </h2>
@@ -21,11 +21,11 @@ const Pill = (props) =>{
     )
   }else{
     return(
-      <article className="pill">
+      <article className="pill" style={{border: borderInfo}}>
         <div className="picture">
           <img src={props.data.pic} alt=""/>
         </div>
-        <div className="text">
+        <div className="text" style={{backgroundColor:props.data.color}}>
           <h2>
             {props.data.title}
           </h2>

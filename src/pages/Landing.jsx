@@ -4,8 +4,8 @@ import Login from "../componets/Login";
 import Register from "../componets/Register";
 import ReactCardFlip from "react-card-flip";
 import ResetPassword from '../componets/ResetPassword';
-import background from '../img/home_banner_edit.png'
-import RedLogo from '../img/CWU_wildcat_spirit_mark_RGB.png'
+import vastCover from '../img/vast_cover_art.png'
+import vastChart from '../img/vast_manor_chart.png'
 import Pill from '../componets/Pill';
 import FadeIn from 'react-fade-in';
 
@@ -13,25 +13,40 @@ const Landing = () =>{
   const [slide,setSlide] = useState(1)
   const pillInfo = [
     {
-      title:"Online",
-      description:"play Tic Tac Toe online with random people in your skill range.",
-      pic:RedLogo
+      title:"online",
+      description:"play with your friends or random people online in this web app version of vast the mysterious manor",
+      pic:vastCover,
+      color:"#dac2bb"
     },
     {
-      title:"how to win",
-      description:"to win you must get 3 in a row on the big board or the majority of the games won.",
-      pic:RedLogo
+      title:"paladin",
+      description:"You were tasked with killing the evil giant spider who is currently living in the old manor up the road from the local town. Hunt and kill the spider to win.",
+      pic:vastChart,
+      color:"#d9c663"
     },
     {
-      title:"how to play pt. 1",
-      description:"what area you play in within a small square determines where your opponet must play in the main game.",
-      pic:RedLogo
+      title:"skeletons",
+      description:"As the evil undead from the family graveyard you feel attacked having an intuder in your old family home. hunt down and kill the paladin by statigically placing your skeletons to gang up on them and win.",
+      pic:vastChart,
+      color:"#88a378"
     },
-    
     {
-      title:"how to play pt. 2",
-      description:"once a game is won or full no one can play in it anymore, any forced plays in that area result in a free play anywhere",
-      pic:RedLogo
+      title:"spider",
+      description:"the old spider that has been cursed to stay in this manor forever has finally had enough and wants to escape. Terrorize everyone to break the curse and esacape to win.",
+      pic:vastChart,
+      color:"#cd5d75"
+    },
+    {
+      title:"manor",
+      description:"as the spirit of the manor you need to complete omens to release your self and keep everyone else locked in. To win you must complete rituals to lock down the manor forever.",
+      pic:vastChart,
+      color:"#673170"
+    },
+    {
+      title:"warlock",
+      description:"you snuck in right behind the paladin for your own gains of potentially getting magic from the mansion. complete netowrks of poltergiests to be able to win the game.",
+      pic:vastChart,
+      color:"#94aca6"
     },
   ]
   function HandleSwap(){
@@ -69,7 +84,7 @@ const Landing = () =>{
         
         <div className='title'>
           <h1>
-            Super TicTacToe  
+            Vast Mysterious Manor  
           </h1>
           <p>
             Play Online

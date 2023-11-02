@@ -39,11 +39,9 @@ const Home = () =>{
           let otherPlayer = "X";
           if(gameInfo[0].first == userInfo[0].uid){
             otherPlayer = "O"
-
           }else{
-
+            
           }
-
           await updateDoc(activeRef, {
             winnerM: otherPlayer,
           });
