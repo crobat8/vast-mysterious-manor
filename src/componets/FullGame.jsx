@@ -1,6 +1,7 @@
 import React, { useContext, useState,memo } from 'react';
-import MiniGame from './MiniGame';
+
 import { GameContext } from '../context/GameContext';
+import gameBoard from '../img/game_images/board/mainBoard.png'
 
 const FullGame = ()=>{
   const {gameInfo} = useContext(GameContext);
@@ -15,7 +16,8 @@ const FullGame = ()=>{
   console.log(gameInfo)
   return(
     <div className='Board'>
-      here is the game baord
+      <img className="background" src={gameBoard} style={{maxheight:"100%", maxwidth:"100%"}}alt="">
+      </img>
     </div>
   )
 }

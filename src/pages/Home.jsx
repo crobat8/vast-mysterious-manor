@@ -116,16 +116,12 @@ const Home = () =>{
         </div>
       </header>
       <main>
+        <div className='gameBoard'>
+          <FullGame/>
+        </div>
         <div className='playMats'>
           here are the play mats
         </div>
-        
-        <div className='gameBoard'>
-          
-          <FullGame/>
-          
-        </div>
-        
       </main>
       <footer>
         
