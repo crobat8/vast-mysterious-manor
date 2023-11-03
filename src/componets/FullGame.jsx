@@ -16,8 +16,7 @@ const FullGame = ()=>{
   console.log(gameInfo)
   return(
     <div className='Board'>
-      <img className="background" src={gameBoard} style={{maxheight:"100%", maxwidth:"100%"}}alt="">
-      </img>
+      <img className="background" src={gameBoard} style={{maxheight:"100%", maxwidth:"100%"}} alt=""/>
     </div>
   )
 }
