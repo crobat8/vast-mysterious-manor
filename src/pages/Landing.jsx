@@ -79,9 +79,7 @@ const Landing = () =>{
 
   return (
     <div className="landing">
-      
       <header className="topBar" >
-        
         <div className='title'>
           <h1>
             Vast Mysterious Manor  

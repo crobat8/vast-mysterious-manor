@@ -11,14 +11,12 @@ import { SearchingContextProvider } from './context/SearchingContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthContextProvider>
-    <ChatContextProvider>
-      <UserContextProvider>
-        <GameContextProvider>
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
-        </GameContextProvider>
-      </UserContextProvider>
-    </ChatContextProvider>
+    <UserContextProvider>
+      <GameContextProvider>
+        <React.StrictMode>
+          <App/>
+        </React.StrictMode>
+      </GameContextProvider>
+    </UserContextProvider>
   </AuthContextProvider>
 );

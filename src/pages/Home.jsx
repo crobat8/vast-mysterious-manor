@@ -17,41 +17,28 @@ const Home = () =>{
   const[mode,setMode]=useState("Online")
   const handleGameMode = async (e,x) =>{
 
-    setMode(x)
-    if(x == 'Online'){
-      // remove self from game
-      // assign winner
-      // add self to searching
-      if(gameInfo.length == 0){
-        // not in a game
-      }else{
-        // in a game
-        const activeRef = doc(db,"games",gameID[0])
-        //remove self from active players in the game
-        await updateDoc(activeRef, {
-          activePlayers: arrayRemove(userInfo[0].uid),
-        });         
-        // check to see if there is a winner
-        // if not set the winner of the current game
-        // to the other person
-        if(gameInfo[0].winnerM == ""){
-
-          let otherPlayer = "X";
-          if(gameInfo[0].first == userInfo[0].uid){
-            otherPlayer = "O"
-          }else{
-            
-          }
-          await updateDoc(activeRef, {
-            winnerM: otherPlayer,
-          });
-        }
-      }
+    if(gameInfo.length == 0){
+      // not in a game
       await setDoc(doc(db,"searching",userInfo[0].uid), {
         uid:userInfo[0].uid,
-        mmr:userInfo[0].mmr
+        role:x,
       });
+    }else{
+      // in a game
+      const activeRef = doc(db,"games",gameID[0])
+      //remove self from active players in the game
+      await updateDoc(activeRef, {
+        activePlayers: arrayRemove(userInfo[0].uid),
+      }).then(async()=>{
+        await setDoc(doc(db,"searching",userInfo[0].uid), {
+          uid:userInfo[0].uid,
+          role:x,
+        });
+      });         
+
     }
+
+    
   }
 
   function Icon()  {
@@ -102,35 +89,43 @@ const Home = () =>{
   return (
     <div className="home" >
       <header className='topBar'>
-        <UserCorner/>
-        <div>
+        <div className='userInfo'>
+          <UserCorner/>
+        </div>
+        <div className='title'>
           <h1>
-            Super TicTacToe 
+            Vast Mysterious Manner
           </h1>
         </div>
-        <div>
-          
+        <div className='roleSelection'>
+          <button onClick={(e)=>handleGameMode(e,"Paladin")}>
+            new game as Paladin
+          </button>
+          <button onClick={(e)=>handleGameMode(e,"Spider")}>
+            new game as Spider
+          </button>
+          <button onClick={(e)=>handleGameMode(e,"Skeletons")}>
+            new game as Skeletons
+          </button>
+          <button onClick={(e)=>handleGameMode(e,"Manor")}>
+            new game as Manor
+          </button>
+          {/* <button onClick={(e)=>handleGameMode(e,"Warlock")}>
+            new game as Warlock
+          </button> */}
         </div>
       </header>
       <main>
-        <div className='placeHolder'></div>
-        <div className='gameHolder'>
-          <div className='resetHolder'>
-            <div>
-
-            </div>
-            <button onClick={(e)=>handleGameMode(e,"Online")}>
-              new online game
-            </button>
-            <div>
-              <Icon/>
-            </div>
-          </div>
-          {/* {mode} */}
+        <div className='playMats'>
+          here are the play mats
+        </div>
+        
+        <div className='gameBoard'>
+          
           <FullGame/>
           
         </div>
-        <div className='placeHolder'></div>
+        
       </main>
       <footer>
         

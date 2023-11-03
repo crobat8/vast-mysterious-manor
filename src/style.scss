@@ -201,129 +201,38 @@ $neutral: #F1E5C3;
       
       height: fit-content;
       color: white;
-    }
-    main{
-      min-height: 800px;
-      background-color: $usedGrey1;
-      .gameHolder{
+      .roleSelection{
         display: grid;
-        place-items: center;
-        padding: 10px;
-        .resetHolder{
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          button{
-            margin: 5px;
-            height: 40px;
-            border-radius: 10px;
-            background-color: #197AFF;
-            padding: 10px;
-          }
-        }
-        .fullGame{
+        grid-template-columns: 1fr 1fr ;
+        button{
+          margin: 5px;
+          
+          padding: 14px 0px;
           justify-content: center;
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          max-width: fit-content;
+          align-items: center;
+          border-radius: 4px;
+          background: #197AFF;
           
-          .Xwinnerbackground{
-            background-color: $usedGrey1;
-            height: 240px;
-            width: 240px;
-            border-radius: 10px;
-            margin: 10px;
-            padding: 10px;
-            .Xwinner {
-              background: $usedGrey1;
-              width: 220px;
-              height: 220px;
-              position: relative;
-            }
-          .Xwinner:after {
-            content: '';
-            height: 240px;
-            border-left: 15px solid #fff;
-            border-radius: 5px;
-            position: absolute;
-            transform: rotate(45deg);
-            left: 118px;
-          }
-          
-          .Xwinner:before {
-            content: '';
-            height: 240px;
-            border-left: 15px solid #fff;
-            border-radius: 5px;
-            position: absolute;
-            transform: rotate(-45deg);
-            left: 118px;
-          }
-
-          }
-
-          .Owinnerbackground{
-            background-color: $usedGrey1;
-            height: 260px;
-            width: 260px;
-            border-radius: 10px;
-            margin: 10px;
-            .Owinner{
-              display:inline-block;   /* add this */
-              width: 190px;
-              height: 190px;
-              margin: 20px;
-              border-radius: 50%;
-              border-style: solid;
-              border-width: 15px;
-              border-color: white;
-              background-color: rgba(0, 0, 0, 0);
-            }
-          }
-
-          .miniGame{
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            border-radius: 10px;
-            margin: 10px;
-            padding: 10px;
-            max-width: fit-content;
-            max-height: fit-content;
-            background: $usedGrey2;
-            .cellHolder{
-              text-align: center;
-              .cellP{
-                text-align: center;
-                
-                border-radius: 10px;
-                padding: 10px;
-                margin: 10px;
-                height: 40px;
-                width: 40px;
-                background: $usedGrey4;
-                
-              }
-              .cellP:hover{
-                background: $usedGrey5;
-              }
-              .cellD{
-                text-align: center;
-                
-                border-radius: 10px;
-                padding: 10px;
-                margin: 10px;
-                height: 40px;
-                width: 40px;
-                background: $usedGrey3;
-                color: white;
-              }
-            }
-            
-            
-          }
+          border: none;
+          margin-bottom: 10px;
+          cursor:pointer;
         }
       }
-      .placeHolder{
-        background-color: #8B0025;
+    }
+    main{
+      min-height: 1200px;
+      background-color: $usedGrey1;
+      display: grid;
+      grid-template-columns: 1fr 1fr ;
+
+      .playMats{
+        background-color: green;
+      }
+      .gameBoard{
+        background-color: yellow;
+        .Board{
+          
+        }
       }
     }
     .information{

@@ -3,32 +3,19 @@ import MiniGame from './MiniGame';
 import { GameContext } from '../context/GameContext';
 
 const FullGame = ()=>{
-  const [gameState,setGameState]=useState(["NON","NON","NON",
-                                           "NON","NON","NON",
-                                           "NON","NON","NON"])
   const {gameInfo} = useContext(GameContext);
-  const [turnPiece,setTurnPiece]=useState("X")
-  const [lastPlayed,setLastPlayed]=useState(10)
-  console.log(gameInfo)
-  if (gameInfo == null||gameInfo.length == 0){
+  if(gameInfo == null){
+    console.log(gameInfo)
     return(
-      <h1>
-        searching for a game
-      </h1>
+      <div className='Board'>
+        not in a game select what role you want 
+      </div>
     )
   }
-
+  console.log(gameInfo)
   return(
-    <div className='fullGame'>
-      {gameInfo[0].mainGame.map((e,key)=>{
-        const gameName = "g"+key;
-        return(
-          <MiniGame big={key}  
-                gameNum={gameInfo[0][gameName]}
-                winner = {gameInfo[0].mainGame[key]}
-          />
-        )
-      })}
+    <div className='Board'>
+      here is the game baord
     </div>
   )
 }
