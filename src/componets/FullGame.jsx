@@ -17,27 +17,29 @@ const FullGame = ()=>{
       </div>
     )
   }
-  console.log(gameInfo)
+  
+  function handlePicture(info){
+    if(info.floorType == "start"){
+      return entrance
+    }else{
+      return pit
+    }
+  }
+
   return(
     <div className='Board' style={{backgroundImage: `url(${gameBoard})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover"
     }}>
       <div className='tiles'>
-        {gameInfo[0].tiles.map((tile)=>{
+        {gameInfo[0].tiles.map((tile,k)=>{
           if(tile == ""){
             return(
               <div/>
               
             )
           }
-          console.log(tile)
-          let tilePicture = back;
-          if(tile.floorType ="start"){
-            tilePicture = entrance
-          }else{
-            tilePicture = pit
-          }
+          let tilePicture = handlePicture(tile);
           return(
             <Tile
               tilePic={tilePicture}

@@ -104,7 +104,7 @@ const Home = () =>{
           <button onClick={(e)=>handleGameMode(e,"spider")}>
             new game as Spider
           </button>
-          <button onClick={(e)=>handleGameMode(e,"skeletons")}>
+          <button onClick={(e)=>handleGameMode(e,"skeleton")}>
             new game as Skeletons
           </button>
           <button onClick={(e)=>handleGameMode(e,"manor")}>

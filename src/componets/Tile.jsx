@@ -6,7 +6,7 @@ import pit from '../img/game_images/board/tiles/Pit_start.png'
 
 const Tile = (props)=>{
   const {gameInfo} = useContext(GameContext);
-  console.log(props.tileRotation)
+
   const rotation = props.tileRotation*90;
   return(
     <div className='tile'>
