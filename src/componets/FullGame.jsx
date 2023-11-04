@@ -17,8 +17,25 @@ const FullGame = ()=>{
   }
   
   function handlePicture(info){
+    
     if(info.floorType == "start"){
-      return tileImages.entrance
+      return tileImages.start
+    }else if(info.floorType == "armory"){
+      if(info.facing == "down"){
+        return tileImages.armoryBack
+      }else if(info.wallType == "open"){
+        return tileImages.armoryOpen
+      }else if(info.wallType == "nes"){
+        return tileImages.armoryNes
+      }
+    }else if(info.floorType == "blood"){
+      if(info.facing == "down"){
+        return tileImages.genBack
+      }else if(info.wallType == "open"){
+        return tileImages.bloodOpen
+      }else if(info.wallType == "nes"){
+        return tileImages.armoryNes
+      }
     }else if(info.floorType == "pit"){
       if(info.facing == "down"){
         return tileImages.genBack
@@ -33,15 +50,8 @@ const FullGame = ()=>{
       }else if(info.wallType == "n"){
         return tileImages.pitNes
       }
-    }else if(info.floorType == "armory"){
-      if(info.facing == "down"){
-        return tileImages.armoryBack
-      }else if(info.wallType == "open"){
-        return tileImages.armory
-      }
-      
     }else{
-      return tileImages.entrance
+      return tileImages.start
     }
   }
 

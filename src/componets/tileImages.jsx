@@ -1,5 +1,5 @@
 // no set 
-import entrance from '../img/game_images/board/tiles/entrance_nes.png'
+import start from '../img/game_images/board/tiles/start_nes.png'
 import genBack from '../img/game_images/board/tiles/back/back_general.png'
 
 // armorys
@@ -43,7 +43,7 @@ import treasureN from '../img/game_images/board/tiles/treasure/treasure_n.png'
 
 export default {
   // no set
-  "entrance" : entrance,
+  "start" : start,
   "genBack" : genBack,
 
   // armory
