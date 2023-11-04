@@ -3,9 +3,7 @@ import React, { useContext, useState,memo } from 'react';
 import { GameContext } from '../context/GameContext';
 import Tile from './Tile';
 import gameBoard from '../img/game_images/board/mainBoard.png'
-import entrance from '../img/game_images/board/tiles/entrance_nes.png'
-import back from '../img/game_images/board/tiles/back/back_general.png'
-import pit from '../img/game_images/board/tiles/Pit_start.png'
+import tileImages from './tileImages';
 
 const FullGame = ()=>{
   const {gameInfo} = useContext(GameContext);
@@ -20,11 +18,30 @@ const FullGame = ()=>{
   
   function handlePicture(info){
     if(info.floorType == "start"){
-      return entrance
+      return tileImages.entrance
     }else if(info.floorType == "pit"){
-      return pit
+      if(info.facing == "down"){
+        return tileImages.genBack
+      }else if(info.wallType == "open"){
+        return tileImages.pitOpen
+      }else if(info.wallType == "nes"){
+        return tileImages.pitNes
+      }else if(info.wallType == "ne"){
+        return tileImages.pitNes
+      }else if(info.wallType == "ns"){
+        return tileImages.pitNes
+      }else if(info.wallType == "n"){
+        return tileImages.pitNes
+      }
+    }else if(info.floorType == "armory"){
+      if(info.facing == "down"){
+        return tileImages.armoryBack
+      }else if(info.wallType == "open"){
+        return tileImages.armory
+      }
+      
     }else{
-      return entrance
+      return tileImages.entrance
     }
   }
 
@@ -38,7 +55,6 @@ const FullGame = ()=>{
           if(tile == ""){
             return(
               <div className='tile'/>
-              
             )
           }
           let tilePicture = handlePicture(tile);

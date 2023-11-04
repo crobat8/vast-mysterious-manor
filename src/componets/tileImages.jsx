@@ -1,0 +1,88 @@
+// no set 
+import entrance from '../img/game_images/board/tiles/entrance_nes.png'
+import genBack from '../img/game_images/board/tiles/back/back_general.png'
+
+// armorys
+import armoryOpen from '../img/game_images/board/tiles/armory/armory_open.png'
+import armoryNes from '../img/game_images/board/tiles/armory/armory_nes.png'
+import armoryBack from '../img/game_images/board/tiles/back/back_armory.png'
+
+//bloods
+import bloodOpen from '../img/game_images/board/tiles/blood/blood_open.png'
+import bloodNes from '../img/game_images/board/tiles/blood/blood_nes.png'
+import bloodNe from '../img/game_images/board/tiles/blood/blood_ne.png'
+
+//events
+import eventOpen from '../img/game_images/board/tiles/events/event_open.png'
+import eventNes from '../img/game_images/board/tiles/events/event_nes.png'
+import eventNe from '../img/game_images/board/tiles/events/event_ne.png'
+
+//ghosts
+import ghostOpen from '../img/game_images/board/tiles/ghost/ghost_open.png'
+import ghostNes from '../img/game_images/board/tiles/ghost/ghost_nes.png'
+import ghostNe from '../img/game_images/board/tiles/ghost/ghost_ne.png'
+import ghostNs from '../img/game_images/board/tiles/ghost/ghost_ns.png'
+
+// pits
+import pitOpen from '../img/game_images/board/tiles/pit/pit_open.png'
+import pitNes from '../img/game_images/board/tiles/pit/pit_nes.png'
+import pitNe from '../img/game_images/board/tiles/pit/pit_ne.png'
+import pitNs from '../img/game_images/board/tiles/pit/pit_ns.png'
+import pitN from '../img/game_images/board/tiles/pit/pit_n.png'
+
+// shrines
+import shrineOpen from '../img/game_images/board/tiles/shrine/shrine_open.png'
+import shrineNes from '../img/game_images/board/tiles/shrine/shrine_nes.png'
+import shrineNe from '../img/game_images/board/tiles/shrine/shrine_ne.png'
+import shrineNs from '../img/game_images/board/tiles/shrine/shrine_ns.png'
+
+// treasure
+import treasureNes from '../img/game_images/board/tiles/treasure/treasure_nes.png'
+import treasureNe from '../img/game_images/board/tiles/treasure/treasure_ne.png'
+import treasureNs from '../img/game_images/board/tiles/treasure/treasure_ns.png'
+
+export default {
+  // no set
+  "entrance" : entrance,
+  "genBack" : genBack,
+
+  // armory
+  "armoryOpen" : armoryOpen,
+  "armoryNes"  : armoryNes,
+  "armoryBack" : armoryBack,
+
+  //blood
+  "bloodOpen" : bloodOpen,
+  "bloodNes" : bloodNes,
+  "bloodNe" : bloodNe,
+
+  // event
+  "eventOpen" : eventOpen,
+  "eventNes" : eventNes,
+  "eventNe" : eventNe,
+
+  //ghost
+  "ghostOpen" : ghostOpen,
+  "ghostNes"  : ghostNes,
+  "ghostNe"   : ghostNe,  
+  "ghostNs"   : ghostNs,
+
+  // pits
+  "pitOpen" : pitOpen,
+  "pitNes"  : pitNes,
+  "pitNe"   : pitNe,  
+  "pitNs"   : pitNs,
+  "pitN"    : pitN,
+  
+  // shrines
+  "shrineOpen" : shrineOpen,
+  "shrineNes"  : shrineNes,
+  "shrineNe"   : shrineNe,  
+  "shrineNs"   : shrineNs,
+
+  // treasure
+  "treasureNes"  : treasureNes,
+  "treasureNe"   : treasureNe,  
+  "treasureNs"   : treasureNs,
+
+}
