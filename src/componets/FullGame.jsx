@@ -21,8 +21,10 @@ const FullGame = ()=>{
   function handlePicture(info){
     if(info.floorType == "start"){
       return entrance
-    }else{
+    }else if(info.floorType == "pit"){
       return pit
+    }else{
+      return entrance
     }
   }
 
@@ -35,7 +37,7 @@ const FullGame = ()=>{
         {gameInfo[0].tiles.map((tile,k)=>{
           if(tile == ""){
             return(
-              <div/>
+              <div className='tile'/>
               
             )
           }
