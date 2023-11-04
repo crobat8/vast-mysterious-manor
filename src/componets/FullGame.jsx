@@ -3,8 +3,9 @@ import React, { useContext, useState,memo } from 'react';
 import { GameContext } from '../context/GameContext';
 import Tile from './Tile';
 import gameBoard from '../img/game_images/board/mainBoard.png'
+import entrance from '../img/game_images/board/tiles/entrance_nes.png'
+import back from '../img/game_images/board/tiles/back/back_general.png'
 import pit from '../img/game_images/board/tiles/Pit_start.png'
-
 
 const FullGame = ()=>{
   const {gameInfo} = useContext(GameContext);
@@ -23,55 +24,28 @@ const FullGame = ()=>{
       backgroundSize: "cover"
     }}>
       <div className='tiles'>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-        <Tile/>
-
+        {gameInfo[0].tiles.map((tile)=>{
+          if(tile == ""){
+            return(
+              <div/>
+              
+            )
+          }
+          console.log(tile)
+          let tilePicture = back;
+          if(tile.floorType ="start"){
+            tilePicture = entrance
+          }else{
+            tilePicture = pit
+          }
+          return(
+            <Tile
+              tilePic={tilePicture}
+              tileWalls={tile.walls}
+              tileRotation={tile.rotation}
+            />
+          )
+        })}
       </div>
 
 
