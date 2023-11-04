@@ -37,9 +37,9 @@ import shrineNe from '../img/game_images/board/tiles/shrine/shrine_ne.png'
 import shrineNs from '../img/game_images/board/tiles/shrine/shrine_ns.png'
 
 // treasure
-import treasureNes from '../img/game_images/board/tiles/treasure/treasure_nes.png'
 import treasureNe from '../img/game_images/board/tiles/treasure/treasure_ne.png'
 import treasureNs from '../img/game_images/board/tiles/treasure/treasure_ns.png'
+import treasureN from '../img/game_images/board/tiles/treasure/treasure_n.png'
 
 export default {
   // no set
@@ -81,8 +81,7 @@ export default {
   "shrineNs"   : shrineNs,
 
   // treasure
-  "treasureNes"  : treasureNes,
   "treasureNe"   : treasureNe,  
   "treasureNs"   : treasureNs,
-
+  "treasureN"  : treasureN,
 }
