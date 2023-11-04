@@ -1,7 +1,10 @@
 import React, { useContext, useState,memo } from 'react';
 
 import { GameContext } from '../context/GameContext';
+import Tile from './Tile';
 import gameBoard from '../img/game_images/board/mainBoard.png'
+import pit from '../img/game_images/board/tiles/Pit_start.png'
+
 
 const FullGame = ()=>{
   const {gameInfo} = useContext(GameContext);
@@ -15,8 +18,63 @@ const FullGame = ()=>{
   }
   console.log(gameInfo)
   return(
-    <div className='Board'>
-      <img className="background" src={gameBoard} style={{maxheight:"100%", maxwidth:"100%"}} alt=""/>
+    <div className='Board' style={{backgroundImage: `url(${gameBoard})`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover"
+    }}>
+      <div className='tiles'>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+        <Tile/>
+
+      </div>
+
+
     </div>
   )
 }

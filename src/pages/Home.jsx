@@ -120,7 +120,7 @@ const Home = () =>{
           <FullGame/>
         </div>
         <div className='playMats'>
-          here are the play mats
+           
         </div>
       </main>
       <footer>
