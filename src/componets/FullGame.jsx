@@ -9,7 +9,7 @@ import pit from '../img/game_images/board/tiles/Pit_start.png'
 
 const FullGame = ()=>{
   const {gameInfo} = useContext(GameContext);
-  if(gameInfo == null){
+  if(gameInfo == null||gameInfo.length == 0){
     console.log(gameInfo)
     return(
       <div className='Board'>

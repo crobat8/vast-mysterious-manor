@@ -98,16 +98,16 @@ const Home = () =>{
           </h1>
         </div>
         <div className='roleSelection'>
-          <button onClick={(e)=>handleGameMode(e,"Paladin")}>
+          <button onClick={(e)=>handleGameMode(e,"paladin")}>
             new game as Paladin
           </button>
-          <button onClick={(e)=>handleGameMode(e,"Spider")}>
+          <button onClick={(e)=>handleGameMode(e,"spider")}>
             new game as Spider
           </button>
-          <button onClick={(e)=>handleGameMode(e,"Skeletons")}>
+          <button onClick={(e)=>handleGameMode(e,"skeletons")}>
             new game as Skeletons
           </button>
-          <button onClick={(e)=>handleGameMode(e,"Manor")}>
+          <button onClick={(e)=>handleGameMode(e,"manor")}>
             new game as Manor
           </button>
           {/* <button onClick={(e)=>handleGameMode(e,"Warlock")}>
