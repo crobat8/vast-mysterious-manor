@@ -192,7 +192,7 @@ $neutral: #F1E5C3;
     .topBar{
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      position: sticky;
+      //position: sticky;
       top: 0;
       background: black;
       text-align: center;
@@ -249,16 +249,23 @@ $neutral: #F1E5C3;
                 width: 100%;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                .character{
+                
+                .characters{
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  grid-template-rows: 1fr 1fr ;
+                  gap: 5px;
+                  padding: 5px;
                   img{
-                    
+                    height: 100%;
+                    width: 100%;
                   }
                 }
-                .tokens{
-                  img{
+                // .tokens{
+                //   img{
 
-                  }
-                }
+                //   }
+                // }
               }
             }
           }

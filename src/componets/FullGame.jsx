@@ -4,6 +4,8 @@ import { GameContext } from '../context/GameContext';
 import Tile from './Tile';
 import gameBoard from '../img/game_images/board/mainBoard.png'
 import tileImages from './tileImages';
+import characterImages from './characterImages';
+import tokenImages from './tokenImages';
 
 const FullGame = ()=>{
   const {gameInfo} = useContext(GameContext);
@@ -31,6 +33,23 @@ const FullGame = ()=>{
     }
   }
 
+  function handleCharacterIcons(info){
+    let ret = []
+    for(let i = 0; i < info.length;i++){
+      ret.push(characterImages[info[i]])
+    }
+
+    return ret
+  }
+
+  function handleTokenIcons(info){
+    let ret = []
+    for(let i = 0; i < info.length;i++){
+      ret.push(tokenImages[info[i]])
+    }
+    return ret
+  }
+
   return(
     <div className='Board' style={{backgroundImage: `url(${gameBoard})`,
       backgroundRepeat: "no-repeat",
@@ -43,12 +62,17 @@ const FullGame = ()=>{
               <div className='tile'/>
             )
           }
-          let tilePicture = handlePicture(tile);
+
+          const tilePicture = handlePicture(tile);
+          const characterIcons = handleCharacterIcons(tile.characters);
+          const tokenIcons = handleTokenIcons(tile.tokens);
           return(
             <Tile
               tilePic={tilePicture}
               tileWalls={tile.walls}
               tileRotation={tile.rotation}
+              characterIcons={characterIcons}
+              tokenIcons={tokenIcons}
             />
           )
         })}

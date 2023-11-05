@@ -11,7 +11,7 @@ import sniffy from'../img/game_images/pieces/characters/skeleton/sniffy.png'
 import stabby from'../img/game_images/pieces/characters/skeleton/stabby.png'
 
 import caster from '../img/game_images/pieces/characters/spider/caster.png'
-import giant from '../img/game_images/pieces/characters/spider/giant.png'
+import giantSpider from '../img/game_images/pieces/characters/spider/giantSpider.png'
 import spiderling from '../img/game_images/pieces/characters/spider/spiderling.png'
 
 import manor from '../img/game_images/pieces/characters/manor/manor.png'
@@ -34,7 +34,7 @@ export default {
   "stabby" : stabby,
 
   "caster" : caster,
-  "giant" : giant,
+  "giantSpider" : giantSpider,
   "spiderling" : spiderling,
 
   "manor" : manor,
