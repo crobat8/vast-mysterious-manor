@@ -17,41 +17,17 @@ const FullGame = ()=>{
   }
   
   function handlePicture(info){
-    
-    if(info.floorType == "start"){
-      return tileImages.start
-    }else if(info.floorType == "armory"){
-      if(info.facing == "down"){
+    if(info.facing == "down"){
+      if(info.floorType == "armory"){
         return tileImages.armoryBack
-      }else if(info.wallType == "open"){
-        return tileImages.armoryOpen
-      }else if(info.wallType == "nes"){
-        return tileImages.armoryNes
-      }
-    }else if(info.floorType == "blood"){
-      if(info.facing == "down"){
+      }else{
         return tileImages.genBack
-      }else if(info.wallType == "open"){
-        return tileImages.bloodOpen
-      }else if(info.wallType == "nes"){
-        return tileImages.armoryNes
       }
-    }else if(info.floorType == "pit"){
-      if(info.facing == "down"){
-        return tileImages.genBack
-      }else if(info.wallType == "open"){
-        return tileImages.pitOpen
-      }else if(info.wallType == "nes"){
-        return tileImages.pitNes
-      }else if(info.wallType == "ne"){
-        return tileImages.pitNes
-      }else if(info.wallType == "ns"){
-        return tileImages.pitNes
-      }else if(info.wallType == "n"){
-        return tileImages.pitNes
-      }
-    }else{
+    }else if(info.floorType == "start"){
       return tileImages.start
+    }else{
+      const tileName = ""+info.floorType+info.wallType;
+      return tileImages[tileName]
     }
   }
 

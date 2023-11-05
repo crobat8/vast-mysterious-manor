@@ -81,7 +81,7 @@ export default {
   "shrineNs"   : shrineNs,
 
   // treasure
-  "treasureNe"   : treasureNe,  
-  "treasureNs"   : treasureNs,
+  "treasureNe" : treasureNe,  
+  "treasureNs" : treasureNs,
   "treasureN"  : treasureN,
 }
