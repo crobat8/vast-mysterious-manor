@@ -12,11 +12,6 @@ import bloodOpen from '../img/game_images/board/tiles/blood/blood_open.png'
 import bloodNes from '../img/game_images/board/tiles/blood/blood_nes.png'
 import bloodNe from '../img/game_images/board/tiles/blood/blood_ne.png'
 
-//events
-import eventOpen from '../img/game_images/board/tiles/events/event_open.png'
-import eventNes from '../img/game_images/board/tiles/events/event_nes.png'
-import eventNe from '../img/game_images/board/tiles/events/event_ne.png'
-
 //ghosts
 import ghostOpen from '../img/game_images/board/tiles/ghost/ghost_open.png'
 import ghostNes from '../img/game_images/board/tiles/ghost/ghost_nes.png'
@@ -55,11 +50,6 @@ export default {
   "bloodOpen" : bloodOpen,
   "bloodNes" : bloodNes,
   "bloodNe" : bloodNe,
-
-  // event
-  "eventOpen" : eventOpen,
-  "eventNes" : eventNes,
-  "eventNe" : eventNe,
 
   //ghost
   "ghostOpen" : ghostOpen,
