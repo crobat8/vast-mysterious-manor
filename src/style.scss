@@ -242,27 +242,26 @@ $neutral: #F1E5C3;
             row-gap: 5px;
             column-gap: 5px;
             .tile {
-              width: 90px; // Set the width as needed
-              height: 90px; // Set the height as needed
+              width: 90px; 
+              height: 90px; 
               .pieceContainer{
                 height: 100%;
                 width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                .character{
+                  img{
+
+                  }
+                }
+                .tokens{
+                  img{
+
+                  }
+                }
               }
-            
-
             }
-            // .tile{
-            //   width: 90px;
-            //   height: 90px;
-
-            //   img{
-            //     width: 100%;
-            //     height: 100%;
-            //   }
-            // }
-            
           }
-
         }
       }
       .playMats{

@@ -10,9 +10,12 @@ const Tile = (props)=>{
     transform: `rotate(${rotation}deg)`
     }}>
       <div className='pieceContainer' style={{transform: `rotate(${-rotation}deg)`}}>
-        <p >
-          test is this up right
-        </p>
+        <div className='characters'>
+
+        </div>
+        <div className='tokens'>
+
+        </div>
       </div>
     </div>
   )
