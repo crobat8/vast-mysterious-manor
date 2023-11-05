@@ -1,81 +1,45 @@
+import paladin from '../img/game_images/pieces/characters/paladin/paladin.png'
 
+import casty from'../img/game_images/pieces/characters/skeleton/casty.png'
+import screamy from'../img/game_images/pieces/characters/skeleton/screamy.png'
+import shiny from'../img/game_images/pieces/characters/skeleton/shiny.png'
+import shooty from'../img/game_images/pieces/characters/skeleton/shooty.png'
+import singy from'../img/game_images/pieces/characters/skeleton/singy.png'
+import slashy from'../img/game_images/pieces/characters/skeleton/slashy.png'
+import smashy from'../img/game_images/pieces/characters/skeleton/smashy.png'
+import sniffy from'../img/game_images/pieces/characters/skeleton/sniffy.png'
+import stabby from'../img/game_images/pieces/characters/skeleton/stabby.png'
 
-// no set 
-import start from '../img/game_images/board/tiles/start_nes.png'
-import genBack from '../img/game_images/board/tiles/back/back_general.png'
+import caster from '../img/game_images/pieces/characters/spider/caster.png'
+import giant from '../img/game_images/pieces/characters/spider/giant.png'
+import spiderling from '../img/game_images/pieces/characters/spider/spiderling.png'
 
-// armorys
-import armoryOpen from '../img/game_images/board/tiles/armory/armory_open.png'
-import armoryNes from '../img/game_images/board/tiles/armory/armory_nes.png'
-import armoryBack from '../img/game_images/board/tiles/back/back_armory.png'
+import manor from '../img/game_images/pieces/characters/manor/manor.png'
 
-//bloods
-import bloodOpen from '../img/game_images/board/tiles/blood/blood_open.png'
-import bloodNes from '../img/game_images/board/tiles/blood/blood_nes.png'
-import bloodNe from '../img/game_images/board/tiles/blood/blood_ne.png'
+import warlock from '../img/game_images/pieces/characters/warlock/warlock.png'
 
-//ghosts
-import ghostOpen from '../img/game_images/board/tiles/ghost/ghost_open.png'
-import ghostNes from '../img/game_images/board/tiles/ghost/ghost_nes.png'
-import ghostNe from '../img/game_images/board/tiles/ghost/ghost_ne.png'
-import ghostNs from '../img/game_images/board/tiles/ghost/ghost_ns.png'
-
-// pits
-import pitOpen from '../img/game_images/board/tiles/pit/pit_open.png'
-import pitNes from '../img/game_images/board/tiles/pit/pit_nes.png'
-import pitNe from '../img/game_images/board/tiles/pit/pit_ne.png'
-import pitNs from '../img/game_images/board/tiles/pit/pit_ns.png'
-import pitN from '../img/game_images/board/tiles/pit/pit_n.png'
-
-// shrines
-import shrineOpen from '../img/game_images/board/tiles/shrine/shrine_open.png'
-import shrineNes from '../img/game_images/board/tiles/shrine/shrine_nes.png'
-import shrineNe from '../img/game_images/board/tiles/shrine/shrine_ne.png'
-import shrineNs from '../img/game_images/board/tiles/shrine/shrine_ns.png'
-
-// treasure
-import treasureNe from '../img/game_images/board/tiles/treasure/treasure_ne.png'
-import treasureNs from '../img/game_images/board/tiles/treasure/treasure_ns.png'
-import treasureN from '../img/game_images/board/tiles/treasure/treasure_n.png'
+import ghost from '../img/game_images/pieces/characters/general/ghost.png'
 
 export default {
+  "paladin" : paladin,
 
+  "casty" : casty,
+  "screamy" : screamy,
+  "shiny" : shiny,
+  "shooty" : shooty,
+  "singy" : singy,
+  "slashy" : slashy,
+  "smashy" : smashy,
+  "sniffy" : sniffy,
+  "stabby" : stabby,
 
-  // no set
-  "start" : start,
-  "genBack" : genBack,
+  "caster" : caster,
+  "giant" : giant,
+  "spiderling" : spiderling,
 
-  // armory
-  "armoryOpen" : armoryOpen,
-  "armoryNes"  : armoryNes,
-  "armoryBack" : armoryBack,
+  "manor" : manor,
 
-  //blood
-  "bloodOpen" : bloodOpen,
-  "bloodNes" : bloodNes,
-  "bloodNe" : bloodNe,
+  "warlock" : warlock,
 
-  //ghost
-  "ghostOpen" : ghostOpen,
-  "ghostNes"  : ghostNes,
-  "ghostNe"   : ghostNe,  
-  "ghostNs"   : ghostNs,
-
-  // pits
-  "pitOpen" : pitOpen,
-  "pitNes"  : pitNes,
-  "pitNe"   : pitNe,  
-  "pitNs"   : pitNs,
-  "pitN"    : pitN,
-  
-  // shrines
-  "shrineOpen" : shrineOpen,
-  "shrineNes"  : shrineNes,
-  "shrineNe"   : shrineNe,  
-  "shrineNs"   : shrineNs,
-
-  // treasure
-  "treasureNe" : treasureNe,  
-  "treasureNs" : treasureNs,
-  "treasureN"  : treasureN,
+  "ghost" : ghost,
 }
