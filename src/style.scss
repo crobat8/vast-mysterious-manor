@@ -236,21 +236,31 @@ $neutral: #F1E5C3;
             padding-left: 71px;
             padding-right: 72px;
             padding-top: 71px;
-            
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
             grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
             row-gap: 5px;
             column-gap: 5px;
-            .tile{
-              width: 90px;
-              height: 90px;
-
-              img{
-                width: 100%;
+            .tile {
+              width: 90px; // Set the width as needed
+              height: 90px; // Set the height as needed
+              .pieceContainer{
                 height: 100%;
+                width: 100%;
               }
+            
+
             }
+            // .tile{
+            //   width: 90px;
+            //   height: 90px;
+
+            //   img{
+            //     width: 100%;
+            //     height: 100%;
+            //   }
+            // }
+            
           }
 
         }
