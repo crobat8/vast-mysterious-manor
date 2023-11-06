@@ -10,7 +10,7 @@ import tokenImages from './tokenImages';
 const FullGame = ()=>{
   const {gameInfo} = useContext(GameContext);
   if(gameInfo == null||gameInfo.length == 0){
-    console.log(gameInfo)
+
     return(
       <div className='Board'>
         not in a game select what role you want 
@@ -43,8 +43,7 @@ const FullGame = ()=>{
   }
 
   function handleTokenIcons(info2){
-    console.log(info2)
-    console.log(tokenImages)
+
     let ret = []
     for(let i = 0; i < info2.length;i++){
       ret.push(tokenImages[info2[i]])

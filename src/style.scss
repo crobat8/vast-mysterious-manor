@@ -223,8 +223,14 @@ $neutral: #F1E5C3;
       min-height: 1200px;
       background-color: $usedGrey1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 6fr;
       grid-gap: 5px;
+      .gameInformation{
+        .gameInfo{
+          
+        }
+      }
+
       .gameBoard{   
         .Board{
           margin: 10px;
@@ -249,7 +255,6 @@ $neutral: #F1E5C3;
                 width: 100%;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                
                 .characters{
                   display: grid;
                   grid-template-columns: 1fr 1fr;
@@ -277,14 +282,6 @@ $neutral: #F1E5C3;
           }
         }
       }
-      .playMats{
-        background-color: green;
-      }
-
-    }
-    /*change this value to stack board and play mats 1100 ish*/
-    @media screen and (max-width: 1100px) {
-      main{grid-template-columns: 1fr }
     }
     .information{
       background-color: black;

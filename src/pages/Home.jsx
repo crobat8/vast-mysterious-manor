@@ -8,6 +8,7 @@ import { auth, db, storage } from "../firebase";
 import { collection, doc, query, setDoc, where, getDocs, deleteDoc,updateDoc,arrayRemove} from "firebase/firestore";
 import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
+import Playmats from '../componets/Playmats';
 
 const Home = () =>{ 
   
@@ -37,23 +38,8 @@ const Home = () =>{
       });         
 
     }
-
-    
   }
 
-  function Icon()  {
-    try {
-      return(
-        <div>
-          <h2>
-            you are {gameInfo[0].first == userInfo[0].uid?"X":"O"} this game
-          </h2>
-        </div>
-      )
-    } catch (error) {
-      // console.log(error) 
-    }
-  }
   function UserCorner()  {
     try {
       return(
@@ -101,11 +87,11 @@ const Home = () =>{
           <button onClick={(e)=>handleGameMode(e,"paladin")}>
             new game as Paladin
           </button>
+          <button onClick={(e)=>handleGameMode(e,"skeleton")}>
+            new game as Skeleton
+          </button>
           <button onClick={(e)=>handleGameMode(e,"spider")}>
             new game as Spider
-          </button>
-          <button onClick={(e)=>handleGameMode(e,"skeleton")}>
-            new game as Skeletons
           </button>
           <button onClick={(e)=>handleGameMode(e,"manor")}>
             new game as Manor
@@ -116,15 +102,17 @@ const Home = () =>{
         </div>
       </header>
       <main>
+        <div className='gameInformation'>
+          test
+        </div>
         <div className='gameBoard'>
           <FullGame/>
         </div>
-        <div className='playMats'>
-           
-        </div>
       </main>
       <footer>
-        
+        <div className='playMats'>
+           <Playmats/>
+        </div>
       </footer>
     </div>
   )
