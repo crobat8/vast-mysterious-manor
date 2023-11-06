@@ -9,6 +9,7 @@ import { collection, doc, query, setDoc, where, getDocs, deleteDoc,updateDoc,arr
 import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
 import Playmats from '../componets/Playmats';
+import GameInformation from '../componets/GameInformation';
 
 const Home = () =>{ 
   
@@ -103,7 +104,7 @@ const Home = () =>{
       </header>
       <main>
         <div className='gameInformation'>
-          test
+          <GameInformation/>
         </div>
         <div className='gameBoard'>
           <FullGame/>

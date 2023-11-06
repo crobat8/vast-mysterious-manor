@@ -11,16 +11,16 @@ const Tile = (props)=>{
     }}>
       <div className='pieceContainer' style={{transform: `rotate(${-rotation}deg)`}}>
         <div className='characters'>
-          {props.characterIcons.map((e, key)=>{
+          {props.characterIcons.map((e, k)=>{
             return(
-              <img src={e} />
+              <img src={e} key={k}/>
             )
           })}
         </div>
         <div className='tokens'>
-        {props.tokenIcons.map((e,key)=>{
+        {props.tokenIcons.map((e,k)=>{
             return(
-              <img src={e} />
+              <img src={e} key={k}/>
             )
           })}
         </div>
