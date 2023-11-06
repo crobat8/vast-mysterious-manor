@@ -33,19 +33,21 @@ const FullGame = ()=>{
     }
   }
 
-  function handleCharacterIcons(info){
+  function handleCharacterIcons(info1){
     let ret = []
-    for(let i = 0; i < info.length;i++){
-      ret.push(characterImages[info[i]])
+    for(let i = 0; i < info1.length;i++){
+      ret.push(characterImages[info1[i]])
     }
 
     return ret
   }
 
-  function handleTokenIcons(info){
+  function handleTokenIcons(info2){
+    console.log(info2)
+    console.log(tokenImages)
     let ret = []
-    for(let i = 0; i < info.length;i++){
-      ret.push(tokenImages[info[i]])
+    for(let i = 0; i < info2.length;i++){
+      ret.push(tokenImages[info2[i]])
     }
     return ret
   }

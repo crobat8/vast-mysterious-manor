@@ -18,7 +18,11 @@ const Tile = (props)=>{
           })}
         </div>
         <div className='tokens'>
-
+        {props.tokenIcons.map((e)=>{
+            return(
+              <img src={e}/>
+            )
+          })}
         </div>
       </div>
     </div>
