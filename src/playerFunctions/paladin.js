@@ -1,34 +1,25 @@
+const arrayToSend = [1, 2, 3, 4, 5]; // Replace with your desired array
 
-import { functions } from '../firebase';
-import { httpsCallable } from "firebase/functions";
-
-const cloudFunctionURL = 'https://addmessage-bquiaqmt4q-uc.a.run.app';
-
-const sendMessageToCloudFunction = async (message) => {
-
-
-
-
-  const url = `${cloudFunctionURL}?text=${message}`;
-
+const sendArrayToFirebaseFunction = async () => {
   try {
-    const response = await fetch(url, {
-      method: 'POST', // Change the method if your Cloud Function expects a different type of request
+    const response = await fetch('https://processarray-bquiaqmt4q-uc.a.run.app', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({data:arrayToSend}),
     });
 
-    if (response.ok) {
-      console.log('Cloud Function executed successfully');
-    } else {
-      console.error('Failed to trigger Cloud Function:', response.status);
-    }
+    const data = await response.json();
+    console.log('Response from Firebase Cloud Function:', data);
   } catch (error) {
-    console.error('Error triggering Cloud Function:', error);
+    console.error('Error:', error);
   }
 };
 
 
 function testMessage(){
-  sendMessageToCloudFunction("this is a test")
+  sendArrayToFirebaseFunction();
 }
 
 export default{

@@ -9,7 +9,6 @@ const GameInformation = () =>{
   
   const{gameInfo} = useContext(GameContext);
 
-  console.log(gameInfo)
   if(gameInfo == null || gameInfo.length == 0){
     return(
       <h1>
