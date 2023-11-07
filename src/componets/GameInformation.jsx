@@ -3,10 +3,12 @@ import { GameContext } from '../context/GameContext';
 
 import characterImages from './characterImages';
 import tokenImages from './tokenImages';
+import paladin from '../playerFunctions/paladin';
 
 const GameInformation = () =>{ 
   
   const{gameInfo} = useContext(GameContext);
+
   console.log(gameInfo)
   if(gameInfo == null || gameInfo.length == 0){
     return(
@@ -28,6 +30,12 @@ const GameInformation = () =>{
     return ret
   }
 
+
+
+  function test(){
+    paladin.testMessage();
+  }
+
   return (
     <div className="Info" >
       <div className='playerInfo' {...gameInfo[0].turn == "paladin" ? {id:'paladin'}:{id:''}}>
@@ -35,7 +43,7 @@ const GameInformation = () =>{
           <img src={characterImages.paladin}/>
           <h3> Paladin</h3>
           <h6> player Name</h6>
-          {gameInfo[0].turn == "paladin" ? <button> end phase</button>:<div/>}
+          {gameInfo[0].turn == "paladin" ? <button onClick={()=>test()}> end phase</button>:<div/>}
         </div>
         <div className='right'>
           <p> Health: {gameInfo[0].paladinInfo.health}</p>

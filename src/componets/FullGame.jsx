@@ -8,7 +8,7 @@ import characterImages from './characterImages';
 import tokenImages from './tokenImages';
 
 const FullGame = ()=>{
-  const {gameInfo} = useContext(GameContext);
+  const {gameInfo,gameID} = useContext(GameContext);
   if(gameInfo == null||gameInfo.length == 0){
 
     return(
@@ -17,7 +17,6 @@ const FullGame = ()=>{
       </div>
     )
   }
-  
   function handlePicture(info){
     if(info.facing == "down"){
       if(info.floorType == "armory"){
