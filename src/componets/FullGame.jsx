@@ -56,13 +56,14 @@ const FullGame = ()=>{
       backgroundSize: "cover"
     }}>
       <div className='tiles'>
-        {gameInfo[0].tiles.map((tile,k)=>{
+        {gameInfo[0].tiles.map((tile,key)=>{
+
           if(tile == ""){
             return(
               <div className='tile'/>
             )
           }
-
+          
           const tilePicture = handlePicture(tile);
           const characterIcons = handleCharacterIcons(tile.characters);
           const tokenIcons = handleTokenIcons(tile.tokens);
@@ -73,6 +74,7 @@ const FullGame = ()=>{
               tileRotation={tile.rotation}
               characterIcons={characterIcons}
               tokenIcons={tokenIcons}
+              num={key}
             />
           )
         })}
