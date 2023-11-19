@@ -13,7 +13,7 @@ export const GameContextProvider = ({ children }) => {
   const [gameInfo,setGameInfo]=useState(null)
   const [gameID,setGameID] = useState(null)
   const [loading,setLoading]=useState(true)
-  
+
   useEffect(() => {
     if(!currentUser){
       return

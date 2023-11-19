@@ -9,14 +9,14 @@ import tokenImages from './tokenImages';
 
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
-  if(gameInfo == null||gameInfo.length == 0){
-
+  //if(gameInfo == null||gameInfo.length == 0){
+    console.log(gameInfo)
     return(
       <div className='Board'>
         not in a game select what role you want 
       </div>
     )
-  }
+  //}
   function handlePicture(info){
     if(info.facing == "down"){
       if(info.floorType == "armory"){

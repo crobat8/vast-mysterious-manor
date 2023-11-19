@@ -9,13 +9,13 @@ const GameInformation = () =>{
   
   const{gameInfo} = useContext(GameContext);
 
-  if(gameInfo == null || gameInfo.length == 0){
+  // if(gameInfo == null || gameInfo.length == 0){
     return(
       <h1>
         not in a game right now
       </h1>
     )
-  }
+  // }
 
   function marchOrderDisplay(){
     const ret = []
