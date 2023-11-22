@@ -7,10 +7,12 @@ import tileImages from './tileImages';
 import characterImages from './characterImages';
 import tokenImages from './tokenImages';
 import { TileContext } from '../context/TileContext';
+import { PaladinContext } from '../context/PaldinContext';
 
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {tileInfo} = useContext(TileContext);
+  const paladinInfo = useContext(PaladinContext);
   
   if(gameInfo == null||gameInfo.length == 0){
     return(
@@ -25,7 +27,6 @@ const FullGame = ()=>{
       </div>
     )
   }
-
   function handlePicture(info){
     if(info.facing == "down"){
       if(info.floorType == "armory"){

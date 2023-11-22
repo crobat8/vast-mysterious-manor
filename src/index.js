@@ -6,6 +6,7 @@ import { AuthContextProvider } from './context/AuthContext';
 import { UserContextProvider } from './context/UserContext';
 import { GameContextProvider } from './context/GameContext';
 import { TileContextProvider } from './context/TileContext';
+import { PaladinContextProvider } from './context/PaldinContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,9 +14,11 @@ root.render(
     <UserContextProvider>
       <GameContextProvider>
         <TileContextProvider>
-          <React.StrictMode>
-            <App/>
-          </React.StrictMode>
+          <PaladinContextProvider>
+            <React.StrictMode>
+              <App/>
+            </React.StrictMode>
+          </PaladinContextProvider>
         </TileContextProvider>
       </GameContextProvider>
     </UserContextProvider>

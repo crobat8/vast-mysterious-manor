@@ -4,18 +4,20 @@ import { GameContext } from '../context/GameContext';
 import characterImages from './characterImages';
 import tokenImages from './tokenImages';
 import paladin from '../playerFunctions/paladin';
+import { PaladinContext } from '../context/PaldinContext';
 
 const GameInformation = () =>{ 
   
   const{gameInfo} = useContext(GameContext);
+  const{paladinInfo} = useContext(PaladinContext)
 
-  // if(gameInfo == null || gameInfo.length == 0){
+  if(paladinInfo == null){
     return(
       <h1>
         not in a game right now
       </h1>
     )
-  // }
+  }
 
   function marchOrderDisplay(){
     const ret = []
@@ -34,7 +36,7 @@ const GameInformation = () =>{
   function test(){
     paladin.testMessage();
   }
-
+  console.log(paladinInfo)
   return (
     <div className="Info" >
       <div className='playerInfo' {...gameInfo[0].turn == "paladin" ? {id:'paladin'}:{id:''}}>
@@ -45,13 +47,13 @@ const GameInformation = () =>{
           {gameInfo[0].turn == "paladin" ? <button onClick={()=>test()}> end phase</button>:<div/>}
         </div>
         <div className='right'>
-          <p> Health: {gameInfo[0].paladinInfo.health}</p>
-          <p> Grit: {gameInfo[0].paladinInfo.grit}</p>
-          <p> Fury: {gameInfo[0].paladinInfo.fury}</p>
-          <p> Hero Cubes: {gameInfo[0].paladinInfo.heroCubes}</p>
+          <p> Health: {paladinInfo.health}</p>
+          <p> Grit: {paladinInfo.grit}</p>
+          <p> Fury: {paladinInfo.fury}</p>
+          <p> Hero Cubes: {paladinInfo.heroCubes}</p>
         </div>
       </div>
-      <div className='playerInfo' {...gameInfo[0].turn == "skeleton" ? {id:'skeleton'}:{id:''}}>
+      {/* <div className='playerInfo' {...gameInfo[0].turn == "skeleton" ? {id:'skeleton'}:{id:''}}>
         <div className='left'>
           <img src={tokenImages.skull}/>
           <h3> Skeleton</h3>
@@ -93,7 +95,7 @@ const GameInformation = () =>{
           <p>Omen Cubes: {gameInfo[0].manorInfo.omenCubes}</p>
           <p>Rituals: {gameInfo[0].spiderInfo.terror}</p>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
