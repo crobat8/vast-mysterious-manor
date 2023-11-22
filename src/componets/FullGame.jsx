@@ -6,17 +6,26 @@ import gameBoard from '../img/game_images/board/mainBoard.png'
 import tileImages from './tileImages';
 import characterImages from './characterImages';
 import tokenImages from './tokenImages';
+import { TileContext } from '../context/TileContext';
 
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
-  //if(gameInfo == null||gameInfo.length == 0){
-    console.log(gameInfo)
+  const {tileInfo} = useContext(TileContext);
+  
+  if(gameInfo == null||gameInfo.length == 0){
     return(
       <div className='Board'>
         not in a game select what role you want 
       </div>
     )
-  //}
+  }else if(tileInfo == null){
+    return(
+      <div className='Board'>
+        loading tile info
+      </div>
+    )
+  }
+
   function handlePicture(info){
     if(info.facing == "down"){
       if(info.floorType == "armory"){
@@ -56,22 +65,22 @@ const FullGame = ()=>{
       backgroundSize: "cover"
     }}>
       <div className='tiles'>
-        {gameInfo[0].tiles.map((tile,key)=>{
+        {tileInfo.map((tile,key)=>{
 
-          if(tile == ""){
+          if(tile.value == ""){
             return(
               <div className='tile'/>
             )
           }
-          
-          const tilePicture = handlePicture(tile);
-          const characterIcons = handleCharacterIcons(tile.characters);
-          const tokenIcons = handleTokenIcons(tile.tokens);
+          const TileVal = tile.value;
+          const tilePicture = handlePicture(TileVal);
+          const characterIcons = handleCharacterIcons(TileVal.characters);
+          const tokenIcons = handleTokenIcons(TileVal.tokens);
           return(
             <Tile
               tilePic={tilePicture}
-              tileWalls={tile.walls}
-              tileRotation={tile.rotation}
+              tileWalls={TileVal.walls} // might be removedable or calculated locally 
+              tileRotation={TileVal.rotation}
               characterIcons={characterIcons}
               tokenIcons={tokenIcons}
               num={key}

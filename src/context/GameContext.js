@@ -12,7 +12,6 @@ export const GameContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
   const [gameInfo,setGameInfo]=useState(null)
   const [gameID,setGameID] = useState(null)
-  const [loading,setLoading]=useState(true)
 
   useEffect(() => {
     if(!currentUser){
