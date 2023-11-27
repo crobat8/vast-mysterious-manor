@@ -17,8 +17,8 @@ const Home = () =>{
   const{gameInfo} = useContext(GameContext);
   const{gameID} = useContext(GameContext);
   const[mode,setMode]=useState("Online")
-  const handleGameMode = async (e,x) =>{
 
+  const handleGameMode = async (e,x) =>{
     if(gameInfo.length == 0){
       // not in a game
       await setDoc(doc(db,"searching",userInfo[0].uid), {
@@ -40,6 +40,8 @@ const Home = () =>{
 
     }
   }
+
+  
 
   function UserCorner()  {
     try {
@@ -103,17 +105,19 @@ const Home = () =>{
         </div>
       </header>
       <main>
+        
         <div className='gameInformation'>
           <GameInformation/>
         </div>
         <div className='gameBoard'>
           <FullGame/>
         </div>
-      </main>
-      <footer>
         <div className='playMats'>
            <Playmats/>
         </div>
+      </main>
+      <footer>
+
       </footer>
     </div>
   )

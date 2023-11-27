@@ -320,6 +320,26 @@ $neutral: #F1E5C3;
           }
         }
       }
+      .playMats{
+        .playmatContainer{
+          .paladinActionContainer{
+            background-color: yellow;
+            h1{
+              padding: 10px;
+            }
+            .actions{
+              padding: 10px;
+              button{
+                padding: 10px;
+                margin-right: 10px;
+              }
+            }
+          }
+          .otherPlayers{
+            background-color: #8B0025;
+          }
+        }
+      }
     }
     @media screen and (max-width:1170px){
       main{

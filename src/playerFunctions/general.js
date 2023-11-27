@@ -29,7 +29,7 @@ const sendReveal = async (ID,locs) => {
 
 /**
  * send db what tiles to flip over
- * @param {Array} locations to 
+ * @param {Array} locations double array that contains a where and a rotation 
  */
 function revealTile(docId,locations){
   sendReveal(docId,locations)

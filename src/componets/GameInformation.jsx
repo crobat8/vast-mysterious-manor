@@ -48,8 +48,9 @@ const GameInformation = () =>{
 
 
   function test(){
-    paladin.testMessage();
+
   }
+
   return (
     <div className="Info" >
       <div className='playerInfo' {...gameInfo[0].turn == "paladin" ? {id:'paladin'}:{id:''}}>
@@ -57,13 +58,14 @@ const GameInformation = () =>{
           <img src={characterImages.paladin}/>
           <h3> Paladin</h3>
           <h6> player Name</h6>
-          {gameInfo[0].turn == "paladin" ? <button onClick={()=>test()}> end phase</button>:<div/>}
         </div>
         <div className='right'>
           <p> Health: {paladinInfo.health}</p>
           <p> Grit: {paladinInfo.grit}</p>
           <p> Fury: {paladinInfo.fury}</p>
           <p> Hero Cubes: {paladinInfo.heroCubes}</p>
+          <p> Strength: {paladinInfo.preps}</p>
+          <p> Defense: {paladinInfo.preps}</p>
         </div>
       </div>
       <div className='playerInfo' {...gameInfo[0].turn == "skeleton" ? {id:'skeleton'}:{id:''}}>
@@ -71,7 +73,6 @@ const GameInformation = () =>{
           <img src={tokenImages.skull}/>
           <h3> Skeleton</h3>
           <h6> player Name</h6>
-          {gameInfo[0].turn == "skeleton" ? <button> end phase</button>:<div/>}
         </div>
         <div className='right'>
           <p> march order</p>
@@ -87,7 +88,6 @@ const GameInformation = () =>{
           <img src={characterImages.giantSpider}/>
           <h3> Spider</h3>
           <h6> player Name</h6>
-          {gameInfo[0].turn == "spider" ? <button> end phase</button>:<div/>}
         </div>
         <div className='right'>
           <p>health: {spiderInfo.health}</p>
@@ -102,7 +102,6 @@ const GameInformation = () =>{
           <img src={characterImages.manor}/>
           <h3> Manor</h3>
           <h6> player Name</h6>
-          {gameInfo[0].turn == "manor" ? <button> end phase</button>:<div/>}
         </div>
         <div className='right'>
           <p>Omen Cubes: {manorInfo.omenCubes}</p>
