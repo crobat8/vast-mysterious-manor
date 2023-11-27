@@ -7,9 +7,16 @@ import { auth, db, storage } from "../firebase";
 import { collection, doc, query, setDoc, where, getDocs, deleteDoc,updateDoc,arrayRemove} from "firebase/firestore";
 import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
+import paladin from '../playerFunctions/paladin';
+
+function prepare (ID){
+
+  paladin.prep(ID);
+
+}
 
 const PaladinActions = () =>{ 
-
+  const {gameInfo,gameID} = useContext(GameContext);
   return (
     <div className="paladinActionContainer">
         
@@ -17,7 +24,7 @@ const PaladinActions = () =>{
         current actions
       </h1>
       <div className="actions">
-        <button>
+        <button onClick={()=>prepare(gameID)}>
           prepare
         </button>
         <button>

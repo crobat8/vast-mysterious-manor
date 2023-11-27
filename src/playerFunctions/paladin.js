@@ -1,27 +1,37 @@
 const arrayToSend = [1, 2, 3, 4, 5]; // Replace with your desired array
 
-const sendArrayToFirebaseFunction = async () => {
+const sendPrep = async (ID) => {
+  const endpoint = 'https://paladinprepaction-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+  };
   try {
-    const response = await fetch('https://processarray-bquiaqmt4q-uc.a.run.app', {
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({data:arrayToSend}),
+      body: JSON.stringify(requestData)
     });
 
-    const data = await response.json();
-    console.log('Response from Firebase Cloud Function:', data);
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 };
 
 
-function testMessage(){
-  sendArrayToFirebaseFunction();
+function prep(ID){
+  sendPrep(ID);
 }
 
 export default{
-  "testMessage": testMessage
+  "prep": prep
 }
