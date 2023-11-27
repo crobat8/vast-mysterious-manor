@@ -16,6 +16,7 @@ const Tile = (props)=>{
     backgroundSize: "cover",
     transform: `rotate(${rotation}deg)`
     }}
+    //props num is location of the tile
     onClick={()=>test(gameID,props.num)}>
       <div className='pieceContainer' style={{transform: `rotate(${-rotation}deg)`}}>
         <div className='characters'>

@@ -89,8 +89,6 @@ const FullGame = ()=>{
           )
         })}
       </div>
-
-
     </div>
   )
 }
