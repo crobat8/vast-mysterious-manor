@@ -8,15 +8,25 @@ import { collection, doc, query, setDoc, where, getDocs, deleteDoc,updateDoc,arr
 import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
 import paladin from '../playerFunctions/paladin';
+import { ActionContext } from '../context/ActionContext';
 
 function prepare (ID){
-
   paladin.prep(ID);
+}
 
+function crusade (settingAction,settingActionInfo1){
+  settingAction("crusade");
+  settingActionInfo1(1)
+}
+
+function sprint (settingAction,settingActionInfo1){
+  settingAction("sprint");
+  settingActionInfo1(2)
 }
 
 const PaladinActions = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
+  const {Action,setAction,ActionInfo1,setActionInfo1} = useContext(ActionContext)
   return (
     <div className="paladinActionContainer">
         
@@ -27,16 +37,22 @@ const PaladinActions = () =>{
         <button onClick={()=>prepare(gameID)}>
           prepare
         </button>
-        <button>
+        <button onClick={()=>crusade(setAction,setActionInfo1)}>
           cursade
         </button>
-        <button>
+        <button onClick={()=>sprint(setAction,setActionInfo1)}>
           sprint
         </button>
         <button>
           end phase
         </button>
       </div>
+      <p>
+        {Action}
+      </p>
+      <p>
+        {ActionInfo1}
+      </p>
     </div>
   )
 }

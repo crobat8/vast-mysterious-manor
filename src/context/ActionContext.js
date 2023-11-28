@@ -8,12 +8,23 @@ import {
 
 export const ActionContext = createContext();
 
-export const GameContextProvider = ({ children }) => {
-  const [Action,setAction] = useState(null)
-  const [ActionInfo1,setActionInfo1] = useState(null)
+export const ActionContextProvider = ({ children }) => {
+  const [Action,setAction] = useState(null);
+  const [ActionInfo1,setActionInfo1] = useState(null);
+  const [ActionInfo2,setActionInfo2] = useState(null);
+
+  const clearActions = () =>{
+    setAction(null);
+    setActionInfo1(null)
+    setActionInfo2(null)
+  }
 
   return (
-    <ActionContext.Provider value={{ Action,setAction,ActionInfo1,setActionInfo1 }}>
+    <ActionContext.Provider value={{ 
+      Action,setAction,
+      ActionInfo1,setActionInfo1,
+      ActionInfo2,setActionInfo2,
+      clearActions }}>
       {children}
     </ActionContext.Provider>
   );
