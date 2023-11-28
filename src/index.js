@@ -10,6 +10,7 @@ import { PaladinContextProvider } from './context/PaldinContext';
 import { SkeletonContextProvider } from './context/SkeletonContext';
 import { SpiderContextProvider } from './context/SpiderContext';
 import { ManorContextProvider } from './context/ManorContext';
+import { ActionContextProvider } from './context/ActionContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,9 +22,11 @@ root.render(
             <SkeletonContextProvider>
               <SpiderContextProvider>
                 <ManorContextProvider>
-                  <React.StrictMode>
-                    <App/>
-                  </React.StrictMode>
+                  <ActionContextProvider>
+                    <React.StrictMode>
+                      <App/>
+                    </React.StrictMode>
+                  </ActionContextProvider>
                 </ManorContextProvider>
               </SpiderContextProvider>
             </SkeletonContextProvider>
