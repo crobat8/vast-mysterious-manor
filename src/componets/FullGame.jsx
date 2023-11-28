@@ -8,6 +8,7 @@ import characterImages from './characterImages';
 import tokenImages from './tokenImages';
 import { TileContext } from '../context/TileContext';
 import { PaladinContext } from '../context/PaldinContext';
+import Crypt from './Crypt';
 
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
@@ -70,7 +71,7 @@ const FullGame = ()=>{
 
           if(tile.value == ""){
             return(
-              <div className='tile'/>
+              <Crypt/>
             )
           }
           const TileVal = tile.value;

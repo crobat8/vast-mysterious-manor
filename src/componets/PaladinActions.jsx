@@ -24,9 +24,13 @@ function sprint (settingAction,settingActionInfo1){
   settingActionInfo1(2)
 }
 
+function cancel(clear) {
+  clear();
+}
+
 const PaladinActions = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
-  const {Action,setAction,ActionInfo1,setActionInfo1} = useContext(ActionContext)
+  const {Action,setAction,ActionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   return (
     <div className="paladinActionContainer">
         
@@ -43,6 +47,9 @@ const PaladinActions = () =>{
         <button onClick={()=>sprint(setAction,setActionInfo1)}>
           sprint
         </button>
+        {/* <button onClick={()=>cancel(clearActions)}>
+          cancel Action
+        </button> */}
         <button>
           end phase
         </button>
