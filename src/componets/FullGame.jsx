@@ -9,6 +9,8 @@ import tileImages from './tileImages';
 import characterImages from './characterImages';
 import tokenImages from './tokenImages';
 
+import {FindCharacters} from '../helperFunctions/Helpers'
+
 import { GameContext } from '../context/GameContext';
 import { TileContext } from '../context/TileContext';
 import { PaladinContext } from '../context/PaldinContext';
@@ -48,22 +50,9 @@ const FullGame = ()=>{
     }
   }
 
-  function findCharacters(location){
-    let ret = []
-    //paladin
-    if(paladinInfo.paladinInfo.paladinLoc === location){
-      ret.push("paladin")
-    }
-    //spiders
-    if(spiderInfo.spiderInfo.giantSpiderLoc === location){
-      ret.push("giantSpider")
-    }
-    
-    return ret
-  }
-
   function handleCharacterIcons(location){
-    const pieces = findCharacters(location)
+    
+    const pieces = FindCharacters(location)
     let ret = []
     for(let i = 0; i < pieces.length;i++){
       ret.push(characterImages[pieces[i]])
