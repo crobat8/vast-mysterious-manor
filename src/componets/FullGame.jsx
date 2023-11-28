@@ -1,19 +1,24 @@
 import React, { useContext, useState,memo } from 'react';
 
-import { GameContext } from '../context/GameContext';
 import Tile from './Tile';
+import Crypt from './Crypt';
+
 import gameBoard from '../img/game_images/board/mainBoard.png'
+
 import tileImages from './tileImages';
 import characterImages from './characterImages';
 import tokenImages from './tokenImages';
+
+import { GameContext } from '../context/GameContext';
 import { TileContext } from '../context/TileContext';
 import { PaladinContext } from '../context/PaldinContext';
-import Crypt from './Crypt';
+import { SpiderContext } from '../context/SpiderContext';
 
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {tileInfo} = useContext(TileContext);
   const paladinInfo = useContext(PaladinContext);
+  const spiderInfo = useContext(SpiderContext)
   
   if(gameInfo == null||gameInfo.length == 0){
     return(
@@ -43,17 +48,30 @@ const FullGame = ()=>{
     }
   }
 
-  function handleCharacterIcons(info1){
+  function findCharacters(location){
     let ret = []
-    for(let i = 0; i < info1.length;i++){
-      ret.push(characterImages[info1[i]])
+    //paladin
+    if(paladinInfo.paladinInfo.paladinLoc === location){
+      ret.push("paladin")
     }
+    //spiders
+    if(spiderInfo.spiderInfo.giantSpiderLoc === location){
+      ret.push("giantSpider")
+    }
+    
+    return ret
+  }
 
+  function handleCharacterIcons(location){
+    const pieces = findCharacters(location)
+    let ret = []
+    for(let i = 0; i < pieces.length;i++){
+      ret.push(characterImages[pieces[i]])
+    }
     return ret
   }
 
   function handleTokenIcons(info2){
-
     let ret = []
     for(let i = 0; i < info2.length;i++){
       ret.push(tokenImages[info2[i]])
@@ -69,19 +87,24 @@ const FullGame = ()=>{
       <div className='tiles'>
         {tileInfo.map((tile,key)=>{
 
+          const characterIcons = handleCharacterIcons(key);
+
           if(tile.value == ""){
             return(
-              <Crypt/>
+              <Crypt
+              characterIcons={characterIcons}
+              num={key}
+              />
             )
           }
+          // might need to move tile val stuff up before crypt initialization
+          // only if i find a need to put tokens on a crypt space
           const TileVal = tile.value;
-          const tilePicture = handlePicture(TileVal);
-          const characterIcons = handleCharacterIcons(TileVal.characters);
           const tokenIcons = handleTokenIcons(TileVal.tokens);
+          const tilePicture = handlePicture(TileVal);
           return(
             <Tile
               tilePic={tilePicture}
-              tileWalls={TileVal.walls} // might be removedable or calculated locally 
               tileRotation={TileVal.rotation}
               characterIcons={characterIcons}
               tokenIcons={tokenIcons}
