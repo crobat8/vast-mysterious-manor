@@ -19,8 +19,6 @@ import { SpiderContext } from '../context/SpiderContext';
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {tileInfo} = useContext(TileContext);
-  const paladinInfo = useContext(PaladinContext);
-  const spiderInfo = useContext(SpiderContext)
   
   if(gameInfo == null||gameInfo.length == 0){
     return(

@@ -9,9 +9,11 @@ import {
 export const ActionContext = createContext();
 
 export const ActionContextProvider = ({ children }) => {
-  const [Action,setAction] = useState(null);
-  const [ActionInfo1,setActionInfo1] = useState(null);
-  const [ActionInfo2,setActionInfo2] = useState(null);
+  const [action,setAction] = useState(null);
+  // action info can be used by different players 
+  //to do different actions on different turns
+  const [actionInfo1,setActionInfo1] = useState(null);
+  const [actionInfo2,setActionInfo2] = useState(null);
 
   const clearActions = () =>{
     setAction(null);
@@ -21,9 +23,9 @@ export const ActionContextProvider = ({ children }) => {
 
   return (
     <ActionContext.Provider value={{ 
-      Action,setAction,
-      ActionInfo1,setActionInfo1,
-      ActionInfo2,setActionInfo2,
+      action,setAction,
+      actionInfo1,setActionInfo1,
+      actionInfo2,setActionInfo2,
       clearActions }}>
       {children}
     </ActionContext.Provider>

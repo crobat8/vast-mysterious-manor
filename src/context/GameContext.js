@@ -29,7 +29,7 @@ export const GameContextProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <GameContext.Provider value={{ gameInfo,gameID }}>
+    <GameContext.Provider value={{ gameInfo,setGameInfo,gameID }}>
       {children}
     </GameContext.Provider>
   );

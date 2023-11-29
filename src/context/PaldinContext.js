@@ -28,7 +28,7 @@ export const PaladinContextProvider = ({ children }) => {
   }, [gameID]);
 
   return (
-    <PaladinContext.Provider value={{ paladinInfo }}>
+    <PaladinContext.Provider value={{ paladinInfo,setPaladinInfo}}>
       {children}
     </PaladinContext.Provider>
   );

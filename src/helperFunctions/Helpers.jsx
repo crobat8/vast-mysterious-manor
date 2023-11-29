@@ -4,19 +4,18 @@ import { SpiderContext } from '../context/SpiderContext';
 
 // add more if statements to this for each other character piece as they become needed
 export const FindCharacters = (location) => {
-  const paladinInfo = useContext(PaladinContext);
-  const spiderInfo = useContext(SpiderContext);
+  const {paladinInfo} = useContext(PaladinContext);
+  const {spiderInfo} = useContext(SpiderContext);
 
   let ret = []
   //paladin
-  if(paladinInfo.paladinInfo.paladinLoc === location){
+  if(paladinInfo.paladinLoc === location){
     ret.push("paladin")
   }
   //spiders
-  if(spiderInfo.spiderInfo.giantSpiderLoc === location){
+  if(spiderInfo.giantSpiderLoc === location){
     ret.push("giantSpider")
   }
   
   return ret
-
 }

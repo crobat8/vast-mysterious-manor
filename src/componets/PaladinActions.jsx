@@ -16,11 +16,13 @@ function prepare (ID){
 
 function crusade (settingAction,settingActionInfo1){
   settingAction("crusade");
-  settingActionInfo1(1)
+  //this is the step of the crusade the user is on
+  settingActionInfo1(0)
 }
 
 function sprint (settingAction,settingActionInfo1){
   settingAction("sprint");
+  // this is how many spaces the player can move 
   settingActionInfo1(2)
 }
 
@@ -30,7 +32,7 @@ function cancel(clear) {
 
 const PaladinActions = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
-  const {Action,setAction,ActionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   return (
     <div className="paladinActionContainer">
         
@@ -55,10 +57,10 @@ const PaladinActions = () =>{
         </button>
       </div>
       <p>
-        {Action}
+        {action}
       </p>
       <p>
-        {ActionInfo1}
+        {actionInfo1}
       </p>
     </div>
   )
