@@ -13,7 +13,7 @@ import { PaladinContext } from '../context/PaldinContext';
 //   general.revealTile(Id[0],spots);
 // }
 
-function handleAction(neededActionInputs){
+function handleBoardAction(neededActionInputs){
   // paladin tile actions
   if(neededActionInputs.currentUser.uid == neededActionInputs.gameInfo[0].roles.paladin){
     console.log("test1")
@@ -25,7 +25,7 @@ function handleAction(neededActionInputs){
         tempPaladinInfo.paladinLoc = neededActionInputs.location;
         neededActionInputs.setPaladinInfo({
           ...tempPaladinInfo})
-        
+        neededActionInputs.setActionInfo1(1);
       }
     }
   }
@@ -35,7 +35,7 @@ const Tile = (props)=>{
   const rotation = props.tileRotation*90;
   const {currentUser} = useContext(AuthContext);
   const {gameInfo,setGameInfo,gameID} = useContext(GameContext);
-  const {action,setAction,actionInfo1,actionInfo2} = useContext(ActionContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2} = useContext(ActionContext);
   const {paladinInfo,setPaladinInfo} = useContext(PaladinContext);
   const location = props.num;
   const NeededActionInputs = 
@@ -47,6 +47,7 @@ const Tile = (props)=>{
     action,
     setAction,
     actionInfo1,
+    setActionInfo1,
     actionInfo2,
     paladinInfo,
     setPaladinInfo}
@@ -56,7 +57,7 @@ const Tile = (props)=>{
     backgroundSize: "cover",
     transform: `rotate(${rotation}deg)`
     }}
-    onClick={()=>handleAction(NeededActionInputs)}>
+    onClick={()=>handleBoardAction(NeededActionInputs)}>
       <div className='pieceContainer' style={{transform: `rotate(${-rotation}deg)`}}>
         <div className='characters'>
           {props.characterIcons.map((e, k)=>{
