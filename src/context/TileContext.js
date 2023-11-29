@@ -29,7 +29,7 @@ export const TileContextProvider = ({ children }) => {
   }, [gameID]);
 
   return (
-    <TileContext.Provider value={{ tileInfo }}>
+    <TileContext.Provider value={{ tileInfo,setTileInfo }}>
       {children}
     </TileContext.Provider>
   );

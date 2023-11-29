@@ -15,11 +15,13 @@ import { GameContext } from '../context/GameContext';
 import { TileContext } from '../context/TileContext';
 import { PaladinContext } from '../context/PaldinContext';
 import { SpiderContext } from '../context/SpiderContext';
+import { ActionContext } from '../context/ActionContext';
 
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {tileInfo} = useContext(TileContext);
-  
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2} = useContext(ActionContext);
+  const {paladinInfo} = useContext(PaladinContext)
   if(gameInfo == null||gameInfo.length == 0){
     return(
       <div className='Board'>
@@ -66,6 +68,17 @@ const FullGame = ()=>{
     return ret
   }
 
+  function handleRotation(TileVal,key){
+    if(action == "crusade"){
+      if(actionInfo1 == 1){
+        if(paladinInfo.paladinLoc == key){
+          return actionInfo2;
+        }
+      }
+    }
+    return TileVal.rotation;
+  }
+
   return(
     <div className='Board' style={{backgroundImage: `url(${gameBoard})`,
       backgroundRepeat: "no-repeat",
@@ -73,9 +86,7 @@ const FullGame = ()=>{
     }}>
       <div className='tiles'>
         {tileInfo.map((tile,key)=>{
-
           const characterIcons = handleCharacterIcons(key);
-
           if(tile.value == ""){
             return(
               <Crypt
@@ -89,10 +100,11 @@ const FullGame = ()=>{
           const TileVal = tile.value;
           const tokenIcons = handleTokenIcons(TileVal.tokens);
           const tilePicture = handlePicture(TileVal);
+          const tileAdjustedRotation = handleRotation(TileVal,key);
           return(
             <Tile
               tilePic={tilePicture}
-              tileRotation={TileVal.rotation}
+              tileRotation={tileAdjustedRotation}
               characterIcons={characterIcons}
               tokenIcons={tokenIcons}
               num={key}

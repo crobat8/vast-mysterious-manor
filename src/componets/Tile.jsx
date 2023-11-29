@@ -4,6 +4,7 @@ import { GameContext } from '../context/GameContext';
 import { ActionContext } from '../context/ActionContext';
 import { AuthContext } from '../context/AuthContext';
 import { PaladinContext } from '../context/PaldinContext';
+import { TileContext } from '../context/TileContext';
 
 // function test(Id,loc,rot){
 //   // id is game num
@@ -13,7 +14,7 @@ import { PaladinContext } from '../context/PaldinContext';
 //   general.revealTile(Id[0],spots);
 // }
 
-function handleBoardAction(neededActionInputs){
+const handleBoardAction = (neededActionInputs)=>{
   // paladin tile actions
   if(neededActionInputs.currentUser.uid == neededActionInputs.gameInfo[0].roles.paladin){
     console.log("test1")
@@ -26,6 +27,11 @@ function handleBoardAction(neededActionInputs){
         neededActionInputs.setPaladinInfo({
           ...tempPaladinInfo})
         neededActionInputs.setActionInfo1(1);
+        console.log(neededActionInputs.tileInfo)
+        neededActionInputs.tileInfo[neededActionInputs.location].value.facing = "up";
+        console.log(neededActionInputs.tileInfo)
+        neededActionInputs.setTileInfo([...neededActionInputs.tileInfo])
+        console.log(neededActionInputs.tileInfo)
       }
     }
   }
@@ -37,6 +43,7 @@ const Tile = (props)=>{
   const {gameInfo,setGameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,actionInfo2} = useContext(ActionContext);
   const {paladinInfo,setPaladinInfo} = useContext(PaladinContext);
+  const {tileInfo,setTileInfo} =useContext(TileContext);
   const location = props.num;
   const NeededActionInputs = 
     {currentUser,
@@ -50,7 +57,9 @@ const Tile = (props)=>{
     setActionInfo1,
     actionInfo2,
     paladinInfo,
-    setPaladinInfo}
+    setPaladinInfo,
+    tileInfo,
+    setTileInfo}
   return(
     <div className='tile' style={{backgroundImage: `url(${props.tilePic})`,
     backgroundRepeat: "no-repeat",
