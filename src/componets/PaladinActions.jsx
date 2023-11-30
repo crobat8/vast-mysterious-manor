@@ -7,10 +7,11 @@ import { auth, db, storage } from "../firebase";
 import { collection, doc, query, setDoc, where, getDocs, deleteDoc,updateDoc,arrayRemove} from "firebase/firestore";
 import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
-import paladin from '../playerFunctions/paladin';
+
 import { ActionContext } from '../context/ActionContext';
 import { PaladinContext } from '../context/PaldinContext';
 import general from '../playerFunctions/general';
+import paladin from '../playerFunctions/paladin';
 
 function prepare (ID){
   paladin.prep(ID);
@@ -36,6 +37,7 @@ const ConfirmCrusadeRotation = (ID,Loc,Rot,setActionInfo1)=>{
   console.log(Loc,Rot,ID)
   const spots = [[Loc,Rot]]
   general.revealTile(ID[0],spots);
+  paladin.move(ID[0],Loc)
   //next is to add a move paladin function to the cloud
   setActionInfo1("2");
 }

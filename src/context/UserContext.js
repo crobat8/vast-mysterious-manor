@@ -15,10 +15,12 @@ export const UserContextProvider = ({ children }) => {
   
   useEffect(() => {
     if(!currentUser){
+      console.log("test")
       return
     }
     const userRef =query(collection(db,"users"),where("uid","==",currentUser.uid)) 
     const unsub = onSnapshot(userRef,(snapshot)=>{
+      console.log(doc=>doc.data())
       setUserInfo(snapshot.docs.map(doc=>doc.data()))
     })
     
