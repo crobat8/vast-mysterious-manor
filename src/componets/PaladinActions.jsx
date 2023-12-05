@@ -20,7 +20,7 @@ function prepare (ID){
 function crusade (settingAction,settingActionInfo1){
   settingAction("crusade");
   //this is the step of the crusade the user is on
-  settingActionInfo1(0)
+  settingActionInfo1("move");
 }
 
 function sprint (settingAction,settingActionInfo1){
@@ -33,13 +33,24 @@ function cancel(clear) {
   clear();
 }
 
-const ConfirmCrusadeRotation = (ID,Loc,Rot,setActionInfo1)=>{
-  console.log(Loc,Rot,ID)
+const ConfirmCrusadeRotation = (ID,Loc,Rot,setActionInfo1,setActionInfo2)=>{
   const spots = [[Loc,Rot]]
   general.revealTile(ID[0],spots);
   paladin.move(ID[0],Loc)
-  //next is to add a move paladin function to the cloud
-  setActionInfo1("2");
+  setActionInfo1("attack");
+  setActionInfo2(0);
+}
+
+const confirmAttack = (settingActionInfo1) =>{
+  settingActionInfo1("shrine");
+}
+
+const confirmShrine = (settingActionInfo1) =>{
+  settingActionInfo1("treasure");
+}
+
+const confirmTreasure = (clearing) =>{
+  clearing();
 }
 
 const InitialChoices = ()=>{
@@ -71,7 +82,6 @@ const RotateChoices = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
-  console.log(paladinInfo)
   return(
     <div className="actions">
       <div>
@@ -90,8 +100,65 @@ const RotateChoices = ()=>{
         <button onClick={()=>setActionInfo2(3)}>
           West
         </button> 
-        <button onClick={()=>ConfirmCrusadeRotation(gameID,paladinInfo.paladinLoc,actionInfo2,setActionInfo1)}>
+        <button onClick={()=>ConfirmCrusadeRotation(gameID,paladinInfo.paladinLoc,actionInfo2,setActionInfo1,setActionInfo2)}>
           confirm oriantation
+        </button>
+      </div>
+
+    </div>
+  )
+}
+
+const AttackChoices = ()=>{
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  return(
+    <div className="actions">
+      <div>
+        choose all the enemies to attack
+      </div>
+      <div>
+        <button onClick={()=>confirmAttack(setActionInfo1)}>
+          finish attack
+        </button>
+      </div>
+
+    </div>
+  )
+}
+
+const ShrineChoices = ()=>{
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  return(
+    <div className="actions">
+      <div>
+        choose all the enemies to attack
+      </div>
+      <div>
+        <button onClick={()=>confirmShrine(setActionInfo1)}>
+          finish Shrine
+        </button>
+      </div>
+
+    </div>
+  )
+}
+
+const TreasureChoices = ()=>{
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  return(
+    <div className="actions">
+      <div>
+        choose all the enemies to attack
+      </div>
+      <div>
+        <button onClick={()=>confirmTreasure(clearActions)}>
+          finish Treasure
         </button>
       </div>
 
@@ -102,16 +169,30 @@ const RotateChoices = ()=>{
 const ActionList  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
-  if(action == "crusade"&&actionInfo1 == 0){
-    return(
-      <p>
-        select a tile to crusade into
-      </p>
-    )
-  }else if(action == "crusade"&&actionInfo1 == 1){
-    return(
-      <RotateChoices/>
-    )
+  if(action == "crusade"){
+    if(actionInfo1 == "move"){
+      return(
+        <p>
+          select a tile to crusade into
+        </p>
+      )
+    }else if(actionInfo1 == "rotate"){
+      return(
+        <RotateChoices/>
+      )
+    }else if(actionInfo1 == "attack"){
+      return(
+        <AttackChoices/>
+      )
+    }else if(actionInfo1 == "shrine"){
+      return(
+        <ShrineChoices/>
+      )
+    }else if(actionInfo1 == "treasure"){
+      return(
+        <TreasureChoices/>
+      )
+    }
   }else{
     return(
       <InitialChoices/>

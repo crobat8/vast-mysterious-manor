@@ -70,7 +70,7 @@ const FullGame = ()=>{
 
   function handleRotation(TileVal,key){
     if(action == "crusade"){
-      if(actionInfo1 == 1){
+      if(actionInfo1 == "rotate"){
         if(paladinInfo.paladinLoc == key){
           return actionInfo2;
         }

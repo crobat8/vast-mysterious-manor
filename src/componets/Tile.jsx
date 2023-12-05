@@ -1,37 +1,32 @@
 import React, { useContext } from 'react';
 import general from '../playerFunctions/general';
+import {AdjacentTiles} from '../helperFunctions/Helpers'
 import { GameContext } from '../context/GameContext';
 import { ActionContext } from '../context/ActionContext';
 import { AuthContext } from '../context/AuthContext';
 import { PaladinContext } from '../context/PaldinContext';
 import { TileContext } from '../context/TileContext';
 
-// function test(Id,loc,rot){
-//   // id is game num
-//   // loc is the tile num 
-//   // rot is the rotation of the tile
-//   const spots = [[loc,rot]]
-//   general.revealTile(Id[0],spots);
-// }
-
 const handleBoardAction = (neededActionInputs)=>{
   // paladin tile actions
   if(neededActionInputs.currentUser.uid == neededActionInputs.gameInfo[0].roles.paladin){
-    console.log("test1")
     if(neededActionInputs.action == "crusade"){
-      console.log("test2")
-      if(neededActionInputs.actionInfo1 == "0"){
-        console.log("test3")
-        let tempPaladinInfo = neededActionInputs.paladinInfo
-        tempPaladinInfo.paladinLoc = neededActionInputs.location;
-        neededActionInputs.setPaladinInfo({
-          ...tempPaladinInfo})
-        neededActionInputs.setActionInfo1(1);
-        console.log(neededActionInputs.tileInfo)
-        neededActionInputs.tileInfo[neededActionInputs.location].value.facing = "up";
-        console.log(neededActionInputs.tileInfo)
-        neededActionInputs.setTileInfo([...neededActionInputs.tileInfo])
-        console.log(neededActionInputs.tileInfo)
+      if(neededActionInputs.actionInfo1 == "move"){
+        //if(AdjacentTiles(neededActionInputs.paladinInfo.paladinLoc,neededActionInputs.location,false)){
+          console.log(neededActionInputs.paladinInfo.paladinLoc,neededActionInputs.location,false);
+          let tempPaladinInfo = neededActionInputs.paladinInfo;
+          tempPaladinInfo.paladinLoc = neededActionInputs.location;
+          neededActionInputs.setPaladinInfo({
+            ...tempPaladinInfo})
+          // if where was clicked is already revealed then skip the rotate step
+          if(neededActionInputs.tileInfo[neededActionInputs.location].value.facing == "up"){
+            neededActionInputs.setActionInfo1("attack");
+          }else{
+          neededActionInputs.setActionInfo1("rotate");
+          neededActionInputs.tileInfo[neededActionInputs.location].value.facing = "up";
+          neededActionInputs.setTileInfo([...neededActionInputs.tileInfo]);
+          }
+        //}
       }
     }
   }
