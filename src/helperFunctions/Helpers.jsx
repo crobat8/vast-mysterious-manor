@@ -22,36 +22,30 @@ export const FindCharacters = (location) => {
   return ret
 }
 
-// start where you are playing from
+// startTile coming from
 // end where you are playing to
 // overRideDoors if you are checking adjacent without doors
 // returns true if adjacent and open doors
 // returns false if either rooms arent adjacent or if they doors are closed
 export const AdjacentTiles = (startTile,endTile,direction,overRideDoors) =>{
-  const startWalls =  checkOpenDoors(startTile);
-  const endWalls = checkOpenDoors(endTile);
+  const startWalls =  checkOpenDoors(startTile.value);
+  const endWalls = checkOpenDoors(endTile.value);
   if(direction == 7){//north of start check
-    console.log("north")
     return (startWalls[0]&&endWalls[2])||overRideDoors;
   }else if (direction == -1){// east of start check
-    console.log("east")
     return (startWalls[1]&&endWalls[3])||overRideDoors;
   }else if (direction == -7){// south of start check
-    console.log("south")
     return (startWalls[2]&&endWalls[0])||overRideDoors;
   }else if (direction == 1){// west of start check
-    console.log("west")
     return (startWalls[3]&&endWalls[1])||overRideDoors;
   }else{
-    console.log("not cardinal")
     return false;
   }
 }
 
 // returns a boolean array with values corresponding to what walls are open
 // [north,east,south,west]
-function checkOpenDoors(tile) {
-  const tileVals = tile.value;
+function checkOpenDoors(tileVals) {
   if (tileVals.wallType == "Open"||tileVals.facing == "down") {
     return [true, true, true, true];
   } else if (tileVals.wallType == "N") {
