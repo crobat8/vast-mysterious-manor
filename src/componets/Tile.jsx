@@ -9,10 +9,24 @@ import { TileContext } from '../context/TileContext';
 
 const handleBoardAction = (neededActionInputs)=>{
   // paladin tile actions
+  console.log("test1");
   if(neededActionInputs.currentUser.uid == neededActionInputs.gameInfo[0].roles.paladin){
+    const tempPaladinLocation =neededActionInputs.paladinInfo.paladinLoc;
+    const movingTo = neededActionInputs.location;
+    console.log("test2");
     if(neededActionInputs.action == "crusade"){
+      console.log("test3");
       if(neededActionInputs.actionInfo1 == "move"){
-        //if(AdjacentTiles(neededActionInputs.paladinInfo.paladinLoc,neededActionInputs.location,false)){
+        console.log("test4");
+        let direct; 
+        if(
+          AdjacentTiles(
+            neededActionInputs.tileInfo[tempPaladinLocation],
+            neededActionInputs.tileInfo[movingTo],
+            (tempPaladinLocation-movingTo),
+            false
+          )){
+          console.log("test5");
           console.log(neededActionInputs.paladinInfo.paladinLoc,neededActionInputs.location,false);
           let tempPaladinInfo = neededActionInputs.paladinInfo;
           tempPaladinInfo.paladinLoc = neededActionInputs.location;
@@ -26,7 +40,7 @@ const handleBoardAction = (neededActionInputs)=>{
           neededActionInputs.tileInfo[neededActionInputs.location].value.facing = "up";
           neededActionInputs.setTileInfo([...neededActionInputs.tileInfo]);
           }
-        //}
+        }
       }
     }
   }

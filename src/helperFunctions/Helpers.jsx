@@ -27,24 +27,23 @@ export const FindCharacters = (location) => {
 // overRideDoors if you are checking adjacent without doors
 // returns true if adjacent and open doors
 // returns false if either rooms arent adjacent or if they doors are closed
-export const AdjacentTiles = (start,end,overRideDoors) =>{
-  const {tileInfo} = useContext(TileContext);
-
-  const startTile = tileInfo[start];
-  const endTile = tileInfo[end];
-
+export const AdjacentTiles = (startTile,endTile,direction,overRideDoors) =>{
   const startWalls =  checkOpenDoors(startTile);
   const endWalls = checkOpenDoors(endTile);
-  
-  if(start-7 == end){//north of start check
+  if(direction == 7){//north of start check
+    console.log("north")
     return (startWalls[0]&&endWalls[2])||overRideDoors;
-  }else if (start+1 == end){// east of start check
+  }else if (direction == -1){// east of start check
+    console.log("east")
     return (startWalls[1]&&endWalls[3])||overRideDoors;
-  }else if (start+7 == end){// south of start check
+  }else if (direction == -7){// south of start check
+    console.log("south")
     return (startWalls[2]&&endWalls[0])||overRideDoors;
-  }else if (start-1 == end){// west of start check
+  }else if (direction == 1){// west of start check
+    console.log("west")
     return (startWalls[3]&&endWalls[1])||overRideDoors;
   }else{
+    console.log("not cardinal")
     return false;
   }
 }
@@ -52,47 +51,49 @@ export const AdjacentTiles = (start,end,overRideDoors) =>{
 // returns a boolean array with values corresponding to what walls are open
 // [north,east,south,west]
 function checkOpenDoors(tile) {
-  if (tile.wallType == "Open") {
+  const tileVals = tile.value;
+  if (tileVals.wallType == "Open"||tileVals.facing == "down") {
     return [true, true, true, true];
-  } else if (tile.wallType == "N") {
-    if (tile.rotation == 0) {
+  } else if (tileVals.wallType == "N") {
+    if (tileVals.rotation == 0) {
       return [true, false, false, false];
-    } else if (tile.rotation == 1) {
+    } else if (tileVals.rotation == 1) {
       return [false, true, false, false];
-    } else if (tile.rotation == 2) {
+    } else if (tileVals.rotation == 2) {
       return [false, false, true, false];
-    } else if (tile.rotation == 3) {
+    } else if (tileVals.rotation == 3) {
       return [false, false, false, true];
     }
-  } else if (tile.wallType == "Ne") {
-    if (tile.rotation == 0) {
+  } else if (tileVals.wallType == "Ne") {
+    if (tileVals.rotation == 0) {
       return [true, true, false, false];
-    } else if (tile.rotation == 1) {
+    } else if (tileVals.rotation == 1) {
       return [false, true, true, false];
-    } else if (tile.rotation == 2) {
+    } else if (tileVals.rotation == 2) {
       return [false, false, true, true];
-    } else if (tile.rotation == 3) {
+    } else if (tileVals.rotation == 3) {
       return [true, false, false, true];
     }
-  } else if (tile.wallType == "Ns") {
-    if (tile.rotation == 0) {
+  } else if (tileVals.wallType == "Ns") {
+    if (tileVals.rotation == 0) {
       return [true, false, true, false];
-    } else if (tile.rotation == 1) {
+    } else if (tileVals.rotation == 1) {
       return [false, true, false, true];
-    } else if (tile.rotation == 2) {
+    } else if (tileVals.rotation == 2) {
       return [true, false, true, false];
-    } else if (tile.rotation == 3) {
+    } else if (tileVals.rotation == 3) {
       return [false, true, false, true];
     }
-  } else if (tile.wallType == "Nes") {
-    if (tile.rotation == 0) {
+  } else if (tileVals.wallType == "Nes") {
+    if (tileVals.rotation == 0) {
       return [true, true, true, false];
-    } else if (tile.rotation == 1) {
+    } else if (tileVals.rotation == 1) {
       return [false, true, true, true];
-    } else if (tile.rotation == 2) {
+    } else if (tileVals.rotation == 2) {
       return [true, false, true, true];
-    } else if (tile.rotation == 3) {
+    } else if (tileVals.rotation == 3) {
       return [true, true, false, true];
     }
   }
+  return [false, false, false, false];
 }
