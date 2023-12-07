@@ -35,8 +35,6 @@ function revealTile(docId,locations){
   sendReveal(docId,locations)
 }
 
-
-
 export default{
   "revealTile": revealTile
 }

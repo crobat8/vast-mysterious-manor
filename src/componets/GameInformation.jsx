@@ -44,7 +44,6 @@ const GameInformation = () =>{
     }
     return ret
   }
-  console.log(gameInfo[0].roles.paladin)
   return (
     <div className="Info" >
       <div className='playerInfo' {...gameInfo[0].turn == "paladin" ? {id:'paladin'}:{id:''}}>

@@ -198,7 +198,29 @@ const FinalChoices = () => {
   )
 }
 
-const ActionList  = () =>{
+const ActionList1  = () =>{
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  if(!paladinInfo){
+    return(
+      <h1>
+        loading
+      </h1>
+    )
+  }
+  return(
+    <div>
+      <h3>
+        collect hero cubes
+      </h3>
+      <FinalChoices/>
+    </div>
+
+  )
+}
+
+const ActionList2  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
@@ -251,6 +273,28 @@ const ActionList  = () =>{
   }
 }
 
+const ActionList3  = () =>{
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  if(!paladinInfo){
+    return(
+      <h1>
+        loading
+      </h1>
+    )
+  }
+  return(
+    <div>
+      <h3>
+        gain furry
+      </h3>
+      <FinalChoices/>
+    </div>
+
+  )
+}
+
 const PaladinActions = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
@@ -258,9 +302,23 @@ const PaladinActions = () =>{
   return (
     <div className="paladinActionContainer">
       <h1>
-        current actions
+        current actions 
       </h1>
-      <ActionList/>
+      <h2>
+        current phase: {gameInfo[0].phase}
+      </h2>
+      {gameInfo[0].phase == 1?
+        <ActionList1/>:
+        <div className='otherPlayers'></div>
+      }
+      {gameInfo[0].phase == 2?
+        <ActionList2/>:
+        <div className='otherPlayers'></div>
+      }
+      {gameInfo[0].phase == 3?
+        <ActionList3/>:
+        <div className='otherPlayers'></div>
+      }
       <p>
         {action}
       </p>

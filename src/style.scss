@@ -335,6 +335,19 @@ $neutral: #F1E5C3;
               }
             }
           }
+          .skeletonActionContainer{
+            background-color: green;
+            h1{
+              padding: 10px;
+            }
+            .actions{
+              padding: 10px;
+              button{
+                padding: 10px;
+                margin-right: 10px;
+              }
+            }
+          }
           .otherPlayers{
             background-color: #8B0025;
           }

@@ -8,6 +8,7 @@ import { collection, doc, query, setDoc, where, getDocs, deleteDoc,updateDoc,arr
 import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
 import PaladinActions from './PaladinActions';
+import SkeletonActions from './SkeletonActions';
 
 const Playmats = () =>{ 
   
@@ -24,11 +25,14 @@ const Playmats = () =>{
   return (
     <div className="playmatContainer" >
       
-      {gameInfo[0].roles.paladin == userInfo[0].uid ?
+      {gameInfo[0].roles.paladin == userInfo[0].uid && gameInfo[0].turn == "paladin"?
         <PaladinActions/>:
         <div className='otherPlayers'></div>
       }
-        
+      {gameInfo[0].roles.skeleton == userInfo[0].uid ?
+        <SkeletonActions/>:
+        <div className='otherPlayers'></div>
+      }
       
     </div>
   )
