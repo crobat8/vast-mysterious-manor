@@ -1,15 +1,9 @@
-import React, { useContext, useState,useEffect,memo } from 'react';
-import {signOut} from "firebase/auth"
-import { UserContext } from '../context/UserContext';
+import React, { useContext} from 'react';
 
-import { auth, db, storage } from "../firebase";
-
-import { collection, doc, query, setDoc, where, getDocs, deleteDoc,updateDoc,arrayRemove} from "firebase/firestore";
-import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
-
 import { ActionContext } from '../context/ActionContext';
 import { PaladinContext } from '../context/PaldinContext';
+
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
 
