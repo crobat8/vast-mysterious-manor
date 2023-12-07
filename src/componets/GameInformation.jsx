@@ -44,20 +44,14 @@ const GameInformation = () =>{
     }
     return ret
   }
-
-
-
-  function test(){
-
-  }
-
+  console.log(gameInfo[0].roles.paladin)
   return (
     <div className="Info" >
       <div className='playerInfo' {...gameInfo[0].turn == "paladin" ? {id:'paladin'}:{id:''}}>
         <div className='left'>
           <img src={characterImages.paladin}/>
           <h3> Paladin</h3>
-          <h6> player Name</h6>
+          <h6> player Name</h6> 
         </div>
         <div className='right'>
           <p> Health: {paladinInfo.health}</p>

@@ -202,6 +202,13 @@ const ActionList  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
+  if(!paladinInfo){
+    return(
+      <h1>
+        loading
+      </h1>
+    )
+  }
   if(action == "crusade"){
     if(actionInfo1 == "move"){
       return(
@@ -231,14 +238,16 @@ const ActionList  = () =>{
       <SprintChoices/>
     )
   }else{
-    if(paladinInfo.heroCubes<0){
+    if(paladinInfo.heroCubes<=0){
       return(
         <FinalChoices/>
       )
+    }else{
+      return(
+        <InitialChoices/>
+      )
     }
-    return(
-      <InitialChoices/>
-    )
+
   }
 }
 

@@ -41,7 +41,14 @@ const Home = () =>{
     }
   }
 
-  
+  const findKey = () => {
+    for (const key in gameInfo[0].roles) {
+      if (gameInfo[0].roles[key] === userInfo[0].uid) {
+        return key;
+      }
+    }
+    return null; // Return null if no match is found
+  };
 
   function UserCorner()  {
     try {
@@ -50,8 +57,8 @@ const Home = () =>{
           <p>
             name: {userInfo[0].displayName}
           </p>
-          <p>
-            mmr: {userInfo[0].mmr}
+          <p> 
+            my role: {findKey()}
           </p>
           <button onClick={()=>signOut(auth)}> 
             logout
