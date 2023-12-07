@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import general from '../playerFunctions/general';
+import paladin from '../playerFunctions/paladin';
 import {AdjacentTiles} from '../helperFunctions/Helpers'
 import { GameContext } from '../context/GameContext';
 import { ActionContext } from '../context/ActionContext';
@@ -9,25 +10,20 @@ import { TileContext } from '../context/TileContext';
 
 const handleBoardAction = (neededActionInputs)=>{
   // paladin tile actions
-  console.log("test1");
   if(neededActionInputs.currentUser.uid == neededActionInputs.gameInfo[0].roles.paladin){
     const tempPaladinLocation =neededActionInputs.paladinInfo.paladinLoc;
     const movingTo = neededActionInputs.location;
-    console.log("test2");
     if(neededActionInputs.action == "crusade"){
-      console.log("test3");
       if(neededActionInputs.actionInfo1 == "move"){
-        console.log("test4");
-        let direct; 
         if(
           AdjacentTiles(
             neededActionInputs.tileInfo[tempPaladinLocation],
             neededActionInputs.tileInfo[movingTo],
             (tempPaladinLocation-movingTo),
-            false
+            false,
+            false // edge case
+
           )){
-          console.log("test5");
-          console.log(neededActionInputs.paladinInfo.paladinLoc,neededActionInputs.location,false);
           let tempPaladinInfo = neededActionInputs.paladinInfo;
           tempPaladinInfo.paladinLoc = neededActionInputs.location;
           neededActionInputs.setPaladinInfo({
@@ -36,9 +32,28 @@ const handleBoardAction = (neededActionInputs)=>{
           if(neededActionInputs.tileInfo[neededActionInputs.location].value.facing == "up"){
             neededActionInputs.setActionInfo1("attack");
           }else{
-          neededActionInputs.setActionInfo1("rotate");
-          neededActionInputs.tileInfo[neededActionInputs.location].value.facing = "up";
-          neededActionInputs.setTileInfo([...neededActionInputs.tileInfo]);
+            neededActionInputs.setActionInfo1("rotate");
+            neededActionInputs.tileInfo[neededActionInputs.location].value.facing = "up";
+            neededActionInputs.setTileInfo([...neededActionInputs.tileInfo]);
+          }
+          // need to add spend hero cube here
+        }
+      }
+    }else if(neededActionInputs.action == "sprint"){
+      if(neededActionInputs.actionInfo1 > 0){
+        if(neededActionInputs.tileInfo[neededActionInputs.location].value.facing == "up"){
+          if(
+            AdjacentTiles(
+              neededActionInputs.tileInfo[tempPaladinLocation],
+              neededActionInputs.tileInfo[movingTo],
+              (tempPaladinLocation-movingTo),
+              false,
+              false // edge case
+            )){
+            neededActionInputs.setActionInfo1(neededActionInputs.actionInfo1-1);
+            paladin.move(neededActionInputs.gameID[0],neededActionInputs.location)
+            // need to add spend hero cube here
+            // need to add local move to speed up processing time
           }
         }
       }

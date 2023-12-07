@@ -14,19 +14,21 @@ import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
 
 function prepare (ID){
-  paladin.prep(ID);
+  paladin.prep(ID[0]);
 }
 
-function crusade (settingAction,settingActionInfo1){
+function crusade (settingAction,settingActionInfo1,ID){
   settingAction("crusade");
   //this is the step of the crusade the user is on
   settingActionInfo1("move");
+  paladin.spendHeroCube(ID[0]);
 }
 
-function sprint (settingAction,settingActionInfo1){
+function sprint (settingAction,settingActionInfo1,ID){
   settingAction("sprint");
   // this is how many spaces the player can move 
-  settingActionInfo1(2)
+  settingActionInfo1(2);
+  paladin.spendHeroCube(ID[0]);
 }
 
 function cancel(clear) {
@@ -53,6 +55,10 @@ const confirmTreasure = (clearing) =>{
   clearing();
 }
 
+const ConfirmSprint = (clearing)=>{
+  clearing();
+}
+
 const InitialChoices = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
@@ -62,10 +68,10 @@ const InitialChoices = ()=>{
       <button onClick={()=>prepare(gameID)}>
         prepare
       </button>
-      <button onClick={()=>crusade(setAction,setActionInfo1)}>
+      <button onClick={()=>crusade(setAction,setActionInfo1,gameID)}>
         cursade
       </button>
-      <button onClick={()=>sprint(setAction,setActionInfo1)}>
+      <button onClick={()=>sprint(setAction,setActionInfo1,gameID)}>
         sprint
       </button>
       <button onClick={()=>cancel(clearActions)}>
@@ -166,9 +172,42 @@ const TreasureChoices = ()=>{
   )
 }
 
+const SprintChoices = () =>{
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  return(
+    <div className="actions">
+      <div>
+        choose a tile to sprint to 
+      </div>
+      <div>
+        <button onClick={()=>ConfirmSprint(clearActions)}>
+          finish sprint
+        </button>
+      </div>
+
+    </div>
+  )
+}
+
+const FinalChoices = () => {
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  return(
+    <div className="actions">
+      <button>
+        end phase
+      </button>
+    </div>
+  )
+}
+
 const ActionList  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
   if(action == "crusade"){
     if(actionInfo1 == "move"){
       return(
@@ -193,7 +232,16 @@ const ActionList  = () =>{
         <TreasureChoices/>
       )
     }
+  }else if(action == "sprint"){
+    return(
+      <SprintChoices/>
+    )
   }else{
+    if(paladinInfo.heroCubes<0){
+      return(
+        <FinalChoices/>
+      )
+    }
     return(
       <InitialChoices/>
     )
@@ -206,7 +254,6 @@ const PaladinActions = () =>{
 
   return (
     <div className="paladinActionContainer">
-        
       <h1>
         current actions
       </h1>
