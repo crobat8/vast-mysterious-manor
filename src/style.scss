@@ -348,6 +348,32 @@ $neutral: #F1E5C3;
               }
             }
           }
+          .spiderActionContainer{
+            background-color: red;
+            h1{
+              padding: 10px;
+            }
+            .actions{
+              padding: 10px;
+              button{
+                padding: 10px;
+                margin-right: 10px;
+              }
+            }
+          }
+          .manorActionContainer{
+            background-color: purple;
+            h1{
+              padding: 10px;
+            }
+            .actions{
+              padding: 10px;
+              button{
+                padding: 10px;
+                margin-right: 10px;
+              }
+            }
+          }
           .otherPlayers{
             background-color: #8B0025;
           }

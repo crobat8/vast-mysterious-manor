@@ -185,13 +185,17 @@ const SprintChoices = () =>{
   )
 }
 
+const EndPhase = (ID) =>{
+  general.endPhase(ID[0]);
+}
+
 const FinalChoices = () => {
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
   return(
     <div className="actions">
-      <button>
+      <button onClick={()=>EndPhase(gameID)}>
         end phase
       </button>
     </div>

@@ -9,6 +9,8 @@ import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
 import PaladinActions from './PaladinActions';
 import SkeletonActions from './SkeletonActions';
+import SpiderActions from './SpiderActions';
+import ManorActions from './ManorActions';
 
 const Playmats = () =>{ 
   
@@ -29,8 +31,16 @@ const Playmats = () =>{
         <PaladinActions/>:
         <div className='otherPlayers'></div>
       }
-      {gameInfo[0].roles.skeleton == userInfo[0].uid ?
+      {gameInfo[0].roles.skeleton == userInfo[0].uid && gameInfo[0].turn == "skeleton"?
         <SkeletonActions/>:
+        <div className='otherPlayers'></div>
+      }
+      {gameInfo[0].roles.spider == userInfo[0].uid && gameInfo[0].turn == "spider"?
+        <SpiderActions/>:
+        <div className='otherPlayers'></div>
+      }
+      {gameInfo[0].roles.manor == userInfo[0].uid && gameInfo[0].turn == "manor"?
+        <ManorActions/>:
         <div className='otherPlayers'></div>
       }
       

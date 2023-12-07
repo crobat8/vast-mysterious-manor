@@ -7,7 +7,7 @@ import { PaladinContext } from '../context/PaldinContext';
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
 
-const SkeletonActions = () =>{ 
+const SpiderActions = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
 
@@ -16,7 +16,7 @@ const SkeletonActions = () =>{
   }
 
   return (
-    <div className="skeletonActionContainer">
+    <div className="spiderActionContainer">
       <h1>
         current actions
       </h1>
@@ -33,4 +33,4 @@ const SkeletonActions = () =>{
   )
 }
 
-export default SkeletonActions;
+export default SpiderActions;
