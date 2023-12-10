@@ -324,14 +324,31 @@ $neutral: #F1E5C3;
             top: 750px; 
             left: 260px; 
             width: 270px; 
-            height: 50px; 
+            height: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            }
+            
           }
           .ground-2{
             position: absolute;
             top: 750px; 
             left: 55px; 
             width: 200px; 
-            height: 50px; 
+            height: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            }
           }
           .ground-3{
             position: absolute;
@@ -339,62 +356,126 @@ $neutral: #F1E5C3;
             left: 0px; 
             width: 50px; 
             height: 250px; 
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            }
           }
           .ground-4{
             position: absolute;
             top: 270px; 
             left: 0px; 
             width: 50px; 
-            height: 250px; 
+            height: 250px;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            }
           }
           .ground-5{
             position: absolute;
             top: 0px; 
             left: 0px; 
             width: 50px; 
-            height: 250px; 
+            height: 250px;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            }
           }
           .ground-6{
             position: absolute;
             top: 0px; 
-            left: 70px; 
-            width: 180px; 
-            height: 60px; 
+            left: 60px; 
+            width: 200px; 
+            height: 60px;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            }
           }
           .ground-7{
             position: absolute;
             top: 0px; 
             left: 270px; 
             width: 260px; 
-            height: 60px; 
+            height: 60px;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            }
           }
           .ground-8{
             position: absolute;
             top: 0px; 
-            left: 550px; 
-            width: 180px; 
-            height: 60px; 
+            left: 530px; 
+            width: 200px; 
+            height: 60px;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            } 
           }
           .ground-9{
             position: absolute;
             top: 0px; 
             left: 750px; 
             width: 50px; 
-            height: 250px; 
+            height: 250px;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            } 
           }
           .ground-10{
             position: absolute;
             top: 270px; 
             left: 750px; 
             width: 50px; 
-            height: 250px; 
+            height: 250px;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            } 
           }
           .ground-11{
             position: absolute;
             top: 550px; 
             left: 750px; 
             width: 50px; 
-            height: 250px; 
+            height: 250px;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            } 
           }
           .ground-12{
             position: absolute;
@@ -402,6 +483,13 @@ $neutral: #F1E5C3;
             left: 540px; 
             width: 200px; 
             height: 50px; 
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            img{
+              height: 40px;
+              width: 40px;
+            } 
           }
         }
       }

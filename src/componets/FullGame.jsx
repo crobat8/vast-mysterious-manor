@@ -114,17 +114,15 @@ const FullGame = ()=>{
         })}
       </div>
       {groundsKeys.map((groundNum,key)=>{
-        // ground -1 is front of mansion
-        // spawn 1 -> -3
-        // spawn 2 -> -5
-        // spawn 3 -> -6
-        // spawn 4 -> -8
-        // spawn 5 -> -9
-        // spawn 6 -> -11
+        const characterIcons = handleCharacterIcons(groundNum);
         const groundName = 'ground'+groundNum
         return(
           <div className={groundName}>
-            {groundName}
+            {characterIcons.map((e, k)=>{
+              return(
+                <img src={e} key={k}/>
+              )
+            })}
           </div>
         )
       })}
