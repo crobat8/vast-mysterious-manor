@@ -22,6 +22,7 @@ const FullGame = ()=>{
   const {tileInfo} = useContext(TileContext);
   const {action,setAction,actionInfo1,setActionInfo1,actionInfo2} = useContext(ActionContext);
   const {paladinInfo} = useContext(PaladinContext)
+  const groundsKeys = [-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12];
   if(gameInfo == null||gameInfo.length == 0){
     return(
       <div className='Board'>
@@ -112,6 +113,22 @@ const FullGame = ()=>{
           )
         })}
       </div>
+      {groundsKeys.map((groundNum,key)=>{
+        // ground -1 is front of mansion
+        // spawn 1 -> -3
+        // spawn 2 -> -5
+        // spawn 3 -> -6
+        // spawn 4 -> -8
+        // spawn 5 -> -9
+        // spawn 6 -> -11
+        
+        const groundName = 'ground'+groundNum
+        return(
+          <div className={groundName}>
+            {groundName}
+          </div>
+        )
+      })}
     </div>
   )
 }

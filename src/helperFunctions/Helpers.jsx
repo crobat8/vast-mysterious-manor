@@ -1,24 +1,53 @@
 import React, { useContext, useState,memo } from 'react';
 import { PaladinContext } from '../context/PaldinContext';
 import { SpiderContext } from '../context/SpiderContext';
+import { SkeletonContext } from '../context/SkeletonContext';
+
 import { TileContext } from '../context/TileContext';
 
 //takes in a location and returns a list of all the player pieces on that space
 export const FindCharacters = (location) => {
   const {paladinInfo} = useContext(PaladinContext);
   const {spiderInfo} = useContext(SpiderContext);
-  
+  const {skeletonInfo} = useContext(SkeletonContext);
   // add more if statements to this for each other character piece as they become needed
   let ret = []
   //paladin
   if(paladinInfo.paladinLoc === location){
-    ret.push("paladin")
+    ret.push("paladin");
   }
   //spiders
   if(spiderInfo.giantSpiderLoc === location){
-    ret.push("giantSpider")
+    ret.push("giantSpider");
   }
-  
+  //skeletons
+  if(skeletonInfo.castyLoc === location){
+    ret.push("casty");
+  }
+  if(skeletonInfo.screamyLoc === location){
+    ret.push("screamy");
+  }
+  if(skeletonInfo.shinyLoc === location){
+    ret.push("shiny");
+  }
+  if(skeletonInfo.shootyLoc === location){
+    ret.push("shooty");
+  }
+  if(skeletonInfo.singyLoc === location){
+    ret.push("singy");
+  }
+  if(skeletonInfo.slashyLoc === location){
+    ret.push("slashy");
+  }
+  if(skeletonInfo.smashyLoc === location){
+    ret.push("smashy");
+  }
+  if(skeletonInfo.sniffyLoc === location){
+    ret.push("sniffy");
+  }
+  if(skeletonInfo.stabbyLoc === location){
+    ret.push("stabby");
+  }
   return ret
 }
 

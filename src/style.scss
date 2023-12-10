@@ -271,6 +271,7 @@ $neutral: #F1E5C3;
       }
       .gameBoard{   
         .Board{
+          position: relative;
           margin: 10px;
           height: 800px;
           width: 800px;
@@ -317,6 +318,102 @@ $neutral: #F1E5C3;
                 }
               }
             }
+          }
+          .ground-1{
+            position: absolute;
+            top: 750px; 
+            left: 260px; 
+            width: 270px; 
+            height: 50px; 
+            border: 2px solid #000
+          }
+          .ground-2{
+            position: absolute;
+            top: 750px; 
+            left: 55px; 
+            width: 200px; 
+            height: 50px; 
+            border: 2px solid #000
+          }
+          .ground-3{
+            position: absolute;
+            top: 550px; 
+            left: 0px; 
+            width: 50px; 
+            height: 250px; 
+            border: 2px solid #000
+          }
+          .ground-4{
+            position: absolute;
+            top: 270px; 
+            left: 0px; 
+            width: 50px; 
+            height: 250px; 
+            border: 2px solid #000
+          }
+          .ground-5{
+            position: absolute;
+            top: 0px; 
+            left: 0px; 
+            width: 50px; 
+            height: 250px; 
+            border: 2px solid #000
+          }
+          .ground-6{
+            position: absolute;
+            top: 0px; 
+            left: 70px; 
+            width: 180px; 
+            height: 60px; 
+            border: 2px solid #000
+          }
+          .ground-7{
+            position: absolute;
+            top: 0px; 
+            left: 270px; 
+            width: 260px; 
+            height: 60px; 
+            border: 2px solid #000
+          }
+          .ground-8{
+            position: absolute;
+            top: 0px; 
+            left: 550px; 
+            width: 180px; 
+            height: 60px; 
+            border: 2px solid #000
+          }
+          .ground-9{
+            position: absolute;
+            top: 0px; 
+            left: 750px; 
+            width: 50px; 
+            height: 250px; 
+            border: 2px solid #000
+          }
+          .ground-10{
+            position: absolute;
+            top: 270px; 
+            left: 750px; 
+            width: 50px; 
+            height: 250px; 
+            border: 2px solid #000
+          }
+          .ground-11{
+            position: absolute;
+            top: 550px; 
+            left: 750px; 
+            width: 50px; 
+            height: 250px; 
+            border: 2px solid #000
+          }
+          .ground-12{
+            position: absolute;
+            top: 750px; 
+            left: 540px; 
+            width: 200px; 
+            height: 50px; 
+            border: 2px solid #000
           }
         }
       }

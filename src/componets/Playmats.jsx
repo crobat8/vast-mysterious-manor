@@ -24,7 +24,7 @@ const Playmats = () =>{
       </div>
     )
   }
-  return (
+  return ( 
     <div className="playmatContainer" >
       
       {gameInfo[0].roles.paladin == userInfo[0].uid && gameInfo[0].turn == "paladin"?
