@@ -121,7 +121,6 @@ const FullGame = ()=>{
         // spawn 4 -> -8
         // spawn 5 -> -9
         // spawn 6 -> -11
-        
         const groundName = 'ground'+groundNum
         return(
           <div className={groundName}>
