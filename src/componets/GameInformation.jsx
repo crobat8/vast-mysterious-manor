@@ -35,8 +35,8 @@ const GameInformation = () =>{
 
   function marchOrderDisplay(){
     const ret = []
-    for(let i = 0;i<skeletonInfo.skeletonsRevealed.length;i++){
-      if(skeletonInfo.skeletonsRevealed[i]){
+    for(let i = 0;i<skeletonInfo.marchOrder.length;i++){
+      if(skeletonInfo.skeletonsRevealed>i){
         ret.push(<p>{i}. {skeletonInfo.marchOrder[i]}</p>)
       }else{
         ret.push(<p>{i}. hidden</p>)
