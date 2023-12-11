@@ -68,6 +68,7 @@ const GameInformation = () =>{
           <h6> player Name</h6>
         </div>
         <div className='right'>
+          <p> stability: {skeletonInfo.stability}</p>
           <p> march order</p>
           {marchOrderDisplay().map((e)=>{
             return(

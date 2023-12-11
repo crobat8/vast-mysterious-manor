@@ -16,6 +16,7 @@ import { TileContext } from '../context/TileContext';
 import { PaladinContext } from '../context/PaldinContext';
 import { SpiderContext } from '../context/SpiderContext';
 import { ActionContext } from '../context/ActionContext';
+import Ground from './Ground';
 
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
@@ -117,13 +118,10 @@ const FullGame = ()=>{
         const characterIcons = handleCharacterIcons(groundNum);
         const groundName = 'ground'+groundNum
         return(
-          <div className={groundName}>
-            {characterIcons.map((e, k)=>{
-              return(
-                <img src={e} key={k}/>
-              )
-            })}
-          </div>
+          <Ground
+          characterIcons = {characterIcons}
+          groundName = {groundName}
+          />
         )
       })}
     </div>
