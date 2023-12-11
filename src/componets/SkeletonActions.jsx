@@ -13,6 +13,24 @@ const EndPhase = (ID) =>{
   general.endPhase(ID[0]);
 }
 
+const increaseSkeletons = (ID) =>{
+  
+}
+
+const GainSkeleton = () => {
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  return(
+    <div className="actions">
+      <button onClick={()=>increaseSkeletons(gameID)}>
+        end phase
+      </button>
+    </div>
+  )
+}
+
+
 const FinalChoices = () => {
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
@@ -89,6 +107,7 @@ const ActionList3  = () =>{
       <h3>
         spend 3 stability to gain a new skeleton 
       </h3>
+      
       <FinalChoices/>
     </div>
 
