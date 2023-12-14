@@ -7,24 +7,24 @@ import { SkeletonContext } from '../context/SkeletonContext';
 
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
-
+import skeleton from '../playerFunctions/skeleton';
 
 const EndPhase = (ID) =>{
   general.endPhase(ID[0]);
 }
 
-const increaseSkeletons = (ID) =>{
-  
+const IncreaseSkeletons = (ID) =>{
+  skeleton.gainSkeleton(ID[0]);
+  general.endPhase(ID[0]);
 }
 
 const GainSkeleton = () => {
   const {gameInfo,gameID} = useContext(GameContext);
-  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
-  const {paladinInfo} = useContext(PaladinContext);
   return(
     <div className="actions">
-      <button onClick={()=>increaseSkeletons(gameID)}>
-        end phase
+
+      <button onClick={()=>IncreaseSkeletons(gameID)}>
+        gain a skeleton
       </button>
     </div>
   )
@@ -107,7 +107,11 @@ const ActionList3  = () =>{
       <h3>
         spend 3 stability to gain a new skeleton 
       </h3>
-      
+      {
+      skeletonInfo.stability >= 3?
+      <GainSkeleton/>:
+      <div/>
+      }
       <FinalChoices/>
     </div>
 
