@@ -318,7 +318,40 @@ $neutral: #F1E5C3;
                 }
               }
             }
+            .crypt{
+              width: 90px; 
+              height: 90px;
+              .pieceContainer{
+                height: 100%;
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                .characters{
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  grid-template-rows: 1fr 1fr 1fr;
+                  gap: 5px;
+                  padding: 5px;
+                  img{
+                    height: 100%;
+                    width: 100%;
+                  }
+                }
+                .tokens{
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  grid-template-rows: 1fr 1fr 1fr;
+                  gap: 5px;
+                  padding: 5px;
+                  img{
+                    height: 100%;
+                    width: 100%;
+                  }
+                }
+              }
+            }
           }
+
           .ground-1{
             position: absolute;
             top: 750px; 

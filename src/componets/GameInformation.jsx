@@ -37,9 +37,9 @@ const GameInformation = () =>{
     const ret = []
     for(let i = 0;i<skeletonInfo.marchOrder.length;i++){
       if(skeletonInfo.skeletonsRevealed>i){
-        ret.push(<p>{i}. {skeletonInfo.marchOrder[i]}</p>)
+        ret.push(<p>{i+1}. {skeletonInfo.marchOrder[i]}</p>)
       }else{
-        ret.push(<p>{i}. hidden</p>)
+        ret.push(<p>{i+1}. hidden</p>)
       }
     }
     return ret

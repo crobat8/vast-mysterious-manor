@@ -23,20 +23,14 @@ const Crypt = (props)=>{
   return(
     <div className='crypt' onClick={()=>handleAction(Action)}>
       <div className='pieceContainer'>
-        {/* <div className='characters'>
+        <div className='characters'>
           {props.characterIcons.map((e, k)=>{
             return(
               <img src={e} key={k}/>
             )
           })}
         </div>
-        <div className='tokens'>
-        {props.tokenIcons.map((e,k)=>{
-            return(
-              <img src={e} key={k}/>
-            )
-          })}
-        </div> */}
+
       </div>
     </div>
   )
