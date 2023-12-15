@@ -41,17 +41,14 @@ const Tile = (props)=>{
           if( actionInfo1 == "move"){
             if(
               AdjacentTiles(
-                 tileInfo[tempPaladinLocation],
-                 tileInfo[movingTo],
+                tileInfo[tempPaladinLocation],
+                tileInfo[movingTo],
                 (tempPaladinLocation-movingTo),
                 false,
                 false // edge case
     
               )){
-              let tempPaladinInfo =  paladinInfo;
-              tempPaladinInfo.paladinLoc =  location;
-               setPaladinInfo({
-                ...tempPaladinInfo})
+              paladin.move(gameID[0],location);
               // if where was clicked is already revealed then skip the rotate step
               if( tileInfo[location].value.facing == "up"){
                  setActionInfo1("attack");
@@ -64,12 +61,12 @@ const Tile = (props)=>{
             }
           }
         }else if( action == "sprint"){
-          if( actionInfo1 > 0){
-            if( tileInfo[ location].value.facing == "up"){
+          if(actionInfo1 > 0){
+            if(tileInfo[location].value.facing == "up"){
               if(
                 AdjacentTiles(
-                   tileInfo[tempPaladinLocation],
-                   tileInfo[movingTo],
+                  tileInfo[tempPaladinLocation],
+                  tileInfo[movingTo],
                   (tempPaladinLocation-movingTo),
                   false,
                   false // edge case

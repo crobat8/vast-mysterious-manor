@@ -57,6 +57,9 @@ export const FindCharacters = (location) => {
 // returns true if adjacent and open doors
 // returns false if either rooms arent adjacent or if they doors are closed
 export const AdjacentTiles = (startTile,endTile,direction,overRideDoors,edge) =>{
+  const {tileInfo} = useContext(TileContext);
+  console.log(tileInfo);
+  console.log("test");
   const startWalls =  checkOpenDoors(startTile.value);
   const endWalls = checkOpenDoors(endTile.value);
   if(direction == 7){//north of start check

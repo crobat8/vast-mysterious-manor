@@ -32,7 +32,6 @@ function cancel(clear) {
 const ConfirmCrusadeRotation = (ID,Loc,Rot,setActionInfo1,setActionInfo2)=>{
   const spots = [[Loc,Rot]]
   general.revealTile(ID[0],spots);
-  paladin.move(ID[0],Loc)
   setActionInfo1("attack");
   setActionInfo2(0);
 }
