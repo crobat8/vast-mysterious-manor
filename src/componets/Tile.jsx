@@ -31,7 +31,6 @@ const Tile = (props)=>{
     setPaladinInfo,
     tileInfo,
     setTileInfo}
-
     function HandleBoardAction(location){
       // paladin tile actions
       if(currentUser.uid == gameInfo[0].roles.paladin){
@@ -41,12 +40,12 @@ const Tile = (props)=>{
           if( actionInfo1 == "move"){
             if(
               AdjacentTiles(
-                tileInfo[tempPaladinLocation],
-                tileInfo[movingTo],
+                tempPaladinLocation,
+                movingTo,
                 (tempPaladinLocation-movingTo),
                 false,
-                false // edge case
-    
+                false, // edge case
+                tileInfo,
               )){
               paladin.move(gameID[0],location);
               // if where was clicked is already revealed then skip the rotate step
@@ -65,11 +64,12 @@ const Tile = (props)=>{
             if(tileInfo[location].value.facing == "up"){
               if(
                 AdjacentTiles(
-                  tileInfo[tempPaladinLocation],
-                  tileInfo[movingTo],
+                  tempPaladinLocation,
+                  movingTo,
                   (tempPaladinLocation-movingTo),
                   false,
-                  false // edge case
+                  false, // edge case
+                  tileInfo,// edge case
                 )){
                  setActionInfo1( actionInfo1-1);
                 paladin.move( gameID[0], location)
