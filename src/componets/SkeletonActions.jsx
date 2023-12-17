@@ -30,11 +30,27 @@ const GainSkeleton = () => {
   )
 }
 
+const StartMarch = (skeletonName,setAction) =>{
+  
+  setAction(skeletonName);
+}
+
+const StartMarchButton = () => {
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {skeletonInfo} = useContext(SkeletonContext);
+  return(
+    <div className="actions">
+      <button onClick={()=>StartMarch(skeletonInfo.currentSkeleton,setAction)}>
+        start currentMarch
+      </button>
+    </div>
+  )
+}
 
 const FinalChoices = () => {
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
-  const {paladinInfo} = useContext(PaladinContext);
   return(
     <div className="actions">
       <button onClick={()=>EndPhase(gameID)}>
@@ -48,13 +64,6 @@ const ActionList1  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {skeletonInfo} = useContext(SkeletonContext);
-  if(!skeletonInfo){
-    return(
-      <h1>
-        loading
-      </h1>
-    )
-  }
   return(
     <div>
       <h3>
@@ -70,21 +79,16 @@ const ActionList2  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {skeletonInfo} = useContext(SkeletonContext);
-  if(!skeletonInfo){
-    return(
-      <h1>
-        loading
-      </h1>
-    )
-  }
+
   return(
     <div>
       <h3>
         march order
       </h3>
       <h3>
-        current up: {}
+        current up: {skeletonInfo.currentSkeleton}
       </h3>
+      <StartMarchButton/>
       <FinalChoices/>
     </div>
 
@@ -95,13 +99,7 @@ const ActionList3  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {skeletonInfo} = useContext(SkeletonContext);
-  if(!skeletonInfo){
-    return(
-      <h1>
-        loading
-      </h1>
-    )
-  }
+
   return(
     <div>
       <h3>
@@ -122,13 +120,7 @@ const ActionList4  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {skeletonInfo} = useContext(SkeletonContext);
-  if(!skeletonInfo){
-    return(
-      <h1>
-        loading
-      </h1>
-    )
-  }
+
   return(
     <div>
       <h3>
@@ -143,6 +135,15 @@ const ActionList4  = () =>{
 const SkeletonActions = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {skeletonInfo} = useContext(SkeletonContext);
+
+  if(!skeletonInfo){
+    return(
+      <h1>
+        loading
+      </h1>
+    )
+  }
 
   return (
     <div className="skeletonActionContainer">
