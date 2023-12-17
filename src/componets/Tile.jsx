@@ -8,6 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 import { PaladinContext } from '../context/PaldinContext';
 import { TileContext } from '../context/TileContext';
 import { SkeletonContext } from '../context/SkeletonContext';
+import skeleton from '../playerFunctions/skeleton';
 
 const Tile = (props)=>{
   const rotation = props.tileRotation*90;
@@ -35,11 +36,11 @@ const Tile = (props)=>{
             paladin.move(gameID[0],here);
             // if where was clicked is already revealed then skip the rotate step
             if( tileInfo[here].value.facing == "up"){
-                setActionInfo1("attack");
+              setActionInfo1("attack");
             }else{
-                setActionInfo1("rotate");
-                tileInfo[here].value.facing = "up";
-                setTileInfo([... tileInfo]);
+              setActionInfo1("rotate");
+              tileInfo[here].value.facing = "up";
+              setTileInfo([... tileInfo]);
             }
             // need to add spend hero cube here
           }
@@ -66,26 +67,24 @@ const Tile = (props)=>{
       }
     }else if(currentUser.uid == gameInfo[0].roles.skeleton){
       if(gameInfo[0].phase == 2){
-        if(action != null){
-          if(skeletonInfo.movesLeft>0){
-            const currentFieldName= action +"Loc";
-            const currentSkeletonLocation = skeletonInfo[currentFieldName];
-            if(AdjacentTiles(
-              currentSkeletonLocation,
-              here,
-              (currentSkeletonLocation-here),
-              false,
-              false, // edge case
-              tileInfo,
-            )){
-              console.log("this is adjacnet")
-            }else{
-              console.log("not adjacnet")
-            }
-            
+        if(skeletonInfo.movesLeft>0){
+          const currentFieldName= skeletonInfo.currentSkeleton +"Loc";
+          const currentSkeletonLocation = skeletonInfo[currentFieldName];
+          if(AdjacentTiles(
+            currentSkeletonLocation,
+            here,
+            (currentSkeletonLocation-here),
+            false,
+            false, // edge case
+            tileInfo,
+          )){
+            skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
+            // connect to move skeleton piece to {here}
+          }else{
+            console.log("not adjacnet")
           }
         }else{
-          console.log("you need to start the march first")
+          console.log("out of movements");
         }
       }
     }

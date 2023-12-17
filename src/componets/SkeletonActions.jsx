@@ -30,19 +30,19 @@ const GainSkeleton = () => {
   )
 }
 
-const StartMarch = (skeletonName,setAction) =>{
+const endMarch = (ID) =>{
   
-  setAction(skeletonName);
+  skeleton.endMarch(ID[0]);
 }
 
-const StartMarchButton = () => {
+const EndMarchButton = () => {
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {skeletonInfo} = useContext(SkeletonContext);
   return(
     <div className="actions">
-      <button onClick={()=>StartMarch(skeletonInfo.currentSkeleton,setAction)}>
-        start currentMarch
+      <button onClick={()=>endMarch(gameID)}>
+        end currentMarch
       </button>
     </div>
   )
@@ -79,16 +79,35 @@ const ActionList2  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {skeletonInfo} = useContext(SkeletonContext);
-
+  const currentMarchOrder = skeletonInfo.marchOrder
+  console.log(skeletonInfo.currentSkeleton)
+  console.log(currentMarchOrder.indexOf(skeletonInfo.currentSkeleton))
+  console.log(skeletonInfo.skeletonsRevealed)
   return(
     <div>
       <h3>
         march order
       </h3>
-      <h3>
-        current up: {skeletonInfo.currentSkeleton}
-      </h3>
-      <StartMarchButton/>
+      {skeletonInfo.marchOrder.indexOf(skeletonInfo.currentSkeleton)
+      <skeletonInfo.skeletonsRevealed?
+      <div>
+        <h3>
+          current up: {skeletonInfo.currentSkeleton}
+        </h3>
+        <h3>
+          movesLeft: {skeletonInfo.movesLeft}
+        </h3>
+        <EndMarchButton/>
+      </div>
+      :
+      <div>
+        <h3>
+          out of skeletons
+        </h3>
+      </div>
+
+      }
+
       <FinalChoices/>
     </div>
 
@@ -169,12 +188,6 @@ const SkeletonActions = () =>{
         <ActionList4/>:
         <div className='otherPlayers'></div>
       }
-      <p>
-        {action}
-      </p>
-      <p>
-        {actionInfo1}
-      </p>
     </div>
   )
 }

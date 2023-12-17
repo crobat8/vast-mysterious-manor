@@ -85,7 +85,7 @@ export const AdjacentTiles = (startLoc,endLoc,direction,overRideDoors,edge,tileI
 // returns a boolean array with values corresponding to what walls are open
 // [north,east,south,west]
 function checkOpenDoors(tileVals) {
-  console.log(tileVals);
+
   if (tileVals.wallType == "Open"||tileVals.facing == "down") {
     return [true, true, true, true];
   } else if (tileVals.wallType == "N") {
