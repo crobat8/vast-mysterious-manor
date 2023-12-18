@@ -49,6 +49,31 @@ const EndMarchButton = () => {
   )
 }
 
+const strike = (ID) =>{
+  // need to implement strike here
+  skeleton.endMarch(ID[0]);
+}
+
+const loot = (ID) =>{
+  // need to implement loot here
+  skeleton.endMarch(ID[0]);
+}
+
+const breach = (ID) =>{
+  // need to implement breach here
+  skeleton.endMarch(ID[0]);
+}
+
+const tunnel = (ID) =>{
+  // need to implement tunnel here
+  skeleton.endMarch(ID[0]);
+}
+
+const arm = (ID) =>{
+  // need to implement arm here
+  skeleton.endMarch(ID[0]);
+}
+
 const EndMoveButtons = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
@@ -56,14 +81,12 @@ const EndMoveButtons = () =>{
   const {tileInfo} = useContext(TileContext);
   const activeSkeletonLoc = skeletonInfo.currentSkeleton + "Loc";
   const activeSkeletonLocation = skeletonInfo[activeSkeletonLoc];
-  console.log(activeSkeletonLocation);
-  console.log(tileInfo[activeSkeletonLocation].value);
 
   return(
     <div className="actions">
       {/* strike button if there is something to hit */}
       {tileInfo[activeSkeletonLocation].value.facing == "up"?
-        <button>
+        <button onClick={()=>strike(gameID)}>
           STRIKE!!
         </button>
         :
@@ -71,7 +94,7 @@ const EndMoveButtons = () =>{
       }
       {/* loot if the tile has a treasure */}
       {tileInfo[activeSkeletonLocation].value.facing == "up"?
-        <button>
+        <button onClick={()=>loot(gameID)}>
           LOOT!!
         </button>
         :
@@ -79,7 +102,7 @@ const EndMoveButtons = () =>{
       }
       {/* breach if the space has a wall or adjacent has walls and is facing up*/}
       {tileInfo[activeSkeletonLocation].value.facing == "up"?
-        <button>
+        <button onClick={()=>breach(gameID)}>
           BREACH!!
         </button>
         :
@@ -88,7 +111,7 @@ const EndMoveButtons = () =>{
       {/* tunnel if the tile has a pit and is facing up */}
       {tileInfo[activeSkeletonLocation].value.floorType == "pit" &&
            tileInfo[activeSkeletonLocation].value.facing == "up"?
-        <button>
+        <button onClick={()=>tunnel(gameID)}>
           TUNNEL!!
         </button>
         :
@@ -97,7 +120,7 @@ const EndMoveButtons = () =>{
       {/* arm if the tile is has an armory */}
       {
         tileInfo[activeSkeletonLocation].value.floorType == "armory"?
-        <button>
+        <button onClick={()=>arm(gameID)}>
           ARM!!
         </button>
         :
