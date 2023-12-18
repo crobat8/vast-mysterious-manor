@@ -8,6 +8,7 @@ import { SkeletonContext } from '../context/SkeletonContext';
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
 import skeleton from '../playerFunctions/skeleton';
+import { TileContext } from '../context/TileContext';
 
 const EndPhase = (ID) =>{
   general.endPhase(ID[0]);
@@ -48,6 +49,64 @@ const EndMarchButton = () => {
   )
 }
 
+const EndMoveButtons = () =>{
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {skeletonInfo} = useContext(SkeletonContext);
+  const {tileInfo} = useContext(TileContext);
+  const activeSkeletonLoc = skeletonInfo.currentSkeleton + "Loc";
+  const activeSkeletonLocation = skeletonInfo[activeSkeletonLoc];
+  console.log(activeSkeletonLocation);
+  console.log(tileInfo[activeSkeletonLocation].value);
+
+  return(
+    <div className="actions">
+      {/* strike button if there is something to hit */}
+      {tileInfo[activeSkeletonLocation].value.facing == "up"?
+        <button>
+          STRIKE!!
+        </button>
+        :
+        <div/>
+      }
+      {/* loot if the tile has a treasure */}
+      {tileInfo[activeSkeletonLocation].value.facing == "up"?
+        <button>
+          LOOT!!
+        </button>
+        :
+        <div/>
+      }
+      {/* breach if the space has a wall or adjacent has walls and is facing up*/}
+      {tileInfo[activeSkeletonLocation].value.facing == "up"?
+        <button>
+          BREACH!!
+        </button>
+        :
+        <div/>
+      }
+      {/* tunnel if the tile has a pit and is facing up */}
+      {tileInfo[activeSkeletonLocation].value.floorType == "pit" &&
+           tileInfo[activeSkeletonLocation].value.facing == "up"?
+        <button>
+          TUNNEL!!
+        </button>
+        :
+        <div/>
+      }
+      {/* arm if the tile is has an armory */}
+      {
+        tileInfo[activeSkeletonLocation].value.floorType == "armory"?
+        <button>
+          ARM!!
+        </button>
+        :
+        <div/>
+      }
+    </div>
+  )
+}
+
 const FinalChoices = () => {
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
@@ -80,9 +139,6 @@ const ActionList2  = () =>{
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {skeletonInfo} = useContext(SkeletonContext);
   const currentMarchOrder = skeletonInfo.marchOrder
-  console.log(skeletonInfo.currentSkeleton)
-  console.log(currentMarchOrder.indexOf(skeletonInfo.currentSkeleton))
-  console.log(skeletonInfo.skeletonsRevealed)
   return(
     <div>
       <h3>
@@ -97,6 +153,7 @@ const ActionList2  = () =>{
         <h3>
           movesLeft: {skeletonInfo.movesLeft}
         </h3>
+        <EndMoveButtons/>
         <EndMarchButton/>
       </div>
       :
