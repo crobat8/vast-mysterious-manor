@@ -54,7 +54,7 @@ const FullGame = ()=>{
 
   function handleCharacterIcons(location){
     
-    const pieces = FindCharacters(location)
+    const pieces = FindCharacters(location);
     let ret = []
     for(let i = 0; i < pieces.length;i++){
       ret.push(characterImages[pieces[i]])

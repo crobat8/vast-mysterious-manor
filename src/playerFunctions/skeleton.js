@@ -95,8 +95,43 @@ function endMarch(ID){
   sendEndMarch(ID)
 }
 
+const sendRespawn = async (ID,name) => {
+  const endpoint = 'https://respawnskeleton-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+    skeletonName: name
+  };
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+// takes in a game ID and a location to move the paladin to
+function respawn(ID,name){
+  sendRespawn(ID,name)
+}
+
 export default{
   "gainSkeleton":gainSkeleton,
   "move": move,
   "endMarch": endMarch,
+  "respawn": respawn,
 }

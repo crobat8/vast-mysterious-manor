@@ -6,6 +6,8 @@ import { PaladinContext } from '../context/PaldinContext';
 
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
+import { FindCharacters } from '../helperFunctions/Helpers';
+import skeleton from '../playerFunctions/skeleton';
 
 function prepare (ID){
   paladin.prep(ID[0]);
@@ -23,6 +25,40 @@ function sprint (settingAction,settingActionInfo1,ID){
   // this is how many spaces the player can move 
   settingActionInfo1(2);
   paladin.spendHeroCube(ID[0]);
+}
+
+// this is only set up to attack skeletons needs to be adjusted for
+// eggs and poltergeists
+function attackUnit (piece,ID,paladinInfo,characters){
+  const skeletonNames = [
+    "casty",
+    "screamy",
+    "shiny",
+    "shooty",
+    "singy",
+    "slashy",
+    "smashy",
+    "sniffy",
+    "stabby",
+  ];
+
+  // attacking skeleton
+  if(skeletonNames.includes(piece)){
+    let skeletonCount = 0;
+    for(let i = 0; i<characters.length;i++){
+      if(skeletonNames.includes(characters[i])){
+        skeletonCount++;
+      }
+    }
+    console.log(skeletonCount);
+    if(paladinInfo.preps>skeletonCount){
+      skeleton.respawn(ID[0],piece);
+    }else{
+      // move paladin back to origin tile
+    }
+
+  }
+
 }
 
 function cancel(clear) {
@@ -112,15 +148,32 @@ const AttackChoices = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
+  const characters = FindCharacters(paladinInfo.paladinLoc);
+  const indextOfPaladin = characters.indexOf("paladin");
+  characters.splice(indextOfPaladin,1);
+  console.log(characters);
   return(
     <div className="actions">
       <div>
         choose all the enemies to attack
       </div>
       <div>
-        <button onClick={()=>confirmAttack(setActionInfo1)}>
-          finish attack
-        </button>
+        {characters.map((character,key)=>{
+          return(
+            <button onClick={()=>attackUnit(character,gameID,paladinInfo,characters)}>
+              {character}
+            </button>
+          )
+        })}
+        {characters.length == 0
+        ?
+          <button onClick={()=>confirmAttack(setActionInfo1)}>
+            finish attack
+          </button>
+        :
+          <div/>
+        }
+
       </div>
 
     </div>
