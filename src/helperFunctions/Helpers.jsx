@@ -16,9 +16,27 @@ export const FindCharacters = (location) => {
   if(paladinInfo.paladinLoc === location){
     ret.push("paladin");
   }
-  //spiders
+  //spiders (can be slightly optimized due to having form field in database)
   if(spiderInfo.giantSpiderLoc === location){
     ret.push("giantSpider");
+  }
+  if(spiderInfo.casterLoc === location){
+    ret.push("caster");
+  }
+  if(spiderInfo.spiderling1Loc === location){
+    ret.push("spiderling");
+  }
+  if(spiderInfo.spiderling2Loc === location){
+    ret.push("spiderling");
+  }
+  if(spiderInfo.spiderling3Loc === location){
+    ret.push("spiderling");
+  }
+  if(spiderInfo.spiderling4Loc === location){
+    ret.push("spiderling");
+  }
+  if(spiderInfo.spiderling5Loc === location){
+    ret.push("spiderling");
   }
   //skeletons
   if(skeletonInfo.castyLoc === location){
