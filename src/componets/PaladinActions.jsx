@@ -165,6 +165,9 @@ const AttackChoices = ()=>{
             </button>
           )
         })}
+        <button onClick={()=>prepare(gameID)}>
+          prepare
+        </button>
         {characters.length == 0
         ?
           <button onClick={()=>confirmAttack(setActionInfo1)}>
