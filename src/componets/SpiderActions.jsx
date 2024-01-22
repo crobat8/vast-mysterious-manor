@@ -10,12 +10,24 @@ import spider from '../playerFunctions/spider';
 import { SkeletonContext } from '../context/SkeletonContext';
 import { SpiderContext } from '../context/SpiderContext';
 
+import { CountToken } from '../helperFunctions/Helpers';
+import { TileContext } from '../context/TileContext';
+
+
 const pickForm = (ID,form) =>{
   //will need to add local input for this function to select 
   //where the giant and caster go when switching from spiderlings
   spider.spiderForm(ID[0],form)
   // dont be an idiot un-comment this line when done testing
-  //general.endPhase(ID[0]);
+  general.endPhase(ID[0]);
+}
+
+const feed = (ID) =>{
+  spider.feed(ID[0])
+}
+
+const scare = (ID) =>{
+  spider.scare(ID[0])
 }
 
 const EndPhase = (ID) =>{
@@ -59,17 +71,38 @@ const ActionList1  = () =>{
   )
 }
 
+
+
 const ActionList2  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
-  const {skeletonInfo} = useContext(SkeletonContext);
-  const currentMarchOrder = skeletonInfo.marchOrder
+  const {spiderInfo} = useContext(SpiderContext);
+  const {tileInfo} = useContext(TileContext);
   return(
     <div>
       <h3>
-        choose what form you want to take
+        choose to gain terror this turn 
       </h3>
-      <FinalChoices/>
+      <div className="actions">
+        {spiderInfo.blood>=3 && !spiderInfo.fedThisTurn
+        ?
+        <button onClick={()=>feed(gameID)}>
+          Feed
+        </button>
+        :
+        <div/>
+        }
+
+        {CountToken("web",tileInfo)>=6 && !spiderInfo.scaredThisTurn
+        ?
+        <button onClick={()=>scare(gameID,tileInfo)}>
+          Scare
+        </button>
+        :
+        <div/>
+        }
+        <FinalChoices/>
+      </div>
     </div>
 
   )

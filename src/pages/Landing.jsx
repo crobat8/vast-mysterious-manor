@@ -9,6 +9,9 @@ import vastChart from '../img/vast_manor_chart.png'
 import Pill from '../componets/Pill';
 import FadeIn from 'react-fade-in';
 
+// import axios from 'axios';
+// import cheerio from 'cheerio';
+
 const Landing = () =>{ 
   const [slide,setSlide] = useState(1)
   const pillInfo = [
@@ -49,6 +52,25 @@ const Landing = () =>{
       color:"#94aca6"
     },
   ]
+
+  // async function testAxious(){
+  //   const websiteUrl = 'https://www.tfrrs.org/lists/3975/GNAC_Indoor_Performance_List';
+
+  //   await axios.get(websiteUrl)
+  //     .then(response => {
+  //       const html = response.data;
+  //       const $ = cheerio.load(html);
+    
+  //       // Extract the body content
+  //       const bodyContent = $('body').html();
+        
+  //       console.log(bodyContent);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching website:', error);
+  //     });
+  // }
+
   function HandleSwap(){
     
     if(slide === 1){
@@ -113,6 +135,14 @@ const Landing = () =>{
       
       
       <footer className='botBar'>
+        {/* <div>
+          <h1>
+            axious test button
+          </h1>
+          <button onClick={()=>testAxious()}>
+            get axious data from tfrrs
+          </button>
+        </div> */}
       </footer>
     </div>
   )

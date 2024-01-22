@@ -100,6 +100,24 @@ export const AdjacentTiles = (startLoc,endLoc,direction,overRideDoors,edge,tileI
   }
 }
 
+export const CountToken = (tokenType,tileInfo)=>{
+  let ret = 0
+  for(let i = 0;i<tileInfo.length;i++){
+    if(tileInfo[i].value == ''){
+
+    }else{
+      for(let j = 0;j<tileInfo[i].value.tokens.length;j++){
+        if(tileInfo[i].value.tokens[j] == tokenType){
+          ret++;
+        }
+      }
+    }
+  }
+  console.log(ret);
+  return ret;
+
+}
+
 // returns a boolean array with values corresponding to what walls are open
 // [north,east,south,west]
 function checkOpenDoors(tileVals) {
