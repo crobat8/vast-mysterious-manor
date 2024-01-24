@@ -135,14 +135,7 @@ const Landing = () =>{
       
       
       <footer className='botBar'>
-        {/* <div>
-          <h1>
-            axious test button
-          </h1>
-          <button onClick={()=>testAxious()}>
-            get axious data from tfrrs
-          </button>
-        </div> */}
+
       </footer>
     </div>
   )
