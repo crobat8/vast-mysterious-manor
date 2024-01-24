@@ -96,7 +96,6 @@ const Landing = () =>{
   }
   const changeSlide = (x) =>{
     setSlide(x)
-    
   }
 
   return (

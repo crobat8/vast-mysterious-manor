@@ -226,6 +226,7 @@ $neutral: #F1E5C3;
       
       grid-gap: 5px;
       .gameInformation{
+        padding-top: 10px;
         
         .Info{
           
@@ -270,6 +271,7 @@ $neutral: #F1E5C3;
         }
       }
       .gameBoard{   
+        padding-top: 10px;
         .Board{
           position: relative;
           margin: 10px;
@@ -527,6 +529,7 @@ $neutral: #F1E5C3;
         }
       }
       .playMats{
+        padding-top: 10px;
         .playmatContainer{
           .paladinActionContainer{
             background-color: yellow;
@@ -582,6 +585,34 @@ $neutral: #F1E5C3;
           }
           .otherPlayers{
             background-color: #8B0025;
+          }
+        }
+      }
+      .cards{
+        padding-top: 10px;
+        .cardContainer{
+        
+          .cardHolder{
+            background-color: gray;
+            .cardTitle{
+              padding: 10px;
+            }
+            .cardDisplay{
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 20px;
+              width: 420px;
+              padding: 10px;
+              .card{
+                height: 280px;
+                width: 200px;
+              }
+            }
+            @media screen and (min-width: 1170px) {
+              .cardDisplay {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
           }
         }
       }

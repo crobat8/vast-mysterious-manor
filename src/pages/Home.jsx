@@ -10,6 +10,7 @@ import { SearchingContext } from '../context/SearchingContext';
 import { GameContext } from '../context/GameContext';
 import Playmats from '../componets/Playmats';
 import GameInformation from '../componets/GameInformation';
+import Cards from '../componets/Cards';
 
 const Home = () =>{ 
   
@@ -120,7 +121,10 @@ const Home = () =>{
           <FullGame/>
         </div>
         <div className='playMats'>
-           <Playmats/>
+          <Playmats/>
+        </div>
+        <div className='cards'>
+          <Cards/>
         </div>
       </main>
       <footer>

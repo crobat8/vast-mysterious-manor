@@ -5,6 +5,8 @@ import { SkeletonContext } from '../context/SkeletonContext';
 
 import { TileContext } from '../context/TileContext';
 
+import cardImages from '../componets/cardImages';
+
 //takes in a location and returns a list of all the player pieces on that space
 export const FindCharacters = (location) => {
   const {paladinInfo} = useContext(PaladinContext);
@@ -113,9 +115,16 @@ export const CountToken = (tokenType,tileInfo)=>{
       }
     }
   }
-  console.log(ret);
   return ret;
 
+}
+
+export const HandleCardPictures =(cardNames) =>{
+  let ret = []
+  for(let i = 0; i < cardNames.length;i++){
+    ret.push(cardImages[cardNames[i]]);
+  }
+  return ret
 }
 
 // returns a boolean array with values corresponding to what walls are open
