@@ -18,6 +18,7 @@ const Tile = (props)=>{
   const {paladinInfo,setPaladinInfo} = useContext(PaladinContext);
   const {skeletonInfo,setSkeletonInfo} = useContext(SkeletonContext);
   const {tileInfo,setTileInfo} =useContext(TileContext);
+  
   function HandleBoardAction(here){
     // paladin tile actions
     if(currentUser.uid == gameInfo[0].roles.paladin){

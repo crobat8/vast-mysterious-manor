@@ -17,8 +17,8 @@ export const ActionContextProvider = ({ children }) => {
 
   const clearActions = () =>{
     setAction(null);
-    setActionInfo1(null)
-    setActionInfo2(null)
+    setActionInfo1(null);
+    setActionInfo2(null);
   }
 
   return (

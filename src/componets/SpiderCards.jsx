@@ -2,9 +2,27 @@ import React, { useContext, useState,useEffect,memo } from 'react';
 import { SpiderContext } from '../context/SpiderContext';
 
 import {HandleCardPictures} from '../helperFunctions/Helpers'
+import { ActionContext } from '../context/ActionContext';
+import { GameContext } from '../context/GameContext';
+
+import spider from '../playerFunctions/spider';
 
 const SpiderCards = () =>{
   const {spiderInfo} = useContext(SpiderContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
+  const {gameInfo,gameID} = useContext(GameContext);
+  
+  function handleClick(ID,cardType){
+    console.log(action)
+    if(action == "scare"){
+      spider.scare(ID[0],cardType);
+      console.log(action)
+      setAction(null);
+      console.log(action)
+    }
+
+  }
+
   if(!spiderInfo){
     return(
     
@@ -15,7 +33,7 @@ const SpiderCards = () =>{
     )
   }
   const cards = HandleCardPictures(spiderInfo.spellCards);
-  console.log(cards)
+
   return(
     <div className='cardHolder'>
       <h2 className='cardTitle'>
@@ -28,7 +46,8 @@ const SpiderCards = () =>{
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             }}
-            className='card'>
+            className='card'
+            onClick={()=>handleClick(gameID,spiderInfo.spellCards[key])}>
               
             </div>
           )

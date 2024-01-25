@@ -23,11 +23,12 @@ const pickForm = (ID,form) =>{
 }
 
 const feed = (ID) =>{
-  spider.feed(ID[0])
+  spider.feed(ID[0]);
 }
 
-const scare = (ID) =>{
-  spider.scare(ID[0])
+const scare = (ID,setAction) =>{
+  setAction("scare");
+  
 }
 
 const EndPhase = (ID) =>{
@@ -71,8 +72,6 @@ const ActionList1  = () =>{
   )
 }
 
-
-
 const ActionList2  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
@@ -83,6 +82,8 @@ const ActionList2  = () =>{
       <h3>
         choose to gain terror this turn 
       </h3>
+      {action == null
+      ?
       <div className="actions">
         {spiderInfo.blood>=3 && !spiderInfo.fedThisTurn
         ?
@@ -93,9 +94,11 @@ const ActionList2  = () =>{
         <div/>
         }
 
-        {CountToken("web",tileInfo)>=6 && !spiderInfo.scaredThisTurn
+        {CountToken("web",tileInfo)>=6 
+        && spiderInfo.spellCards.length>=1
+        &&!spiderInfo.scaredThisTurn
         ?
-        <button onClick={()=>scare(gameID,tileInfo)}>
+        <button onClick={()=>scare(gameID,setAction)}>
           Scare
         </button>
         :
@@ -103,6 +106,12 @@ const ActionList2  = () =>{
         }
         <FinalChoices/>
       </div>
+      :
+      <h4>
+        pick a card to discard
+      </h4>
+      }
+
     </div>
 
   )
@@ -116,7 +125,7 @@ const ActionList3  = () =>{
   return(
     <div>
       <h3>
-        choose what form you want to take
+        take actions and move
       </h3>
       <FinalChoices/>
     </div>
@@ -132,7 +141,7 @@ const ActionList4  = () =>{
   return(
     <div>
       <h3>
-        choose what form you want to take
+        draw more cards
       </h3>
       <FinalChoices/>
     </div>

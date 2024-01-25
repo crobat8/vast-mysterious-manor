@@ -64,11 +64,12 @@ function feed(ID){
   sendFeed(ID)
 }
 
-const sendScare = async (ID) => {
+const sendScare = async (ID,cardType) => {
   const endpoint = 'https://scare-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
   
   const requestData = {
     documentId: ID,
+    toDiscard: cardType,
   };
   
   try {
@@ -92,8 +93,8 @@ const sendScare = async (ID) => {
   }
 };
 
-function scare(ID){
-  sendScare(ID)
+function scare(ID,cardType){
+  sendScare(ID,cardType)
 }
 
 export default{
