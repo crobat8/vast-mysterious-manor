@@ -31,8 +31,8 @@ const scare = (ID,setAction) =>{
   
 }
 
-const phase3Action = (ID,actionName) =>{
-
+const phase3Action = (ID,actionName,setAction) =>{
+  setAction(actionName)
 }
 
 const EndPhase = (ID) =>{
@@ -108,14 +108,14 @@ const ActionList2  = () =>{
         :
         <div/>
         }
-        <FinalChoices/>
+        
       </div>
       :
       <h4>
         pick a card to discard
       </h4>
       }
-
+      <FinalChoices/>
     </div>
 
   )
@@ -132,82 +132,94 @@ const ActionList3  = () =>{
       <h3>
         take actions and move
       </h3>
-      {spiderInfo.spellCards.length >= 1
+      {actionInfo1 != null
       ?
-      <div className="actions">
-        {spiderInfo.spellCards.includes("eyes") 
-        || spiderInfo.form == "caster"
-        ?
-        <button onClick={()=>phase3Action(gameID,"eyes")}>
-          eyes
-        </button>
-        :
-        <div/>
-        }
+      <h4>
+        select a tile to do {action} on {actionInfo1}
+        {/* display the options for this */}
+      </h4>
+      :action!= null
+      ?
+      <h4>
+        select a card to use for {action}
+        {/* display the options for this */}
+      </h4>
+      :spiderInfo.spellCards.length >= 1
+      ?
+        <div className="actions">
+          {spiderInfo.spellCards.includes("eyes") 
+          || spiderInfo.form == "caster"
+          ?
+          <button onClick={()=>phase3Action(gameID,"eyes",setAction)}>
+            eyes
+          </button>
+          :
+          <div/>
+          }
 
-        {spiderInfo.spellCards.includes("fangs") 
-        || spiderInfo.form == "giantSpider"
-        ?
-        <button onClick={()=>phase3Action(gameID,"fangs")}>
-          fangs
-        </button>
-        :
-        <div/>
-        }
+          {spiderInfo.spellCards.includes("fangs") 
+          || spiderInfo.form == "giantSpider"
+          ?
+          <button onClick={()=>phase3Action(gameID,"fangs",setAction)}>
+            fangs
+          </button>
+          :
+          <div/>
+          }
 
-        {spiderInfo.spellCards.includes("webs") 
-        || spiderInfo.form == "spiderling"
-        ?
-        <button onClick={()=>phase3Action(gameID,"webs")}>
-          webs
-        </button>
-        :
-        <div/>
-        }
+          {spiderInfo.spellCards.includes("webs") 
+          || spiderInfo.form == "spiderling"
+          ?
+          <button onClick={()=>phase3Action(gameID,"webs",setAction)}>
+            webs
+          </button>
+          :
+          <div/>
+          }
 
-        {spiderInfo.form == "caster"
-        ?
-        <button onClick={()=>phase3Action(gameID,"veil")}>
-          veil
-        </button>
-        :
-        <div/>
-        }
+          {spiderInfo.form == "caster"
+          ?
+          <button onClick={()=>phase3Action(gameID,"veil",setAction)}>
+            veil
+          </button>
+          :
+          <div/>
+          }
 
-        {spiderInfo.blood >= 1
-        &&  spiderInfo.form == "caster"
-        ?
-        <button onClick={()=>phase3Action(gameID,"tend")}>
-          tend
-        </button>
-        :
-        <div/>
-        }
+          {spiderInfo.blood >= 1
+          &&  spiderInfo.form == "caster"
+          ?
+          <button onClick={()=>phase3Action(gameID,"tend",setAction)}>
+            tend
+          </button>
+          :
+          <div/>
+          }
 
-        {spiderInfo.form == "giantSpider"
-        ?
-        <button onClick={()=>phase3Action(gameID,"layEgg")}>
-          lay Egg
-        </button>
-        :
-        <div/>
-        }
+          {spiderInfo.form == "giantSpider"
+          ?
+          <button onClick={()=>phase3Action(gameID,"layEgg",setAction)}>
+            lay Egg
+          </button>
+          :
+          <div/>
+          }
 
-        <button onClick={()=>phase3Action(gameID,"legs")}>
-          legs
-        </button>
-        
-        {spiderInfo.form == "spiderling"
-        ?
-        <button onClick={()=>phase3Action(gameID,"loot")}>
-          loot
-        </button>
-        :
-        <div/>
-        }
-      </div>
+          <button onClick={()=>phase3Action(gameID,"legs",setAction)}>
+            legs
+          </button>
+          
+          {spiderInfo.form == "spiderling"
+          ?
+          <button onClick={()=>phase3Action(gameID,"loot",setAction)}>
+            loot
+          </button>
+          :
+          <div/>
+          }
+        </div>
       :
-      <div/>
+        <div/>
       }
       
 

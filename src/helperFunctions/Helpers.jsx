@@ -26,19 +26,19 @@ export const FindCharacters = (location) => {
     ret.push("caster");
   }
   if(spiderInfo.spiderling1Loc === location){
-    ret.push("spiderling");
+    ret.push("spiderling1");
   }
   if(spiderInfo.spiderling2Loc === location){
-    ret.push("spiderling");
+    ret.push("spiderling2");
   }
   if(spiderInfo.spiderling3Loc === location){
-    ret.push("spiderling");
+    ret.push("spiderling3");
   }
   if(spiderInfo.spiderling4Loc === location){
-    ret.push("spiderling");
+    ret.push("spiderling4");
   }
   if(spiderInfo.spiderling5Loc === location){
-    ret.push("spiderling");
+    ret.push("spiderling5");
   }
   
   //skeletons

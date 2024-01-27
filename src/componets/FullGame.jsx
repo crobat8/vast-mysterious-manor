@@ -52,12 +52,15 @@ const FullGame = ()=>{
     }
   }
 
-  function handleCharacterIcons(location){
-    
-    const pieces = FindCharacters(location);
+  function handleCharacterIcons(pieces){
     let ret = []
     for(let i = 0; i < pieces.length;i++){
-      ret.push(characterImages[pieces[i]])
+      if(pieces[i].slice(0,-1) == "spiderling"){
+        ret.push(characterImages["spiderling"])
+      }else{
+        ret.push(characterImages[pieces[i]])
+      }
+
     }
     return ret
   }
@@ -88,7 +91,8 @@ const FullGame = ()=>{
     }}>
       <div className='tiles'>
         {tileInfo.map((tile,key)=>{
-          const characterIcons = handleCharacterIcons(key);
+          const pieces = FindCharacters(key);
+          const characterIcons = handleCharacterIcons(pieces);
           if(tile.value == ""){
             return(
               <Crypt

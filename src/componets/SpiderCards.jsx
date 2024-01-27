@@ -16,7 +16,20 @@ const SpiderCards = () =>{
     if(action == "scare"){
       spider.scare(ID[0],cardType);
       setAction(null);
+    }else if(action != null 
+      && actionInfo1 == null
+      && gameInfo[0].turn == "spider" 
+      && gameInfo[0].phase == 3){
+        // need to assign action info 1 the card that was picked based 
+        // based on conditions like what form the spider is in and what
+        // card was picked
+        //
+        // need to have the set action info in 1 of these if statements
+        // since we have the == null to get into this one.
+      setActionInfo1(cardType);
+      console.log(actionInfo1);
     }
+
   }
 
   if(!spiderInfo){
