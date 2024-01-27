@@ -13,14 +13,10 @@ const SpiderCards = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
   
   function handleClick(ID,cardType){
-    console.log(action)
     if(action == "scare"){
       spider.scare(ID[0],cardType);
-      console.log(action)
       setAction(null);
-      console.log(action)
     }
-
   }
 
   if(!spiderInfo){

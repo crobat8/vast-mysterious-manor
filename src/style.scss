@@ -542,6 +542,11 @@ $neutral: #F1E5C3;
                 padding: 10px;
                 margin-right: 10px;
               }
+              .finale{
+                button{
+                  color: red;
+                }
+              }
             }
           }
           .skeletonActionContainer{
@@ -555,6 +560,11 @@ $neutral: #F1E5C3;
                 padding: 10px;
                 margin-right: 10px;
               }
+              .finale{
+                button{
+                  color: red;
+                }
+              }
             }
           }
           .spiderActionContainer{
@@ -563,10 +573,19 @@ $neutral: #F1E5C3;
               padding: 10px;
             }
             .actions{
+              display: flex;
               padding: 10px;
               button{
                 padding: 10px;
                 margin-right: 10px;
+              }
+
+            }              
+            .finale{
+              button{
+                color: red;
+                padding: 10px;
+                margin: 10px;
               }
             }
           }

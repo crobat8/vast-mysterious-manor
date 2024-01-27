@@ -134,7 +134,7 @@ const FinalChoices = () => {
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   return(
-    <div className="actions">
+    <div className="finale">
       <button onClick={()=>EndPhase(gameID)}>
         end phase
       </button>

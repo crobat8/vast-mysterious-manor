@@ -20,8 +20,8 @@ const Tile = (props)=>{
   const {tileInfo,setTileInfo} =useContext(TileContext);
   
   function HandleBoardAction(here){
-    // paladin tile actions
-    if(currentUser.uid == gameInfo[0].roles.paladin){
+    if(currentUser.uid == gameInfo[0].roles.paladin 
+    && gameInfo[0].turn == "paladin"){
       const tempPaladinLocation = paladinInfo.paladinLoc;
       if( action == "crusade"){
         if( actionInfo1 == "move"){
@@ -66,7 +66,8 @@ const Tile = (props)=>{
           }
         }
       }
-    }else if(currentUser.uid == gameInfo[0].roles.skeleton){
+    }else if(currentUser.uid == gameInfo[0].roles.skeleton 
+    && gameInfo[0].turn == "skeleton"){
       if(gameInfo[0].phase == 2){
         if(skeletonInfo.movesLeft>0){
           const currentFieldName= skeletonInfo.currentSkeleton +"Loc";
@@ -88,6 +89,9 @@ const Tile = (props)=>{
           console.log("out of movements");
         }
       }
+    }else if(currentUser.uid == gameInfo[0].roles.spider 
+    && gameInfo[0].turn == "spider"){
+      
     }
   }
 

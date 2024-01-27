@@ -40,6 +40,7 @@ export const FindCharacters = (location) => {
   if(spiderInfo.spiderling5Loc === location){
     ret.push("spiderling");
   }
+  
   //skeletons
   if(skeletonInfo.castyLoc === location){
     ret.push("casty");

@@ -249,7 +249,7 @@ const FinalChoices = () => {
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
   return(
-    <div className="actions">
+    <div className="finale">
       <button onClick={()=>EndPhase(gameID)}>
         end phase
       </button>
