@@ -5,18 +5,23 @@ import {AdjacentTiles} from '../helperFunctions/Helpers'
 import { GameContext } from '../context/GameContext';
 import { ActionContext } from '../context/ActionContext';
 import { AuthContext } from '../context/AuthContext';
+
 import { PaladinContext } from '../context/PaldinContext';
-import { TileContext } from '../context/TileContext';
 import { SkeletonContext } from '../context/SkeletonContext';
+import { SpiderContext } from '../context/SpiderContext';
+import { TileContext } from '../context/TileContext';
+
 import skeleton from '../playerFunctions/skeleton';
+import spider from '../playerFunctions/spider';
 
 const Tile = (props)=>{
   const rotation = props.tileRotation*90;
   const {currentUser} = useContext(AuthContext);
   const {gameInfo,setGameInfo,gameID} = useContext(GameContext);
-  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2} = useContext(ActionContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,setActionInfo3,clearActions} = useContext(ActionContext);
   const {paladinInfo,setPaladinInfo} = useContext(PaladinContext);
   const {skeletonInfo,setSkeletonInfo} = useContext(SkeletonContext);
+  const {spiderInfo} = useContext(SpiderContext);
   const {tileInfo,setTileInfo} =useContext(TileContext);
   
   function HandleBoardAction(here){
@@ -30,7 +35,7 @@ const Tile = (props)=>{
               tempPaladinLocation,
               here,
               (tempPaladinLocation-here),
-              false,
+              false, // overide walls
               false, // edge case
               tileInfo,
             )){
@@ -91,7 +96,53 @@ const Tile = (props)=>{
       }
     }else if(currentUser.uid == gameInfo[0].roles.spider 
     && gameInfo[0].turn == "spider"){
-      
+      if(action == "eyes" && actionInfo1 != null){
+        setActionInfo2("rotate");
+        setActionInfo3(here);
+        tileInfo[here].value.facing = "up";
+        setTileInfo([... tileInfo]);
+      }else if(action == "move" && spiderInfo.movesLeft > 0){
+        const currentFormKey = actionInfo1;
+        const currentFormLoc = spiderInfo[currentFormKey];
+        if(
+          AdjacentTiles(
+            currentFormLoc,
+            here,
+            (currentFormLoc-here),
+            false, // overide walls
+            false, // edge case
+            tileInfo,
+          )){
+          if(spiderInfo.movesLeft == 1){
+            if(spiderInfo.form == "spiderling" ){
+              const tempSpiderlingNum = +actionInfo1[10];
+              spider.move(gameID[0],here,currentFormKey,tempSpiderlingNum);
+            }else{
+              spider.move(gameID[0],here,currentFormKey,0);
+            }
+            clearActions();
+          }else{
+            spider.move(gameID[0],here,currentFormKey,0);
+          }
+        }
+      }else if(action == null){
+        if(spiderInfo.form == "spiderling"){
+          for(let i = 1;i<=5 ;i++){
+            const spiderlingKey = "spiderling"+ i + "Loc";
+            if(spiderInfo[spiderlingKey] == here && spiderInfo.spiderlingsToMove[i-1]){
+              setAction("move");
+              setActionInfo1(spiderlingKey);
+            }
+          }
+        }else{
+          const currentFormKey = spiderInfo.form + "Loc";
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(currentFormLoc == here){
+            setAction("move");
+            setActionInfo1(currentFormKey);
+          }
+        }
+      }
     }
   }
 

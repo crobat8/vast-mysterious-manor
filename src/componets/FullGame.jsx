@@ -21,7 +21,7 @@ import Ground from './Ground';
 const FullGame = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
   const {tileInfo} = useContext(TileContext);
-  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2} = useContext(ActionContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,actionInfo3,actionInfo4} = useContext(ActionContext);
   const {paladinInfo} = useContext(PaladinContext)
   const groundsKeys = [-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12];
   if(gameInfo == null||gameInfo.length == 0){
@@ -73,11 +73,20 @@ const FullGame = ()=>{
     return ret
   }
 
-  function handleRotation(TileVal,key){
+  function handleRotation(TileVal,loc){
     if(action == "crusade"){
       if(actionInfo1 == "rotate"){
-        if(paladinInfo.paladinLoc == key){
+        if(paladinInfo.paladinLoc == loc){
           return actionInfo2;
+        }
+      }
+    } else if(action == "eyes"){
+      if(actionInfo1 != null){
+        if(actionInfo2 != null){
+          if(actionInfo3 == loc){
+            return actionInfo4;
+          }
+
         }
       }
     }

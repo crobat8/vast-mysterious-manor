@@ -31,12 +31,31 @@ const scare = (ID,setAction) =>{
   
 }
 
+const endMovement = (ID,spiderlingNum,clearActions,movesLeft) =>{
+  if(movesLeft<4){
+    spider.move(ID[0],-100,"casterLoc",spiderlingNum);
+  }
+  clearActions();
+}
+
+const pauseMovement = (clearActions) =>{
+  clearActions();
+}
+
 const phase3Action = (ID,actionName,setAction) =>{
   setAction(actionName)
 }
 
-const EndPhase = (ID) =>{
+const ConfirmEyesRotation = (ID,Loc,Rot,toBeDiscarded,clearActions)=>{
+  const spots = [[Loc,Rot]]
+  general.revealTile(ID[0],spots);
+  spider.discard(ID[0],toBeDiscarded);
+  clearActions();
+}
+
+const EndPhase = (ID,clearActions) =>{
   general.endPhase(ID[0]);
+  clearActions();
 }
 
 const FinalChoices = () => {
@@ -44,17 +63,92 @@ const FinalChoices = () => {
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   return(
     <div className="finale">
-      <button onClick={()=>EndPhase(gameID)}>
+      <button onClick={()=>EndPhase(gameID,clearActions)}>
         end phase
       </button>
     </div>
   )
 }
 
-const ActionList1  = () =>{
+const RotateChoices = ()=>{
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,actionInfo3,actionInfo4,setActionInfo4,clearActions} = useContext(ActionContext)
+  const {paladinInfo} = useContext(PaladinContext);
+  return(
+    <div className="actions">
+      <div>
+        choose an oriantation of the tile you moved to
+      </div>
+      <div>
+        <button onClick={()=>setActionInfo4(0)}>
+          North
+        </button>
+        <button onClick={()=>setActionInfo4(1)}>
+          East
+        </button>
+        <button onClick={()=>setActionInfo4(2)}>
+          South
+        </button>
+        <button onClick={()=>setActionInfo4(3)}>
+          West
+        </button> 
+        <button onClick={()=>ConfirmEyesRotation(gameID,actionInfo3,actionInfo4,actionInfo1,clearActions)}>
+          confirm oriantation
+        </button>
+      </div>
+
+    </div>
+  )
+}
+
+const CancelChoice = () => {
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
-  const {skeletonInfo} = useContext(SkeletonContext);
+  return(
+    <div className="finale">
+      <button onClick={()=>clearActions()}>
+        cancel action
+      </button>
+    </div>
+  )
+}
+
+const FinshMovement = () => {
+  const {gameInfo,gameID} = useContext(GameContext);
+  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {spiderInfo} = useContext(SpiderContext);
+  const tempSpiderlingNum = +actionInfo1[10];
+  
+  return(
+    <div className="finale">
+      {spiderInfo.form == "spiderling"
+      ?
+      <button onClick={()=>endMovement(gameID,tempSpiderlingNum,clearActions,spiderInfo.movesLeft)}>
+        {spiderInfo.movesLeft == 4
+        ?
+        <p>
+          cancel spiderling Movement
+        </p>
+        :
+        <p>
+          end spiderling movement
+        </p>
+        }
+
+      </button>
+      :
+      <button onClick={()=>pauseMovement(clearActions)}>
+        <p>
+          pause curret movement
+        </p>
+      </button>
+      }
+    </div>
+  )
+}
+
+const ActionList1  = () =>{
+  const {gameInfo,gameID} = useContext(GameContext);
   return(
     <div>
       <h3>
@@ -123,22 +217,35 @@ const ActionList2  = () =>{
 
 const ActionList3  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
-  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,clearActions} = useContext(ActionContext)
   const {spiderInfo} = useContext(SpiderContext);
   const {tileInfo} = useContext(TileContext);
 
   return(
     <div>
       <h3>
-        take actions and move
+        select an action to take or click a piece to move it
       </h3>
-      {actionInfo1 != null
+      {action == "move"
+      ?
+      <div>
+        <h4>
+          select a tile to move to
+          {/* display the options for this */}
+        </h4>
+        <FinshMovement/>
+      </div>
+
+      :actionInfo2 == "rotate"
+      ?
+      <RotateChoices/>
+      :actionInfo1 != null
       ?
       <h4>
-        select a tile to do {action} on {actionInfo1}
+        select a tile to do {action} on 
         {/* display the options for this */}
       </h4>
-      :action!= null
+      :action != null 
       ?
       <h4>
         select a card to use for {action}
@@ -224,7 +331,8 @@ const ActionList3  = () =>{
       
 
       <FinalChoices/>
-
+      {/* need to iron things out before 100% adding this */}
+      {/* <CancelChoice/> */}
     </div>
 
   )

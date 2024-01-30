@@ -89,6 +89,17 @@ const GameInformation = () =>{
           <p>Defense: {spiderInfo.defense}</p>
           <p>Spirit: {spiderInfo.spirit}</p>
           <p>Blood: {spiderInfo.blood}</p>
+          {spiderInfo.spiderlingsToMove[0]||
+          spiderInfo.spiderlingsToMove[1]||
+          spiderInfo.spiderlingsToMove[2]||
+          spiderInfo.spiderlingsToMove[3]||
+          spiderInfo.spiderlingsToMove[4]
+          ?
+          <p>Moves Left: {spiderInfo.movesLeft}</p>
+          :
+          <p>Moves Left: 0</p>
+          }
+
         </div>
       </div>
       <div className='playerInfo' {...gameInfo[0].turn == "manor" ? {id:'manor'}:{id:''}}>
