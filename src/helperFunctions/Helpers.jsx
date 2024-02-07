@@ -124,48 +124,77 @@ export const VisibleTiles = (location,tileInfo) =>{
     }
     
     while(checkOpenDoors(tileInfo[tempLocation].value)[i]&&
-          foudWall && 
-          foundEdge && 
-          foundDark){
-      console.log(checkOpenDoors(tileInfo[tempLocation].value)[i])
-      
+        foudWall && 
+        foundEdge && 
+        foundDark){
       if(i == 0){
+        tempLocation = tempLocation-7;
         if(tempLocation<7){
           foundEdge = false;
         }else if(tileInfo[tempLocation].value.facing == "down"){
           foundDark = false;
-        }else{
-          tempLocation = tempLocation-7;
-          ret[i].push(tempLocation);
         }
+        if(tileInfo[tempLocation].value == ""){
+
+        }else{
+          if(checkOpenDoors(tileInfo[tempLocation].value)[(i+2)%4]){
+            ret[i].push(tempLocation);
+          }else{
+            foudWall = false
+          }
+        }
+        
+        
       }else if(i == 1){
+        tempLocation = tempLocation+1;
         if(tempLocation%7 == 6){
           foundEdge = false
         }else if(tileInfo[tempLocation].value.facing == "down"){
           foundDark = false;
-        }else{
-          tempLocation = tempLocation+1;
-          ret[i].push(tempLocation);
         }
+        if(tileInfo[tempLocation].value == ""){
+
+        }else{
+          if(checkOpenDoors(tileInfo[tempLocation].value)[(i+2)%4]){
+            ret[i].push(tempLocation);
+          }else{
+            foudWall = false
+          }
+        }
+        
       }else if(i == 2){
+        tempLocation = tempLocation+7;
         if(tempLocation>41){
           foundEdge = false
         }else if(tileInfo[tempLocation].value.facing == "down"){
           foundDark = false;
-        }else{
-          tempLocation = tempLocation+7;
-          ret[i].push(tempLocation);
         }
+        if(tileInfo[tempLocation].value == ""){
 
+        }else{
+          if(checkOpenDoors(tileInfo[tempLocation].value)[(i+2)%4]){
+            ret[i].push(tempLocation);
+          }else{
+            foudWall = false
+          }
+        }
       }else if(i == 3){
+        tempLocation = tempLocation-1;
         if(tempLocation%7 == 0){
           foundEdge = false
         }else if(tileInfo[tempLocation].value.facing == "down"){
           foundDark = false;
-        }else{
-          tempLocation = tempLocation-1;
-          ret[i].push(tempLocation);
         }
+        if(tileInfo[tempLocation].value == ""){
+
+        }else{
+          if(checkOpenDoors(tileInfo[tempLocation].value)[(i+2)%4]){
+            ret[i].push(tempLocation);
+          }else{
+            foudWall = false
+          }
+        }
+        
       }
     }
   }
