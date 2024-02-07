@@ -104,8 +104,11 @@ export const AdjacentTiles = (startLoc,endLoc,direction,overRideDoors,edge,tileI
   }
 }
 
+// returns a double array of all visible tiles with [4] being 
+// the original location so when being used in all situations [4][0] 
+// can be used to as where the piece is
 export const VisibleTiles = (location,tileInfo) =>{
-  const ret = [[],[],[],[]];
+  const ret = [[],[],[],[],[location]];
 
   for(let i = 0;i<4;i++){
     let tempLocation = location;
@@ -143,8 +146,6 @@ export const VisibleTiles = (location,tileInfo) =>{
             foudWall = false
           }
         }
-        
-        
       }else if(i == 1){
         tempLocation = tempLocation+1;
         if(tempLocation%7 == 6){
