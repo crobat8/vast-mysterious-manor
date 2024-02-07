@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
-import {AdjacentTiles} from '../helperFunctions/Helpers'
+import {AdjacentTiles, VisibleTiles} from '../helperFunctions/Helpers'
 import { GameContext } from '../context/GameContext';
 import { ActionContext } from '../context/ActionContext';
 import { AuthContext } from '../context/AuthContext';
@@ -96,53 +96,161 @@ const Tile = (props)=>{
       }
     }else if(currentUser.uid == gameInfo[0].roles.spider 
     && gameInfo[0].turn == "spider"){
-      if(action == "eyes" && actionInfo1 != null){
-        setActionInfo2("rotate");
-        setActionInfo3(here);
-        tileInfo[here].value.facing = "up";
-        setTileInfo([... tileInfo]);
-      }else if(action == "move" && spiderInfo.movesLeft > 0){
-        const currentFormKey = actionInfo1;
-        const currentFormLoc = spiderInfo[currentFormKey];
-        if(
-          AdjacentTiles(
-            currentFormLoc,
-            here,
-            (currentFormLoc-here),
-            false, // overide walls
-            false, // edge case
-            tileInfo,
-          )){
-          if(spiderInfo.movesLeft == 1){
-            if(spiderInfo.form == "spiderling" ){
-              const tempSpiderlingNum = +actionInfo1[10];
-              spider.move(gameID[0],here,currentFormKey,tempSpiderlingNum);
+      if(spiderInfo.form == "giantSpider"){
+        if(action == "eyes" && actionInfo1 != null){
+          setActionInfo2("rotate");
+          setActionInfo3(here);
+          tileInfo[here].value.facing = "up";
+          setTileInfo([... tileInfo]);
+        }else if(action == "fangs" && actionInfo1 != null){
+
+        }else if(action == "webs" && actionInfo1 != null){
+          
+        }else if(action == "layEgg" && actionInfo1 != null){
+
+        }else if(action == "move" && spiderInfo.movesLeft > 0){
+          const currentFormKey = actionInfo1;
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(
+            AdjacentTiles(
+              currentFormLoc,
+              here,
+              (currentFormLoc-here),
+              false, // overide walls
+              false, // edge case
+              tileInfo,
+            )){
+            if(spiderInfo.movesLeft == 1){
+              if(spiderInfo.form == "spiderling" ){
+                const tempSpiderlingNum = +actionInfo1[10];
+                spider.move(gameID[0],here,currentFormKey,tempSpiderlingNum);
+              }else{
+                spider.move(gameID[0],here,currentFormKey,0);
+              }
+              clearActions();
             }else{
               spider.move(gameID[0],here,currentFormKey,0);
             }
-            clearActions();
-          }else{
-            spider.move(gameID[0],here,currentFormKey,0);
           }
+        }else if(action == null){
+          console.log(here,VisibleTiles(here,tileInfo))
+          // const currentFormKey = spiderInfo.form + "Loc";
+          // const currentFormLoc = spiderInfo[currentFormKey];
+          // if(currentFormLoc == here){
+          //   setAction("move");
+          //   setActionInfo1(currentFormKey);
+          // }
         }
-      }else if(action == null){
-        if(spiderInfo.form == "spiderling"){
-          for(let i = 1;i<=5 ;i++){
-            const spiderlingKey = "spiderling"+ i + "Loc";
-            if(spiderInfo[spiderlingKey] == here && spiderInfo.spiderlingsToMove[i-1]){
-              setAction("move");
-              setActionInfo1(spiderlingKey);
+      }else if(spiderInfo.form == "caster"){
+        if(action == "eyes" && actionInfo1 != null){
+          setActionInfo2("rotate");
+          setActionInfo3(here);
+          tileInfo[here].value.facing = "up";
+          setTileInfo([... tileInfo]);
+        }else if(action == "move" && spiderInfo.movesLeft > 0){
+          const currentFormKey = actionInfo1;
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(
+            AdjacentTiles(
+              currentFormLoc,
+              here,
+              (currentFormLoc-here),
+              false, // overide walls
+              false, // edge case
+              tileInfo,
+            )){
+            if(spiderInfo.movesLeft == 1){
+              if(spiderInfo.form == "spiderling" ){
+                const tempSpiderlingNum = +actionInfo1[10];
+                spider.move(gameID[0],here,currentFormKey,tempSpiderlingNum);
+              }else{
+                spider.move(gameID[0],here,currentFormKey,0);
+              }
+              clearActions();
+            }else{
+              spider.move(gameID[0],here,currentFormKey,0);
             }
           }
-        }else{
+        }else if(action == null){
           const currentFormKey = spiderInfo.form + "Loc";
           const currentFormLoc = spiderInfo[currentFormKey];
           if(currentFormLoc == here){
             setAction("move");
             setActionInfo1(currentFormKey);
           }
+          if(spiderInfo.form == "spiderling"){
+            for(let i = 1;i<=5 ;i++){
+              const spiderlingKey = "spiderling"+ i + "Loc";
+              if(spiderInfo[spiderlingKey] == here && spiderInfo.spiderlingsToMove[i-1]){
+                setAction("move");
+                setActionInfo1(spiderlingKey);
+              }
+            }
+          }else{
+            const currentFormKey = spiderInfo.form + "Loc";
+            const currentFormLoc = spiderInfo[currentFormKey];
+            if(currentFormLoc == here){
+              setAction("move");
+              setActionInfo1(currentFormKey);
+            }
+          }
+        }
+      }else if(spiderInfo.form == "spiderling"){
+        if(action == "eyes" && actionInfo1 != null){
+          setActionInfo2("rotate");
+          setActionInfo3(here);
+          tileInfo[here].value.facing = "up";
+          setTileInfo([... tileInfo]);
+        }else if(action == "move" && spiderInfo.movesLeft > 0){
+          const currentFormKey = actionInfo1;
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(
+            AdjacentTiles(
+              currentFormLoc,
+              here,
+              (currentFormLoc-here),
+              false, // overide walls
+              false, // edge case
+              tileInfo,
+            )){
+            if(spiderInfo.movesLeft == 1){
+              if(spiderInfo.form == "spiderling" ){
+                const tempSpiderlingNum = +actionInfo1[10];
+                spider.move(gameID[0],here,currentFormKey,tempSpiderlingNum);
+              }else{
+                spider.move(gameID[0],here,currentFormKey,0);
+              }
+              clearActions();
+            }else{
+              spider.move(gameID[0],here,currentFormKey,0);
+            }
+          }
+        }else if(action == null){
+          const currentFormKey = spiderInfo.form + "Loc";
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(currentFormLoc == here){
+            setAction("move");
+            setActionInfo1(currentFormKey);
+          }
+          if(spiderInfo.form == "spiderling"){
+            for(let i = 1;i<=5 ;i++){
+              const spiderlingKey = "spiderling"+ i + "Loc";
+              if(spiderInfo[spiderlingKey] == here && spiderInfo.spiderlingsToMove[i-1]){
+                setAction("move");
+                setActionInfo1(spiderlingKey);
+              }
+            }
+          }else{
+            const currentFormKey = spiderInfo.form + "Loc";
+            const currentFormLoc = spiderInfo[currentFormKey];
+            if(currentFormLoc == here){
+              setAction("move");
+              setActionInfo1(currentFormKey);
+            }
+          }
         }
       }
+
     }
   }
 
@@ -154,6 +262,9 @@ const Tile = (props)=>{
     }}
     onClick={()=>HandleBoardAction(props.num)}>
       <div className='pieceContainer' style={{transform: `rotate(${-rotation}deg)`}}>
+        <p style={{color: 'white'}}>
+          {props.num}
+        </p>
         <div className='characters'>
           {props.characterIcons.map((e, k)=>{
             return(

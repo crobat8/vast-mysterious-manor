@@ -6,6 +6,7 @@ import { SkeletonContext } from '../context/SkeletonContext';
 import { TileContext } from '../context/TileContext';
 
 import cardImages from '../componets/cardImages';
+import e from 'cors';
 
 //takes in a location and returns a list of all the player pieces on that space
 export const FindCharacters = (location) => {
@@ -101,6 +102,74 @@ export const AdjacentTiles = (startLoc,endLoc,direction,overRideDoors,edge,tileI
   }else{
     return false;
   }
+}
+
+export const VisibleTiles = (location,tileInfo) =>{
+  const ret = [[],[],[],[]];
+
+  for(let i = 0;i<4;i++){
+    let tempLocation = location;
+    let foundEdge = true;
+    let foundDark = true;
+    let foudWall = true;
+    let direction;
+    if(i == 0){
+      direction = -7
+    }else if(i == 1){
+      direction = 1
+    }else if(i == 2){
+      direction = 7
+    }else{
+      direction = -1
+    }
+    
+    while(checkOpenDoors(tileInfo[tempLocation].value)[i]&&
+          foudWall && 
+          foundEdge && 
+          foundDark){
+      console.log(checkOpenDoors(tileInfo[tempLocation].value)[i])
+      
+      if(i == 0){
+        if(tempLocation<7){
+          foundEdge = false;
+        }else if(tileInfo[tempLocation].value.facing == "down"){
+          foundDark = false;
+        }else{
+          tempLocation = tempLocation-7;
+          ret[i].push(tempLocation);
+        }
+      }else if(i == 1){
+        if(tempLocation%7 == 6){
+          foundEdge = false
+        }else if(tileInfo[tempLocation].value.facing == "down"){
+          foundDark = false;
+        }else{
+          tempLocation = tempLocation+1;
+          ret[i].push(tempLocation);
+        }
+      }else if(i == 2){
+        if(tempLocation>41){
+          foundEdge = false
+        }else if(tileInfo[tempLocation].value.facing == "down"){
+          foundDark = false;
+        }else{
+          tempLocation = tempLocation+7;
+          ret[i].push(tempLocation);
+        }
+
+      }else if(i == 3){
+        if(tempLocation%7 == 0){
+          foundEdge = false
+        }else if(tileInfo[tempLocation].value.facing == "down"){
+          foundDark = false;
+        }else{
+          tempLocation = tempLocation-1;
+          ret[i].push(tempLocation);
+        }
+      }
+    }
+  }
+  return ret;
 }
 
 export const CountToken = (tokenType,tileInfo)=>{
