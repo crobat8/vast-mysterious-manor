@@ -67,6 +67,11 @@ const ConfirmEyesRotation = (ID,Loc,Rot,toBeDiscarded,clearActions,setActionInfo
 
 }
 
+const skipSecondUse = (ID,toBeDiscarded,clearActions) =>{
+  spider.discard(ID[0],toBeDiscarded);
+  clearActions();
+}
+
 const EndPhase = (ID,clearActions) =>{
   general.endPhase(ID[0]);
   clearActions();
@@ -264,6 +269,18 @@ const ActionList3  = () =>{
         <h5>
           you can do it {actionUses} more times
         </h5>
+        {spiderInfo.form == "giantSpider" && 
+        actionUses == 1
+        ?
+          <div>
+            <button onClick={()=>skipSecondUse(gameID,actionInfo1,clearActions)}>
+              skip second use
+            </button>
+          </div>
+        :
+        <>
+        </>
+        }
       </div>
 
       :action != null 
