@@ -151,7 +151,6 @@ const AttackChoices = ()=>{
   const characters = FindCharacters(paladinInfo.paladinLoc);
   const indextOfPaladin = characters.indexOf("paladin");
   characters.splice(indextOfPaladin,1);
-  console.log(characters);
   return(
     <div className="actions">
       <div>

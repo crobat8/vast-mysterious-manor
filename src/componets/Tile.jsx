@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
-import {AdjacentTiles, VisibleTiles} from '../helperFunctions/Helpers'
+import {AdjacentTiles,AdjacentTiles2, VisibleTiles} from '../helperFunctions/Helpers'
 import { GameContext } from '../context/GameContext';
 import { ActionContext } from '../context/ActionContext';
 import { AuthContext } from '../context/AuthContext';
@@ -30,14 +30,12 @@ const Tile = (props)=>{
       const tempPaladinLocation = paladinInfo.paladinLoc;
       if( action == "crusade"){
         if( actionInfo1 == "move"){
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           if(
-            AdjacentTiles(
+            AdjacentTiles2(
+              tempVisibleTileArray,
               tempPaladinLocation,
-              here,
-              (tempPaladinLocation-here),
-              false, // overide walls
-              false, // edge case
-              tileInfo,
+              true
             )){
             paladin.move(gameID[0],here);
             // if where was clicked is already revealed then skip the rotate step
@@ -54,14 +52,12 @@ const Tile = (props)=>{
       }else if( action == "sprint"){
         if(actionInfo1 > 0){
           if(tileInfo[here].value.facing == "up"){
+            const tempVisibleTileArray = VisibleTiles(here,tileInfo)
             if(
-              AdjacentTiles(
+              AdjacentTiles2(
+                tempVisibleTileArray,
                 tempPaladinLocation,
-                here,
-                (tempPaladinLocation-here),
-                false,
-                false, // edge case
-                tileInfo,// edge case
+                false
               )){
                 setActionInfo1( actionInfo1-1);
               paladin.move( gameID[0], here)
@@ -75,16 +71,16 @@ const Tile = (props)=>{
     && gameInfo[0].turn == "skeleton"){
       if(gameInfo[0].phase == 2){
         if(skeletonInfo.movesLeft>0){
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFieldName= skeletonInfo.currentSkeleton +"Loc";
           const currentSkeletonLocation = skeletonInfo[currentFieldName];
-          if(AdjacentTiles(
-            currentSkeletonLocation,
-            here,
-            (currentSkeletonLocation-here),
-            false,
-            false, // edge case
-            tileInfo,
-          )){
+
+          if(
+            AdjacentTiles2(
+              tempVisibleTileArray,
+              currentSkeletonLocation,
+              false
+            )){
             skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
             // connect to move skeleton piece to {here}
           }else{
@@ -109,37 +105,31 @@ const Tile = (props)=>{
         }else if(action == "layEgg" && actionInfo1 != null){
 
         }else if(action == "move" && spiderInfo.movesLeft > 0){
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFormKey = actionInfo1;
           const currentFormLoc = spiderInfo[currentFormKey];
+          
           if(
-            AdjacentTiles(
+            AdjacentTiles2(
+              tempVisibleTileArray,
               currentFormLoc,
-              here,
-              (currentFormLoc-here),
-              false, // overide walls
-              false, // edge case
-              tileInfo,
+              false
             )){
             if(spiderInfo.movesLeft == 1){
-              if(spiderInfo.form == "spiderling" ){
-                const tempSpiderlingNum = +actionInfo1[10];
-                spider.move(gameID[0],here,currentFormKey,tempSpiderlingNum);
-              }else{
-                spider.move(gameID[0],here,currentFormKey,0);
-              }
+              spider.move(gameID[0],here,currentFormKey,0);
+              
               clearActions();
             }else{
               spider.move(gameID[0],here,currentFormKey,0);
             }
           }
         }else if(action == null){
-          console.log(here,VisibleTiles(here,tileInfo))
-          // const currentFormKey = spiderInfo.form + "Loc";
-          // const currentFormLoc = spiderInfo[currentFormKey];
-          // if(currentFormLoc == here){
-          //   setAction("move");
-          //   setActionInfo1(currentFormKey);
-          // }
+          const currentFormKey = spiderInfo.form + "Loc";
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(currentFormLoc == here){
+            setAction("move");
+            setActionInfo1(currentFormKey);
+          }
         }
       }else if(spiderInfo.form == "caster"){
         if(action == "eyes" && actionInfo1 != null){
@@ -148,16 +138,15 @@ const Tile = (props)=>{
           tileInfo[here].value.facing = "up";
           setTileInfo([... tileInfo]);
         }else if(action == "move" && spiderInfo.movesLeft > 0){
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
+
           const currentFormKey = actionInfo1;
           const currentFormLoc = spiderInfo[currentFormKey];
           if(
-            AdjacentTiles(
+            AdjacentTiles2(
+              tempVisibleTileArray,
               currentFormLoc,
-              here,
-              (currentFormLoc-here),
-              false, // overide walls
-              false, // edge case
-              tileInfo,
+              false
             )){
             if(spiderInfo.movesLeft == 1){
               if(spiderInfo.form == "spiderling" ){
@@ -202,16 +191,14 @@ const Tile = (props)=>{
           tileInfo[here].value.facing = "up";
           setTileInfo([... tileInfo]);
         }else if(action == "move" && spiderInfo.movesLeft > 0){
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFormKey = actionInfo1;
           const currentFormLoc = spiderInfo[currentFormKey];
           if(
-            AdjacentTiles(
+            AdjacentTiles2(
+              tempVisibleTileArray,
               currentFormLoc,
-              here,
-              (currentFormLoc-here),
-              false, // overide walls
-              false, // edge case
-              tileInfo,
+              false
             )){
             if(spiderInfo.movesLeft == 1){
               if(spiderInfo.form == "spiderling" ){
@@ -262,9 +249,9 @@ const Tile = (props)=>{
     }}
     onClick={()=>HandleBoardAction(props.num)}>
       <div className='pieceContainer' style={{transform: `rotate(${-rotation}deg)`}}>
-        <p style={{color: 'white'}}>
+        {/* <p style={{color: 'white'}}>
           {props.num}
-        </p>
+        </p> */}
         <div className='characters'>
           {props.characterIcons.map((e, k)=>{
             return(

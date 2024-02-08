@@ -104,12 +104,29 @@ export const AdjacentTiles = (startLoc,endLoc,direction,overRideDoors,edge,tileI
   }
 }
 
+export const AdjacentTiles2 = (visibleTileLocations,start,countCenter) =>{
+  let spotsToCheck = 4;
+  console.log(visibleTileLocations)
+  console.log(start)
+  if(countCenter){
+    spotsToCheck = spotsToCheck + 1;
+  }
+  for(let i = 0;i<spotsToCheck;i++){
+    if(visibleTileLocations[i][0] == start){
+      // console.log(visibleTileLocations[i][0])
+      // console.log(start)
+
+      return true;
+    }
+  }
+  return false;
+}
+
 // returns a double array of all visible tiles with [4] being 
 // the original location so when being used in all situations [4][0] 
 // can be used to as where the piece is
 export const VisibleTiles = (location,tileInfo) =>{
   const ret = [[],[],[],[],[location]];
-
   for(let i = 0;i<4;i++){
     let tempLocation = location;
     let foundEdge = true;
@@ -137,7 +154,9 @@ export const VisibleTiles = (location,tileInfo) =>{
         }else if(tileInfo[tempLocation].value.facing == "down"){
           foundDark = false;
         }
-        if(tileInfo[tempLocation].value == ""){
+        if(tempLocation<0){
+          break;
+        }else if(tileInfo[tempLocation].value == ""){
 
         }else{
           if(checkOpenDoors(tileInfo[tempLocation].value)[(i+2)%4]){
@@ -170,8 +189,10 @@ export const VisibleTiles = (location,tileInfo) =>{
         }else if(tileInfo[tempLocation].value.facing == "down"){
           foundDark = false;
         }
-        if(tileInfo[tempLocation].value == ""){
-
+        if(tempLocation>=49){
+          break;
+        }else if(tileInfo[tempLocation].value == ""){
+        
         }else{
           if(checkOpenDoors(tileInfo[tempLocation].value)[(i+2)%4]){
             ret[i].push(tempLocation);

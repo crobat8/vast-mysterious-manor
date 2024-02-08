@@ -29,11 +29,15 @@ const Cards = () =>{
     <div className="cardContainer" >
       
       {gameInfo[0].roles.paladin == userInfo[0].uid && gameInfo[0].turn == "paladin"?
-        <PaladinActions/>:
+        <p>
+          card area need to be paladin cards later
+        </p>:
         <div className='otherPlayers'></div>
       }
       {gameInfo[0].roles.skeleton == userInfo[0].uid && gameInfo[0].turn == "skeleton"?
-        <SkeletonActions/>:
+        <p>
+          card area need to be skeleton cards later
+        </p>:
         <div className='otherPlayers'></div>
       }
       {gameInfo[0].roles.spider == userInfo[0].uid?
@@ -41,7 +45,9 @@ const Cards = () =>{
         <div className='otherPlayers'></div>
       }
       {gameInfo[0].roles.manor == userInfo[0].uid && gameInfo[0].turn == "manor"?
-        <ManorActions/>:
+        <p>
+          card area need to be manor cards later
+        </p>:
         <div className='otherPlayers'></div>
       }
       
