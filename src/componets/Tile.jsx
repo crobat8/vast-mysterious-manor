@@ -94,10 +94,22 @@ const Tile = (props)=>{
     && gameInfo[0].turn == "spider"){
       if(spiderInfo.form == "giantSpider"){
         if(action == "eyes" && actionInfo1 != null){
-          setActionInfo2("rotate");
-          setActionInfo3(here);
-          tileInfo[here].value.facing = "up";
-          setTileInfo([... tileInfo]);
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
+          const currentFormKey = actionInfo1;
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(
+            AdjacentTiles2(
+              tempVisibleTileArray,
+              currentFormLoc,
+              true
+            )){
+            if(tileInfo[here].value.facing == "down"){
+              setActionInfo2("rotate");
+              setActionInfo3(here);
+              tileInfo[here].value.facing = "up";
+              setTileInfo([... tileInfo]);
+            }       
+          }
         }else if(action == "fangs" && actionInfo1 != null){
 
         }else if(action == "webs" && actionInfo1 != null){

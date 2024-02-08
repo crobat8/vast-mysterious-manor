@@ -66,6 +66,7 @@ const FullGame = ()=>{
   }
 
   function handleTokenIcons(info2){
+    
     let ret = []
     for(let i = 0; i < info2.length;i++){
       ret.push(tokenImages[info2[i]])

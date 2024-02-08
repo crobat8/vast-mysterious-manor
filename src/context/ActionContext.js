@@ -17,6 +17,7 @@ export const ActionContextProvider = ({ children }) => {
   const [actionInfo2,setActionInfo2] = useState(null);
   const [actionInfo3,setActionInfo3] = useState(null);
   const [actionInfo4,setActionInfo4] = useState(null);
+  const [actionUses,setActionUses] = useState(null);
 
   const clearActions = () =>{
     setAction(null);
@@ -24,6 +25,7 @@ export const ActionContextProvider = ({ children }) => {
     setActionInfo2(null);
     setActionInfo3(null);
     setActionInfo4(null);
+    setActionUses(null);
   }
 
   return (
@@ -33,6 +35,7 @@ export const ActionContextProvider = ({ children }) => {
       actionInfo2,setActionInfo2,
       actionInfo3,setActionInfo3,
       actionInfo4,setActionInfo4,
+      actionUses,setActionUses,
       clearActions }}>
       {children}
     </ActionContext.Provider>
@@ -51,3 +54,5 @@ export const ActionContextProvider = ({ children }) => {
 // actioninfo2 if tile needs to be rotated
 // actioninfo3 where the tile is
 // actioninfo4 local rotation of tile
+// actionUses giant spider how many times you can still use an action
+// actionUses spiderlings what spiderlings have done an action and what ones havent

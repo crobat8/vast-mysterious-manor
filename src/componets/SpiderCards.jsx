@@ -9,7 +9,7 @@ import spider from '../playerFunctions/spider';
 
 const SpiderCards = () =>{
   const {spiderInfo} = useContext(SpiderContext);
-  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions,ActionUses,setActionUses} = useContext(ActionContext)
   const {gameInfo,gameID} = useContext(GameContext);
   
   function handleClick(ID,cardType){
@@ -30,6 +30,7 @@ const SpiderCards = () =>{
         if(cardType == "eyes"
         || spiderInfo.form == "caster"){
           setActionInfo1(cardType);
+          
         }
       }
       if(action == "fangs"){
@@ -59,6 +60,18 @@ const SpiderCards = () =>{
       if(action == "loot"){
         setActionInfo1(cardType);
       }
+
+
+      if(spiderInfo.form == "giantSpider"){
+        setActionUses(2);
+      }else if(spiderInfo.form == "caster"){
+        setActionUses(1);
+      }else if(spiderInfo.form == "spiderlings"){
+        const spiderlingActions = new Array(spiderInfo.health).fill(true);
+        setActionUses(spiderlingActions);
+      }
+      console.log(ActionUses)
+      
     }
 
   }

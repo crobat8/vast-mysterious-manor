@@ -99,7 +99,6 @@ const GameInformation = () =>{
           :
           <p>Moves Left: 0</p>
           }
-
         </div>
       </div>
       <div className='playerInfo' {...gameInfo[0].turn == "manor" ? {id:'manor'}:{id:''}}>

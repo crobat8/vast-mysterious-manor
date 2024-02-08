@@ -46,11 +46,25 @@ const phase3Action = (ID,actionName,setAction) =>{
   setAction(actionName)
 }
 
-const ConfirmEyesRotation = (ID,Loc,Rot,toBeDiscarded,clearActions)=>{
+const ConfirmEyesRotation = (ID,Loc,Rot,toBeDiscarded,clearActions,setActionInfo2,setActionInfo3,setActionInfo4,actionUses,setActionUses,spiderInfo)=>{
+  
   const spots = [[Loc,Rot]]
   general.revealTile(ID[0],spots);
-  spider.discard(ID[0],toBeDiscarded);
-  clearActions();
+  console.log(actionUses)
+  if(spiderInfo.form == "spiderling"){
+  }else{
+    if(actionUses>1){
+      setActionUses(actionUses-1);
+      setActionInfo2(null)
+      setActionInfo3(null)
+      setActionInfo4(null)
+    }else{
+      spider.discard(ID[0],toBeDiscarded);
+      clearActions();
+    }
+  }
+  
+
 }
 
 const EndPhase = (ID,clearActions) =>{
@@ -72,8 +86,9 @@ const FinalChoices = () => {
 
 const RotateChoices = ()=>{
   const {gameInfo,gameID} = useContext(GameContext);
-  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,actionInfo3,actionInfo4,setActionInfo4,clearActions} = useContext(ActionContext)
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,actionInfo3,setActionInfo3,actionInfo4,setActionInfo4,actionUses,setActionUses,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
+  const {spiderInfo} = useContext(SpiderContext);
   return(
     <div className="actions">
       <div>
@@ -92,7 +107,7 @@ const RotateChoices = ()=>{
         <button onClick={()=>setActionInfo4(3)}>
           West
         </button> 
-        <button onClick={()=>ConfirmEyesRotation(gameID,actionInfo3,actionInfo4,actionInfo1,clearActions)}>
+        <button onClick={()=>ConfirmEyesRotation(gameID,actionInfo3,actionInfo4,actionInfo1,clearActions,setActionInfo2,setActionInfo3,setActionInfo4,actionUses,setActionUses,spiderInfo)}>
           confirm oriantation
         </button>
       </div>
@@ -217,7 +232,7 @@ const ActionList2  = () =>{
 
 const ActionList3  = () =>{
   const {gameInfo,gameID} = useContext(GameContext);
-  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,clearActions} = useContext(ActionContext)
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,actionUses,clearActions} = useContext(ActionContext)
   const {spiderInfo} = useContext(SpiderContext);
   const {tileInfo} = useContext(TileContext);
 
@@ -241,10 +256,16 @@ const ActionList3  = () =>{
       <RotateChoices/>
       :actionInfo1 != null
       ?
-      <h4>
-        select a tile to do {action} on 
-        {/* display the options for this */}
-      </h4>
+      <div>
+        <h4>
+          select a tile to do {action} on 
+          {/* display the options for this */}
+        </h4>
+        <h5>
+          you can do it {actionUses} more times
+        </h5>
+      </div>
+
       :action != null 
       ?
       <h4>
