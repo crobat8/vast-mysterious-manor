@@ -106,8 +106,7 @@ export const AdjacentTiles = (startLoc,endLoc,direction,overRideDoors,edge,tileI
 
 export const AdjacentTiles2 = (visibleTileLocations,start,countCenter) =>{
   let spotsToCheck = 4;
-  console.log(visibleTileLocations)
-  console.log(start)
+
   if(countCenter){
     spotsToCheck = spotsToCheck + 1;
   }
