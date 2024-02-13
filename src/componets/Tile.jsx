@@ -18,7 +18,7 @@ const Tile = (props)=>{
   const rotation = props.tileRotation*90;
   const {currentUser} = useContext(AuthContext);
   const {gameInfo,setGameInfo,gameID} = useContext(GameContext);
-  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,setActionInfo3,clearActions} = useContext(ActionContext);
+  const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,setActionInfo3,actionUses,setActionUses,clearActions} = useContext(ActionContext);
   const {paladinInfo,setPaladinInfo} = useContext(PaladinContext);
   const {skeletonInfo,setSkeletonInfo} = useContext(SkeletonContext);
   const {spiderInfo} = useContext(SpiderContext);
@@ -94,9 +94,13 @@ const Tile = (props)=>{
     && gameInfo[0].turn == "spider"){
       if(spiderInfo.form == "giantSpider"){
         if(action == "eyes" && actionInfo1 != null){
+          console.log("test")
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
-          const currentFormKey = actionInfo1;
+          const currentFormKey = spiderInfo.form + "Loc";
           const currentFormLoc = spiderInfo[currentFormKey];
+          console.log(actionInfo1);
+          console.log(currentFormKey)
+          console.log(currentFormLoc)
           if(
             AdjacentTiles2(
               tempVisibleTileArray,
@@ -113,14 +117,42 @@ const Tile = (props)=>{
         }else if(action == "fangs" && actionInfo1 != null){
 
         }else if(action == "webs" && actionInfo1 != null){
-          
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
+          const currentFormKey = spiderInfo.form + "Loc";
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(
+            AdjacentTiles2(
+              tempVisibleTileArray,
+              currentFormLoc,
+              true
+            )){
+            general.addToken(gameID[0],here,"web");
+            if(actionUses == 2){
+              setActionUses(1)
+            }else{
+              spider.discard(gameID[0],actionInfo1);
+              clearActions();
+            }
+          }
         }else if(action == "layEgg" && actionInfo1 != null){
-
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
+          const currentFormKey = spiderInfo.form + "Loc";
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(
+            AdjacentTiles2(
+              tempVisibleTileArray,
+              currentFormLoc,
+              true
+            )){
+            general.addToken(gameID[0],here,"egg");
+            spider.discard(gameID[0],actionInfo1);
+            clearActions();
+          }
         }else if(action == "move" && spiderInfo.movesLeft > 0){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFormKey = actionInfo1;
           const currentFormLoc = spiderInfo[currentFormKey];
-          
+
           if(
             AdjacentTiles2(
               tempVisibleTileArray,

@@ -61,9 +61,12 @@ const SpiderCards = () =>{
         setActionInfo1(cardType);
       }
 
-
       if(spiderInfo.form == "giantSpider"){
-        setActionUses(2);
+        if(action == "layEgg"){
+          setActionUses(1);
+        }else{
+          setActionUses(2);
+        }
       }else if(spiderInfo.form == "caster"){
         setActionUses(1);
       }else if(spiderInfo.form == "spiderlings"){

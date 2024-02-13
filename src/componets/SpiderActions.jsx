@@ -24,7 +24,7 @@ const SpiderActions = () =>{
         ,actionUses,setActionUses
         ,clearActions} = useContext(ActionContext)
   const {spiderInfo} = useContext(SpiderContext)
-  const {tileInfo} = useContext(tileInfo)
+  const {tileInfo} = useContext(TileContext)
 
   const pickForm = (ID,form) =>{
     //will need to add local input for this function to select 
@@ -61,8 +61,13 @@ const SpiderActions = () =>{
   function ConfirmEyesRotation (ID,spiderInfo){
     //actioninfo3 = loc
     //actioninfo4 = rot
+    console.log(tileInfo[actionInfo3].value)
     const spots = [[actionInfo3,actionInfo4]]
     general.revealTile(ID[0],spots);
+    if(tileInfo[actionInfo3].value.floorType == "blood"){
+      console.log("test")
+      spider.changeBlood(ID[0],1);
+    }
     if(spiderInfo.form == "spiderling"){
     }else{
       if(actionUses>1){
@@ -205,7 +210,6 @@ const SpiderActions = () =>{
     const {gameInfo,gameID} = useContext(GameContext);
     const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
     const {spiderInfo} = useContext(SpiderContext);
-    const {tileInfo} = useContext(TileContext);
     return(
       <div>
         <h3>
@@ -250,7 +254,6 @@ const SpiderActions = () =>{
     const {gameInfo,gameID} = useContext(GameContext);
     const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,actionUses,clearActions} = useContext(ActionContext)
     const {spiderInfo} = useContext(SpiderContext);
-    const {tileInfo} = useContext(TileContext);
   
     return(
       <div>
@@ -378,7 +381,6 @@ const SpiderActions = () =>{
           <div/>
         }
         
-  
         <FinalChoices/>
         {/* need to iron things out before 100% adding this */}
         {/* <CancelChoice/> */}
@@ -410,7 +412,7 @@ const SpiderActions = () =>{
       </h1>
     )
   }
-
+  
   return (
     <div className="spiderActionContainer">
       <h1>

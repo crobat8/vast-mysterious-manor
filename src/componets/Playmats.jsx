@@ -16,8 +16,15 @@ const Playmats = () =>{
   
   const{gameInfo} = useContext(GameContext);
   const{userInfo} =useContext(UserContext);
-
+  
   if(gameInfo == null||gameInfo.length == 0){
+    return(
+      <div className='Board'>
+        loading game actions
+      </div>
+    )
+  }
+  if(userInfo == null||userInfo.length == 0){
     return(
       <div className='Board'>
         loading game actions

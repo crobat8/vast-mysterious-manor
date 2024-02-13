@@ -25,6 +25,13 @@ const Cards = () =>{
       </div>
     )
   }
+  if(userInfo == null||userInfo.length == 0){
+    return(
+      <div className='Board'>
+        loading game actions
+      </div>
+    )
+  }
   return ( 
     <div className="cardContainer" >
       

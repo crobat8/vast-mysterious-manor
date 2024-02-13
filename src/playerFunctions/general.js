@@ -70,7 +70,47 @@ function endPhase(docId){
   sendEndPhase(docId)
 }
 
+const sendAddToken = async (ID,loc,tokenName) => {
+  const endpoint = 'https://addtoken-bquiaqmt4q-uc.a.run.app '; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+    location: loc,
+    token: tokenName,
+  };
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+/**
+ * send db what tiles to flip over
+ * @param {string} docId document identification string 
+ * @param {Array} location spot to add the token
+ * @param {string} token name of token to be added
+ */
+function addToken(docId,location,token){
+  sendAddToken(docId,location,token)
+}
+
 export default{
   "revealTile": revealTile,
-  "endPhase" : endPhase
+  "endPhase" : endPhase,
+  "addToken" : addToken
 }

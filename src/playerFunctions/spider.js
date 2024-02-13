@@ -165,6 +165,38 @@ function move(ID,location,piece,fin){
   sendMove(ID,location,piece,fin)
 }
 
+const sendBlood = async (ID,blood) => {
+  const endpoint = 'https://changeblood-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+    ammount: blood,
+  };
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+function changeBlood(ID,ammount){
+  sendBlood(ID,ammount)
+}
 
 export default{
   "spiderForm": spiderForm,
@@ -172,4 +204,5 @@ export default{
   "scare": scare,
   "discard": discard,
   "move": move,
+  "changeBlood": changeBlood,
 }
