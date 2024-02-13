@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import {FindCharacters} from '../helperFunctions/Helpers'
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
 import {AdjacentTiles,AdjacentTiles2, VisibleTiles} from '../helperFunctions/Helpers'
@@ -23,7 +24,24 @@ const Tile = (props)=>{
   const {skeletonInfo,setSkeletonInfo} = useContext(SkeletonContext);
   const {spiderInfo} = useContext(SpiderContext);
   const {tileInfo,setTileInfo} =useContext(TileContext);
+  const fangTargets = ["paladin","casty","screamy","shiny","shooty","singy","slashy","smashy","sniffy","stabby",]
   
+  function checkOverlap(array1, array2) {
+    // Create a Set from the first array for faster lookup
+    const set = new Set(array1);
+    
+    // Iterate through the second array
+    for (let i = 0; i < array2.length; i++) {
+        // If the current element exists in the set, return true (overlap found)
+        if (set.has(array2[i])) {
+            return true;
+        }
+    }
+    
+    // If no overlap found, return false
+    return false;
+}
+
   function HandleBoardAction(here){
     if(currentUser.uid == gameInfo[0].roles.paladin 
     && gameInfo[0].turn == "paladin"){
@@ -94,13 +112,9 @@ const Tile = (props)=>{
     && gameInfo[0].turn == "spider"){
       if(spiderInfo.form == "giantSpider"){
         if(action == "eyes" && actionInfo1 != null){
-          console.log("test")
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFormKey = spiderInfo.form + "Loc";
           const currentFormLoc = spiderInfo[currentFormKey];
-          console.log(actionInfo1);
-          console.log(currentFormKey)
-          console.log(currentFormLoc)
           if(
             AdjacentTiles2(
               tempVisibleTileArray,
@@ -115,7 +129,25 @@ const Tile = (props)=>{
             }       
           }
         }else if(action == "fangs" && actionInfo1 != null){
-
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
+          const currentFormKey = spiderInfo.form + "Loc";
+          const currentFormLoc = spiderInfo[currentFormKey];
+          if(
+            AdjacentTiles2(
+              tempVisibleTileArray,
+              currentFormLoc,
+              true
+            )){
+              if(checkOverlap(props.pieces,fangTargets)){
+                spider.changeBlood(gameID[0],1);
+                if(actionUses == 2){
+                  setActionUses(1)
+                }else{
+                  spider.discard(gameID[0],actionInfo1);
+                  clearActions();
+                }
+              }     
+          }
         }else if(action == "webs" && actionInfo1 != null){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFormKey = spiderInfo.form + "Loc";

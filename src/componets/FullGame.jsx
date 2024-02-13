@@ -123,6 +123,7 @@ const FullGame = ()=>{
               tileRotation={tileAdjustedRotation}
               characterIcons={characterIcons}
               tokenIcons={tokenIcons}
+              pieces={pieces}
               num={key}
             />
           )
