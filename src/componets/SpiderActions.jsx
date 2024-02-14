@@ -61,7 +61,7 @@ const SpiderActions = () =>{
   function ConfirmEyesRotation (ID,spiderInfo){
     //actioninfo3 = loc
     //actioninfo4 = rot
-    console.log(tileInfo[actionInfo3].value)
+
     const spots = [[actionInfo3,actionInfo4]]
     general.revealTile(ID[0],spots);
     if(tileInfo[actionInfo3].value.floorType == "blood"){

@@ -73,10 +73,7 @@ const SpiderCards = () =>{
         const spiderlingActions = new Array(spiderInfo.health).fill(true);
         setActionUses(spiderlingActions);
       }
-      console.log(ActionUses)
-      
     }
-
   }
 
   if(!spiderInfo){
