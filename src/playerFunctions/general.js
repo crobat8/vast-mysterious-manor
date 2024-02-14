@@ -109,8 +109,46 @@ function addToken(docId,location,token){
   sendAddToken(docId,location,token)
 }
 
+const sendHide= async (ID,loc) => {
+  const endpoint = 'https://hidetile-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+    location: loc
+  };
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+/**
+ * send db what tiles to flip over
+ * @param {Array} locations double array wehre each element contains a where (0-49)and a rotation (0-3)
+ */
+function hideTile(docId,location){
+  sendHide(docId,location)
+}
+
 export default{
   "revealTile": revealTile,
-  "endPhase" : endPhase,
-  "addToken" : addToken
+  "endPhase": endPhase,
+  "addToken": addToken,
+  "hideTile": hideTile,
+
 }

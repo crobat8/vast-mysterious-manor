@@ -99,7 +99,6 @@ export const isVisible2 = (visibleTileLocations,start,countCenter) =>{
   }
   for(let i = 0;i<spotsToCheck;i++){
     for(let j = 0; j < visibleTileLocations[i].length;j++){
-      console.log(start,visibleTileLocations[i][j]);
       if(visibleTileLocations[i][j] == start){
         return true;
       }

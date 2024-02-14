@@ -117,6 +117,7 @@ const FullGame = ()=>{
           const tokenIcons = handleTokenIcons(TileVal.tokens);
           const tilePicture = handlePicture(TileVal);
           const tileAdjustedRotation = handleRotation(TileVal,key);
+          const thisTile = tile
           return(
             <Tile
               tilePic={tilePicture}
@@ -124,6 +125,7 @@ const FullGame = ()=>{
               characterIcons={characterIcons}
               tokenIcons={tokenIcons}
               pieces={pieces}
+              thisTile={thisTile}
               num={key}
             />
           )

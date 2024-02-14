@@ -40,9 +40,12 @@ const SpiderActions = () =>{
   
   const scare = (ID,setAction) =>{
     setAction("scare");
-    
   }
   
+  const tend = () =>{
+    spider.tend(gameID[0]);
+  }
+
   const endMovement = (ID,spiderlingNum,clearActions,movesLeft) =>{
     if(movesLeft<4){
       spider.move(ID[0],-100,"casterLoc",spiderlingNum);
@@ -364,9 +367,9 @@ const SpiderActions = () =>{
             <div/>
             }
   
-            <button onClick={()=>phase3Action(gameID,"legs",setAction)}>
+            {/* <button onClick={()=>phase3Action(gameID,"legs",setAction)}>
               legs
-            </button>
+            </button> */}
             
             {spiderInfo.form == "spiderling"
             ?
@@ -376,6 +379,14 @@ const SpiderActions = () =>{
             :
             <div/>
             }
+          </div>
+        :spiderInfo.blood >= 1
+          &&  spiderInfo.form == "caster"
+        ?
+          <div className="actions">
+            <button onClick={()=>tend()}>
+              tend
+            </button>
           </div>
         :
           <div/>

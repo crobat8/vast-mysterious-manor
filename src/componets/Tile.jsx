@@ -265,19 +265,23 @@ const Tile = (props)=>{
               clearActions();
             }
           }
-        }else if(action == "layEgg" && actionInfo1 != null){
+        }else if(action == "veil" && actionInfo1 != null){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFormKey = spiderInfo.form + "Loc";
           const currentFormLoc = spiderInfo[currentFormKey];
           if(
-            isAdjacentTiles2(
+            isVisible2(
               tempVisibleTileArray,
               currentFormLoc,
               true
             )){
-            general.addToken(gameID[0],here,"egg");
-            spider.discard(gameID[0],actionInfo1);
-            clearActions();
+            if(props.thisTile.value.facing == "up"){
+              console.log("this tile is facing up")
+              general.hideTile(gameID[0],here);
+              spider.discard(gameID[0],actionInfo1);
+              clearActions();
+            }
+
           }
         }else if(action == "move" && spiderInfo.movesLeft > 0){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)

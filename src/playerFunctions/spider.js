@@ -198,6 +198,38 @@ function changeBlood(ID,ammount){
   sendBlood(ID,ammount)
 }
 
+const sendTend = async (ID) => {
+  const endpoint = 'https://tend-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+  };
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+function tend(ID){
+  sendTend(ID)
+}
+
 export default{
   "spiderForm": spiderForm,
   "feed": feed,
@@ -205,4 +237,5 @@ export default{
   "discard": discard,
   "move": move,
   "changeBlood": changeBlood,
+  "tend": tend,
 }
