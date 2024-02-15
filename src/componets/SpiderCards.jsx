@@ -60,7 +60,7 @@ const SpiderCards = () =>{
       if(action == "loot"){
         setActionInfo1(cardType);
       }
-
+      console.log("test")
       if(spiderInfo.form == "giantSpider"){
         if(action == "layEgg"){
           setActionUses(1);
@@ -69,8 +69,9 @@ const SpiderCards = () =>{
         }
       }else if(spiderInfo.form == "caster"){
         setActionUses(1);
-      }else if(spiderInfo.form == "spiderlings"){
+      }else if(spiderInfo.form == "spiderling"){
         const spiderlingActions = new Array(spiderInfo.health).fill(true);
+        console.log(spiderlingActions);
         setActionUses(spiderlingActions);
       }
     }

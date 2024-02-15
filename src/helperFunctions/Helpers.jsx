@@ -133,6 +133,8 @@ export const VisibleTiles = (location,tileInfo) =>{
         foudWall && 
         foundEdge && 
         foundDark){
+        console.log(tempLocation)
+        console.log(tileInfo[tempLocation])
       if(i == 0){
         tempLocation = tempLocation-7;
         if(tempLocation<7){
@@ -158,7 +160,9 @@ export const VisibleTiles = (location,tileInfo) =>{
         }else if(tileInfo[tempLocation].value.facing == "down"){
           foundDark = false;
         }
-        if(tileInfo[tempLocation].value == ""){
+        if(tempLocation>=49){
+          break;
+        }else if(tileInfo[tempLocation].value == ""){
 
         }else{
           if(checkOpenDoors(tileInfo[tempLocation].value)[(i+2)%4]){
@@ -188,6 +192,9 @@ export const VisibleTiles = (location,tileInfo) =>{
         }
       }else if(i == 3){
         tempLocation = tempLocation-1;
+        if(tempLocation<0){
+          break
+        }
         if(tempLocation%7 == 0){
           foundEdge = false
         }else if(tileInfo[tempLocation].value.facing == "down"){

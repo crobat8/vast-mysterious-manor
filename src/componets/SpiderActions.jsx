@@ -72,6 +72,24 @@ const SpiderActions = () =>{
       spider.changeBlood(ID[0],1);
     }
     if(spiderInfo.form == "spiderling"){
+      let spiderlingsLeft = false
+      console.log(spiderlingsLeft);
+      console.log(actionUses)
+      console.log(actionUses.length);
+      for (let i = 0; i< actionUses.length; i++) {
+        spiderlingsLeft = spiderlingsLeft || actionUses[i];
+        console.log(spiderlingsLeft);
+      }
+      if(spiderlingsLeft){
+        console.log("test1")
+        setActionInfo2(null)
+        setActionInfo3(null)
+        setActionInfo4(null)
+      }else{
+        console.log("test2")
+        spider.discard(ID[0],actionInfo1);
+        clearActions();
+      }
     }else{
       if(actionUses>1){
         setActionUses(actionUses-1);
@@ -86,7 +104,7 @@ const SpiderActions = () =>{
     return null
   }
   
-  const skipSecondUse = (ID,toBeDiscarded,clearActions) =>{
+  const skipExtraUse = (ID,toBeDiscarded,clearActions) =>{
     spider.discard(ID[0],toBeDiscarded);
     clearActions();
   }
@@ -253,6 +271,16 @@ const SpiderActions = () =>{
     )
   }
   
+  const spiderlingActionsLeft = () => {
+    let ret = 0;
+    for(let i = 0; i < actionUses.length; i ++){
+      if(actionUses[i]){
+        ret++
+      }
+    }
+    return ret
+  };
+
   const ActionList3  = () =>{
     const {gameInfo,gameID} = useContext(GameContext);
     const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,actionUses,clearActions} = useContext(ActionContext)
@@ -283,15 +311,23 @@ const SpiderActions = () =>{
             select a tile to do {action} on 
             {/* display the options for this */}
           </h4>
+          {spiderInfo.form == "spiderling"
+          ?
+          <h5>
+            you can do it {spiderlingActionsLeft()} more times
+          </h5>
+          :
           <h5>
             you can do it {actionUses} more times
           </h5>
-          {spiderInfo.form == "giantSpider" && 
-          actionUses == 1
+          }
+
+          {(spiderInfo.form == "giantSpider" && actionUses == 1)
+          ||(spiderInfo.form == "spiderling" && spiderlingActionsLeft()>0)
           ?
             <div>
-              <button onClick={()=>skipSecondUse(gameID,actionInfo1,clearActions)}>
-                skip second use
+              <button onClick={()=>skipExtraUse(gameID,actionInfo1,clearActions)}>
+                skip extra uses
               </button>
             </div>
           :

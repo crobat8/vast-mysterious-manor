@@ -87,7 +87,6 @@ const FullGame = ()=>{
           if(actionInfo3 == loc){
             return actionInfo4;
           }
-
         }
       }
     }

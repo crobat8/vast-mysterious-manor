@@ -127,7 +127,7 @@ const Tile = (props)=>{
               setActionInfo4(0);
               tileInfo[here].value.facing = "up";
               setTileInfo([... tileInfo]);
-            }       
+            }
           }
         }else if(action == "fangs" && actionInfo1 != null){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
@@ -312,10 +312,22 @@ const Tile = (props)=>{
         }
       }else if(spiderInfo.form == "spiderling"){
         if(action == "eyes" && actionInfo1 != null){
-          setActionInfo2("rotate");
-          setActionInfo3(here);
-          tileInfo[here].value.facing = "up";
-          setTileInfo([... tileInfo]);
+          for(let i = 1;i<=5 ;i++){
+            const spiderlingKey = "spiderling"+ i + "Loc";
+            if(spiderInfo[spiderlingKey] == here && actionUses[i-1]){
+              if(tileInfo[here].value.facing == "down"){
+                actionUses[i-1] = false
+                console.log(actionUses);
+                setActionUses(actionUses);
+                setActionInfo2("rotate");
+                setActionInfo3(here);
+                setActionInfo4(0);
+                tileInfo[here].value.facing = "up";
+                setTileInfo([... tileInfo]);
+              }
+            }
+          }
+
         }else if(action == "move" && spiderInfo.movesLeft > 0){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFormKey = actionInfo1;
@@ -339,28 +351,14 @@ const Tile = (props)=>{
             }
           }
         }else if(action == null){
-          const currentFormKey = spiderInfo.form + "Loc";
-          const currentFormLoc = spiderInfo[currentFormKey];
-          if(currentFormLoc == here){
-            setAction("move");
-            setActionInfo1(currentFormKey);
-          }
-          if(spiderInfo.form == "spiderling"){
-            for(let i = 1;i<=5 ;i++){
-              const spiderlingKey = "spiderling"+ i + "Loc";
-              if(spiderInfo[spiderlingKey] == here && spiderInfo.spiderlingsToMove[i-1]){
-                setAction("move");
-                setActionInfo1(spiderlingKey);
-              }
-            }
-          }else{
-            const currentFormKey = spiderInfo.form + "Loc";
-            const currentFormLoc = spiderInfo[currentFormKey];
-            if(currentFormLoc == here){
+          for(let i = 1;i<=5 ;i++){
+            const spiderlingKey = "spiderling"+ i + "Loc";
+            if(spiderInfo[spiderlingKey] == here && spiderInfo.spiderlingsToMove[i-1]){
               setAction("move");
-              setActionInfo1(currentFormKey);
+              setActionInfo1(spiderlingKey);
             }
           }
+
         }
       }
 
