@@ -108,6 +108,14 @@ const SpiderActions = () =>{
     spider.discard(ID[0],toBeDiscarded);
     clearActions();
   }
+
+  const finishLoot = () =>{
+    console.log(actionInfo2)
+    console.log(actionInfo1)
+    spider.finishLoot(gameID[0],actionInfo2);
+    spider.discard(gameID[0],actionInfo1);
+    clearActions();
+  }
   
   const EndPhase = (ID,clearActions) =>{
     general.endPhase(ID[0]);
@@ -323,13 +331,27 @@ const SpiderActions = () =>{
           }
 
           {(spiderInfo.form == "giantSpider" && actionUses == 1)
-          ||(spiderInfo.form == "spiderling" && spiderlingActionsLeft()>0)
+          ||(spiderInfo.form == "spiderling" && spiderlingActionsLeft()>0 && action != "loot")
           ?
             <div>
               <button onClick={()=>skipExtraUse(gameID,actionInfo1,clearActions)}>
                 skip extra uses
               </button>
             </div>
+          :
+          <>
+          </>
+          }
+          {action == "loot" && spiderlingActionsLeft() > 0 
+          ?
+          <div>
+            <p>
+              {actionInfo2}
+            </p>
+            <button onClick={()=>finishLoot()}>
+              finish loot
+            </button>
+          </div>
           :
           <>
           </>

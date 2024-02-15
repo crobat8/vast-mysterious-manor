@@ -39,7 +39,15 @@ const Tile = (props)=>{
     
     // If no overlap found, return false
     return false;
-}
+  }
+
+  function checkForToken(tokenArray,tokenLookingFor){
+    if(tokenArray.includes(tokenLookingFor)){
+      return true
+    } else {
+      return false
+    }
+  }
 
   function HandleBoardAction(here){
     if(currentUser.uid == gameInfo[0].roles.paladin 
@@ -328,6 +336,35 @@ const Tile = (props)=>{
             }
           }
 
+        }else if(action == "fangs" && actionInfo1 != null){
+          for(let i = 1;i<=5 ;i++){
+            const spiderlingKey = "spiderling"+ i + "Loc";
+            if(spiderInfo[spiderlingKey] == here && actionUses[i-1]){
+              if(checkOverlap(props.pieces,fangTargets)){
+                actionUses[i-1] = false
+                spider.changeBlood(gameID[0],1);
+              }
+            }
+          }
+        }else if(action == "webs" && actionInfo1 != null){
+          for(let i = 1;i<=5 ;i++){
+            const spiderlingKey = "spiderling"+ i + "Loc";
+            if(spiderInfo[spiderlingKey] == here && actionUses[i-1]){
+              actionUses[i-1] = false
+              general.addToken(gameID[0],here,"web");
+            }
+          }
+        }else if(action == "loot" && actionInfo1 != null){
+          for(let i = 1;i<=5 ;i++){
+            const spiderlingKey = "spiderling"+ i + "Loc";
+            if(spiderInfo[spiderlingKey] == here && actionUses[i-1]){
+              if(checkForToken(props.tokens,"treasure")){
+                setActionInfo2(actionInfo2+1);
+                actionUses[i-1] = false;
+                general.removeToken(gameID[0],here,"treasure");
+              }
+            }
+          }
         }else if(action == "move" && spiderInfo.movesLeft > 0){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFormKey = actionInfo1;

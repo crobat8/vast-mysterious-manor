@@ -113,6 +113,7 @@ const FullGame = ()=>{
           // might need to move tile val stuff up before crypt initialization
           // only if i find a need to put tokens on a crypt space
           const TileVal = tile.value;
+          const tokens = TileVal.tokens
           const tokenIcons = handleTokenIcons(TileVal.tokens);
           const tilePicture = handlePicture(TileVal);
           const tileAdjustedRotation = handleRotation(TileVal,key);
@@ -125,6 +126,7 @@ const FullGame = ()=>{
               tokenIcons={tokenIcons}
               pieces={pieces}
               thisTile={thisTile}
+              tokens={tokens}
               num={key}
             />
           )

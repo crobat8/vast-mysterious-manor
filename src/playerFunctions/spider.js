@@ -230,6 +230,39 @@ function tend(ID){
   sendTend(ID)
 }
 
+const sendLoot = async (ID,treasures) => {
+  const endpoint = 'https://loot-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+    treasures: treasures,
+  };
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+function finishLoot(ID,treasureCount){
+  sendLoot(ID,treasureCount)
+}
+
 export default{
   "spiderForm": spiderForm,
   "feed": feed,
@@ -238,4 +271,5 @@ export default{
   "move": move,
   "changeBlood": changeBlood,
   "tend": tend,
+  "finishLoot": finishLoot,
 }
