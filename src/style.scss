@@ -632,9 +632,34 @@ $neutral: #F1E5C3;
                 grid-template-columns: repeat(2, 1fr);
               }
             }
+            .marchOrderDisplay{
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              grid-gap: 10px;
+              width: 100%; /* Or any specific width you desire */
+              height: 100%; /* Or any specific height you desire */
+              position: relative; /* Ensure proper positioning of grid items */
+              .card{
+                width: 100%;
+                height: 100%;
+                max-width: 100%; /* Ensures the image won't exceed the cell's width */
+                max-height: 100%; /* Ensures the image won't exceed the cell's height */
+                object-fit: cover; /* Scales the image to cover the entire area of the cell */
+                transition: transform 0.3s ease;
+                border-radius: 40px;
+              }
+              .card:hover{
+                transform: scale(1.2); /* Adjust the scale factor as needed */
+                z-index: 1; /* Bring the hovered item to the front */
+              }
+            }
           }
         }
       }
+    }
+    footer{
+      min-height: 100px;
+      background-color: $usedGrey1;
     }
     @media screen and (max-width:1170px){
       main{

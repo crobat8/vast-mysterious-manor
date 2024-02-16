@@ -44,6 +44,7 @@ const GameInformation = () =>{
     }
     return ret
   }
+  
   return (
     <div className="Info" >
       <div className='playerInfo' {...gameInfo[0].turn == "paladin" ? {id:'paladin'}:{id:''}}>

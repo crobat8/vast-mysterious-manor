@@ -113,7 +113,6 @@ const Home = () =>{
         </div>
       </header>
       <main>
-        
         <div className='gameInformation'>
           <GameInformation/>
         </div>
@@ -128,7 +127,7 @@ const Home = () =>{
         </div>
       </main>
       <footer>
-
+        
       </footer>
     </div>
   )
