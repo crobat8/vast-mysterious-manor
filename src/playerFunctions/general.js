@@ -141,7 +141,7 @@ const sendRemoveToken = async (ID,loc,tokenName) => {
 /**
  * send db what tiles to flip over
  * @param {string} docId document identification string 
- * @param {Array} location spot to add the token
+ * @param {String} location spot to add the token
  * @param {string} token name of token to be removed
  */
 function removeToken(docId,location,token){

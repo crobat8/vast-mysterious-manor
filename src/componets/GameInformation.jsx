@@ -24,7 +24,7 @@ const GameInformation = () =>{
       </h1>
     )
   }
-  console.log("test1",spiderInfo)
+
   
   if(paladinInfo == null||skeletonInfo == null || spiderInfo == null ||manorInfo==null){
     return(
@@ -33,8 +33,7 @@ const GameInformation = () =>{
       </h1>
     )
   }
-  console.log("test2",spiderInfo)
-  console.log("test2",spiderInfo.blood)
+
   function marchOrderDisplay(){
     const ret = []
     for(let i = 0;i<skeletonInfo.marchOrder.length;i++){

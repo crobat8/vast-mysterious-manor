@@ -110,8 +110,6 @@ const SpiderActions = () =>{
   }
 
   const finishLoot = () =>{
-    console.log(actionInfo2)
-    console.log(actionInfo1)
     spider.finishLoot(gameID[0],actionInfo2);
     spider.discard(gameID[0],actionInfo1);
     clearActions();
