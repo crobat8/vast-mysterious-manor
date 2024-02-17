@@ -24,7 +24,8 @@ const GameInformation = () =>{
       </h1>
     )
   }
-
+  console.log("test1",spiderInfo)
+  
   if(paladinInfo == null||skeletonInfo == null || spiderInfo == null ||manorInfo==null){
     return(
       <h1>
@@ -32,7 +33,8 @@ const GameInformation = () =>{
       </h1>
     )
   }
-
+  console.log("test2",spiderInfo)
+  console.log("test2",spiderInfo.blood)
   function marchOrderDisplay(){
     const ret = []
     for(let i = 0;i<skeletonInfo.marchOrder.length;i++){
@@ -89,8 +91,8 @@ const GameInformation = () =>{
           <p>Terror: {spiderInfo.terror}</p>
           <p>Defense: {spiderInfo.defense}</p>
           <p>Spirit: {spiderInfo.spirit}</p>
-          <p>Blood: {spiderInfo.blood}</p>
-          {spiderInfo.spiderlingsToMove[0]||
+          <p>Blood: {spiderInfo.blood}</p> 
+          {/* {spiderInfo.spiderlingsToMove[0]||
           spiderInfo.spiderlingsToMove[1]||
           spiderInfo.spiderlingsToMove[2]||
           spiderInfo.spiderlingsToMove[3]||
@@ -99,7 +101,7 @@ const GameInformation = () =>{
           <p>Moves Left: {spiderInfo.movesLeft}</p>
           :
           <p>Moves Left: 0</p>
-          }
+          } */}
         </div>
       </div>
       <div className='playerInfo' {...gameInfo[0].turn == "manor" ? {id:'manor'}:{id:''}}>

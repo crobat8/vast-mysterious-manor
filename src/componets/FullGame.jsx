@@ -133,7 +133,8 @@ const FullGame = ()=>{
         })}
       </div>
       {groundsKeys.map((groundNum,key)=>{
-        const characterIcons = handleCharacterIcons(groundNum);
+        const pieces = FindCharacters(groundNum);
+        const characterIcons = handleCharacterIcons(pieces);
         const groundName = 'ground'+groundNum
         return(
           <Ground

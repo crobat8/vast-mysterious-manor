@@ -50,6 +50,14 @@ const SkeletonCards = () =>{
     return HandleCardPictures(cardNames);
   }
 
+  function handOfGear(){
+    const cardNames = [];
+    for(let i = 0;i<skeletonInfo.marchOrder.length;i++){
+      
+    }
+    return HandleCardPictures(cardNames);
+  }
+
   if(!skeletonInfo){
     return(
       <h1>
@@ -81,6 +89,20 @@ const SkeletonCards = () =>{
       <h1>
         Hand of cards (click one to put it in play)
       </h1>
+      <div className='marchOrderDisplay'>
+        {handOfGear().map((cardImage,key)=>{
+          return(
+            <img 
+            key={key}
+            src={cardImage}
+            alt={`Image ${key}`}
+            className={`card ${hoveredIndex === key ? 'active' : ''}`}
+            onMouseEnter={() => handleMouseEnter(key)}
+            onMouseLeave={handleMouseLeave}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }
