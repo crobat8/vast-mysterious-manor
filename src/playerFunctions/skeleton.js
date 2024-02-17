@@ -162,10 +162,80 @@ function respawn(ID,name){
   sendRespawn(ID,name)
 }
 
+const sendDrawGear = async (ID) => {
+  const endpoint = 'https://drawgearcard-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+  };
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+// takes in a game ID and a location to move the paladin to
+function drawGear(ID){
+  sendDrawGear(ID)
+}
+
+const sendEquipGear = async (ID,skeletonName,gearName) => {
+  const endpoint = 'https://equipgear-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+    skeletonName: skeletonName,
+    gearName:gearName,
+  };
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+// takes in a game ID and a location to move the paladin to
+function equipGear(ID,skeletonName,gearName){
+  sendEquipGear(ID,skeletonName,gearName)
+}
+
 export default{
   "gainSkeleton":gainSkeleton,
   "changeStability": changeStability,
+  "drawGear": drawGear,
   "move": move,
   "endMarch": endMarch,
   "respawn": respawn,
+  "equipGear": equipGear,
 }

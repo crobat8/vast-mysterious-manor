@@ -54,8 +54,9 @@ const SkeletonActions = () =>{
     skeleton.endMarch(gameID[0]);
   }
 
+  // takes in a location to execute a loot action on
   const loot = (loc) =>{
-    console.log(loc)
+
     general.removeToken(gameID[0],loc,"treasure");
     skeleton.changeStability(gameID[0],2,"G");
     skeleton.endMarch(gameID[0]);
@@ -71,8 +72,10 @@ const SkeletonActions = () =>{
     skeleton.endMarch(gameID[0]);
   }
 
+
   const arm = () =>{
     // need to implement arm here
+    skeleton.drawGear(gameID[0]);
     skeleton.endMarch(gameID[0]);
   }
 
@@ -80,18 +83,10 @@ const SkeletonActions = () =>{
     const activeSkeletonLoc = skeletonInfo.currentSkeleton + "Loc";
     const activeSkeletonLocation = skeletonInfo[activeSkeletonLoc];
     
-    console.log(tileInfo)
-    console.log(activeSkeletonLocation)
-    // console.log(tileInfo[activeSkeletonLocation])
-    // console.log(tileInfo[activeSkeletonLocation].value)
-    // console.log(tileInfo[activeSkeletonLocation].value.tokens)
-    // console.log(tileInfo[activeSkeletonLocation].value.tokens.includes("treasure"))
-
     if(activeSkeletonLocation < 0){
       return 
-      <div>
-
-      </div>
+      <>
+      </>
     }
 
     return(

@@ -613,6 +613,10 @@ $neutral: #F1E5C3;
         
           .cardHolder{
             background-color: gray;
+            max-width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
             .cardTitle{
               padding: 10px;
             }
@@ -649,7 +653,7 @@ $neutral: #F1E5C3;
                 border-radius: 40px;
               }
               .card:hover{
-                transform: scale(1.2); /* Adjust the scale factor as needed */
+                transform: scale(1.4); /* Adjust the scale factor as needed */
                 z-index: 1; /* Bring the hovered item to the front */
               }
             }

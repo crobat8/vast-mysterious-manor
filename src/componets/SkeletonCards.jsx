@@ -50,12 +50,47 @@ const SkeletonCards = () =>{
     return HandleCardPictures(cardNames);
   }
 
-  function handOfGear(){
+  function handOfGearPictures(){
     const cardNames = [];
-    for(let i = 0;i<skeletonInfo.marchOrder.length;i++){
-      
+    for(let i = 0;i<skeletonInfo.itemsInHand.length;i++){
+      cardNames.push(skeletonInfo.itemsInHand[i])
     }
     return HandleCardPictures(cardNames);
+  }
+
+  function handleCardEquip(index){
+    //do this for all skeletons
+    const castyItems = ["ashStaff", "fetish", "runestone"];
+    const screamyItems = ["banner", "horn", "pauldro"];
+    const shinyItems = ["bloodMace", "darkLamp", "scryingOrb"];
+    const shootyItems = ["bombBag", "flameArrow", "longbow"];
+    const singyItems = ["danceShoes", "lute", "pipe"];
+    const slashyItems = ["greatAxe", "helmet", "shield"];
+    const smashyItems = ["pickaxe", "sledgeHammer", "spike"];
+    const sniffyItems = ["bagOfTreats", "bellCollar", "leash"];
+    const stabbyItems = ["kukri", "leatherBoots", "poison"];
+    
+    if(castyItems.includes(skeletonInfo.itemsInHand[index])){
+      console.log("casty")
+      skeleton.equipGear(gameID[0],"casty",skeletonInfo.itemsInHand[index]);
+    } else if (screamyItems.includes(skeletonInfo.itemsInHand[index])){
+      skeleton.equipGear(gameID[0],"screamy",skeletonInfo.itemsInHand[index]);
+    } else if (shinyItems.includes(skeletonInfo.itemsInHand[index])){
+      skeleton.equipGear(gameID[0],"shiny",skeletonInfo.itemsInHand[index]);
+    } else if (shootyItems.includes(skeletonInfo.itemsInHand[index])){
+      skeleton.equipGear(gameID[0],"shooty",skeletonInfo.itemsInHand[index]);
+    } else if (singyItems.includes(skeletonInfo.itemsInHand[index])){
+      skeleton.equipGear(gameID[0],"singy",skeletonInfo.itemsInHand[index]);
+    } else if (slashyItems.includes(skeletonInfo.itemsInHand[index])){
+      skeleton.equipGear(gameID[0],"slashy",skeletonInfo.itemsInHand[index]);
+    } else if (smashyItems.includes(skeletonInfo.itemsInHand[index])){
+      skeleton.equipGear(gameID[0],"smashy",skeletonInfo.itemsInHand[index]);
+    } else if (sniffyItems.includes(skeletonInfo.itemsInHand[index])){
+      console.log("sniffy")
+      skeleton.equipGear(gameID[0],"sniffy",skeletonInfo.itemsInHand[index]);
+    } else if (stabbyItems.includes(skeletonInfo.itemsInHand[index])){
+      skeleton.equipGear(gameID[0],"stabby",skeletonInfo.itemsInHand[index]);
+    }
   }
 
   if(!skeletonInfo){
@@ -90,7 +125,8 @@ const SkeletonCards = () =>{
         Hand of cards (click one to put it in play)
       </h1>
       <div className='marchOrderDisplay'>
-        {handOfGear().map((cardImage,key)=>{
+        {handOfGearPictures().map((cardImage,key)=>{
+          
           return(
             <img 
             key={key}
@@ -99,6 +135,7 @@ const SkeletonCards = () =>{
             className={`card ${hoveredIndex === key ? 'active' : ''}`}
             onMouseEnter={() => handleMouseEnter(key)}
             onMouseLeave={handleMouseLeave}
+            onClick={()=>handleCardEquip(key)}
             />
           )
         })}
