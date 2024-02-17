@@ -58,6 +58,15 @@ const SkeletonCards = () =>{
     return HandleCardPictures(cardNames);
   }
 
+  function checkIfRevealed(skeletonName){
+    for(let i = 0;i<skeletonInfo.skeletonsRevealed;i++){
+      if(skeletonName == skeletonInfo.marchOrder[i]){
+        return true
+      }
+    }
+    return false
+  }
+
   function handleCardEquip(index){
     //do this for all skeletons
     const castyItems = ["ashStaff", "fetish", "runestone"];
@@ -70,25 +79,23 @@ const SkeletonCards = () =>{
     const sniffyItems = ["bagOfTreats", "bellCollar", "leash"];
     const stabbyItems = ["kukri", "leatherBoots", "poison"];
     
-    if(castyItems.includes(skeletonInfo.itemsInHand[index])){
-      console.log("casty")
+    if(castyItems.includes(skeletonInfo.itemsInHand[index]) && checkIfRevealed("casty")){
       skeleton.equipGear(gameID[0],"casty",skeletonInfo.itemsInHand[index]);
-    } else if (screamyItems.includes(skeletonInfo.itemsInHand[index])){
+    } else if (screamyItems.includes(skeletonInfo.itemsInHand[index])&& checkIfRevealed("screamy")){
       skeleton.equipGear(gameID[0],"screamy",skeletonInfo.itemsInHand[index]);
-    } else if (shinyItems.includes(skeletonInfo.itemsInHand[index])){
+    } else if (shinyItems.includes(skeletonInfo.itemsInHand[index])&& checkIfRevealed("shiny")){
       skeleton.equipGear(gameID[0],"shiny",skeletonInfo.itemsInHand[index]);
-    } else if (shootyItems.includes(skeletonInfo.itemsInHand[index])){
+    } else if (shootyItems.includes(skeletonInfo.itemsInHand[index])&& checkIfRevealed("shooty")){
       skeleton.equipGear(gameID[0],"shooty",skeletonInfo.itemsInHand[index]);
-    } else if (singyItems.includes(skeletonInfo.itemsInHand[index])){
+    } else if (singyItems.includes(skeletonInfo.itemsInHand[index])&& checkIfRevealed("singy")){
       skeleton.equipGear(gameID[0],"singy",skeletonInfo.itemsInHand[index]);
-    } else if (slashyItems.includes(skeletonInfo.itemsInHand[index])){
+    } else if (slashyItems.includes(skeletonInfo.itemsInHand[index])&& checkIfRevealed("slashy")){
       skeleton.equipGear(gameID[0],"slashy",skeletonInfo.itemsInHand[index]);
-    } else if (smashyItems.includes(skeletonInfo.itemsInHand[index])){
+    } else if (smashyItems.includes(skeletonInfo.itemsInHand[index])&& checkIfRevealed("smashy")){
       skeleton.equipGear(gameID[0],"smashy",skeletonInfo.itemsInHand[index]);
-    } else if (sniffyItems.includes(skeletonInfo.itemsInHand[index])){
-      console.log("sniffy")
+    } else if (sniffyItems.includes(skeletonInfo.itemsInHand[index])&& checkIfRevealed("sniffy")){
       skeleton.equipGear(gameID[0],"sniffy",skeletonInfo.itemsInHand[index]);
-    } else if (stabbyItems.includes(skeletonInfo.itemsInHand[index])){
+    } else if (stabbyItems.includes(skeletonInfo.itemsInHand[index])&& checkIfRevealed("stabby")){
       skeleton.equipGear(gameID[0],"stabby",skeletonInfo.itemsInHand[index]);
     }
   }
