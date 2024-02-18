@@ -219,22 +219,32 @@ const SkeletonActions = () =>{
         <h3>
           march order
         </h3>
-        {skeletonInfo.currentSkeleton == ""?
+        {
+          skeletonInfo.currentSkeleton == ""?
           <div>
             <h3>
               out of skeletons
             </h3>
           </div>
+        :skeletonInfo.marchOrder.indexOf(skeletonInfo.currentSkeleton)
+        < skeletonInfo.skeletonsRevealed?
+        <div>
+          <h3>
+            current up: {skeletonInfo.currentSkeleton}
+          </h3>
+          <h3>
+            movesLeft: {skeletonInfo.movesLeft}
+          </h3>
+          <EndMoveButtons/>
+
+        </div>
         :
-          <div>
-            <h3>
-              current up: {skeletonInfo.currentSkeleton}
-            </h3>
-            <h3>
-              movesLeft: {skeletonInfo.movesLeft}
-            </h3>
-            <EndMoveButtons/>
-          </div>
+        <div>
+          <h3>
+            out of skeletons
+          </h3>
+        </div>
+
         }
 
         <FinalChoices/>
