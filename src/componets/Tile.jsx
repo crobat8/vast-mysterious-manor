@@ -49,6 +49,17 @@ const Tile = (props)=>{
     }
   }
 
+  function checkForStrikable(currentSkeletonLocation){
+    if(currentSkeletonLocation == paladinInfo.paladinLoc){
+      return true;
+    } else if (currentSkeletonLocation == spiderInfo.giantSpiderLoc){
+      return true;
+    } else if (currentSkeletonLocation == spiderInfo.casterLoc){
+      return true;
+    }
+    return false
+  }
+
   function HandleBoardAction(here){
     if(currentUser.uid == gameInfo[0].roles.paladin 
     && gameInfo[0].turn == "paladin"){
@@ -96,21 +107,24 @@ const Tile = (props)=>{
     }else if(currentUser.uid == gameInfo[0].roles.skeleton 
     && gameInfo[0].turn == "skeleton"){
       if(gameInfo[0].phase == 2){
-        if(skeletonInfo.movesLeft>0){
+        if(skeletonInfo.movesLeft>0 && action == null){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFieldName= skeletonInfo.currentSkeleton +"Loc";
           const currentSkeletonLocation = skeletonInfo[currentFieldName];
-
-          if(
+          if(!checkForStrikable(currentSkeletonLocation)){
+            if(
             isAdjacentTiles2(
               tempVisibleTileArray,
               currentSkeletonLocation,
               false
             )){
-            skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
-            // connect to move skeleton piece to {here}
-          }else{
-            console.log("not adjacnet")
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
+              // connect to move skeleton piece to {here}
+            }else{
+              console.log("not adjacnet")
+            }
+          } else {
+            console.log("tile has something strikable")
           }
         }else{
           console.log("out of movements");

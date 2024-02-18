@@ -94,8 +94,41 @@ function spendHeroCube(ID){
   sendSpendHeroCube(ID)
 }
 
+const sendChangeHealth = async (ID,ammount,gainOrLoose) => {
+  const endpoint = 'https://changepaladinhealth-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  const requestData = {
+    documentId: ID,
+    ammount: ammount,
+    gainOrLoose:gainOrLoose,
+  };
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+function changeHealth(ID,ammount,gainOrLoose){
+  sendChangeHealth(ID,ammount,gainOrLoose)
+}
+
 export default{
   "prep": prep,
   "move": move,
-  "spendHeroCube":spendHeroCube,
+  "spendHeroCube": spendHeroCube,
+  "changeHealth": changeHealth,
 }

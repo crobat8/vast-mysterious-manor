@@ -81,9 +81,6 @@ export const isAdjacentTiles2 = (visibleTileLocations,start,countCenter) =>{
   }
   for(let i = 0;i<spotsToCheck;i++){
     if(visibleTileLocations[i][0] == start){
-      // console.log(visibleTileLocations[i][0])
-      // console.log(start)
-
       return true;
     }
   }
@@ -133,8 +130,6 @@ export const VisibleTiles = (location,tileInfo) =>{
         foudWall && 
         foundEdge && 
         foundDark){
-        console.log(tempLocation)
-        console.log(tileInfo[tempLocation])
       if(i == 0){
         tempLocation = tempLocation-7;
         if(tempLocation<7){

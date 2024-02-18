@@ -650,7 +650,7 @@ $neutral: #F1E5C3;
                 max-height: 100%; /* Ensures the image won't exceed the cell's height */
                 object-fit: cover; /* Scales the image to cover the entire area of the cell */
                 transition: transform 0.3s ease;
-                border-radius: 40px;
+                border-radius: 15%;
               }
               .card:hover{
                 transform: scale(1.4); /* Adjust the scale factor as needed */

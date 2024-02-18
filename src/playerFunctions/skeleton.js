@@ -151,6 +151,7 @@ const sendRespawn = async (ID,name) => {
     } else {
       const errorMessage = await response.text();
       console.error("Error:", errorMessage);
+      console.error("respawn Function -> dataSent",requestData);
     }
   } catch (error) {
     console.error("Error:", error);

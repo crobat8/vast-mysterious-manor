@@ -1,7 +1,6 @@
 import React, { useContext, useState} from 'react';
 
 import { GameContext } from '../context/GameContext';
-import { ActionContext } from '../context/ActionContext';
 import { PaladinContext } from '../context/PaldinContext';
 import { SkeletonContext } from '../context/SkeletonContext';
 
@@ -15,7 +14,6 @@ import {HandleCardPictures} from '../helperFunctions/Helpers'
 
 const SkeletonCards = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
-  const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {skeletonInfo} = useContext(SkeletonContext);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
