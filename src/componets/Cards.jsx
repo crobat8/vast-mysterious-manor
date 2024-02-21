@@ -13,6 +13,7 @@ import SpiderActions from './SpiderActions';
 import ManorActions from './ManorActions';
 import SpiderCards from './SpiderCards';
 import SkeletonCards from './SkeletonCards';
+import PaladinCards from './PaladinCards';
 
 const Cards = () =>{ 
   
@@ -38,7 +39,7 @@ const Cards = () =>{
       
       {gameInfo[0].roles.paladin == userInfo[0].uid?
         <p>
-          card area need to be paladin cards later
+          <PaladinCards/>
         </p>:
         <div className='otherPlayers'></div>
       }

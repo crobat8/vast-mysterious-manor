@@ -1,3 +1,23 @@
+import conjure       from '../img/game_images/paladin/favor/conjure.png'
+import dedication    from '../img/game_images/paladin/favor/dedication.png'
+import disdain       from '../img/game_images/paladin/favor/disdain.png'
+import divination    from '../img/game_images/paladin/favor/divination.png'
+import illuminate    from '../img/game_images/paladin/favor/illuminate.png'
+import pathfinder    from '../img/game_images/paladin/favor/pathfinder.png'
+import pillarOfLight from '../img/game_images/paladin/favor/pillarOfLight.png'
+import radiantLamps  from '../img/game_images/paladin/favor/conjure.png'
+import vigor         from '../img/game_images/paladin/favor/vigor.png'
+import favorBack from '../img/game_images/paladin/favor/favorBack.png'
+
+import armor       from '../img/game_images/paladin/treasure/armor.png'
+import fireBrand   from '../img/game_images/paladin/treasure/fireBrand.png'
+import halo        from '../img/game_images/paladin/treasure/halo.png'
+import holySymbol  from '../img/game_images/paladin/treasure/holySymbol.png'
+import magicMace   from '../img/game_images/paladin/treasure/magicMace.png'
+import prayerBeads from '../img/game_images/paladin/treasure/prayerBeads.png'
+import wingedBoots from '../img/game_images/paladin/treasure/wingedBoots.png'
+import treasureBack from '../img/game_images/paladin/treasure/treasureBack.png'
+
 import casty   from '../img/game_images/skeleton/characters/casty.png'
 import screamy from '../img/game_images/skeleton/characters/screamy.png'
 import shiny   from '../img/game_images/skeleton/characters/shiny.png'
@@ -45,6 +65,26 @@ import fangs from '../img/game_images/spider/cards/fangs.png';
 import webs  from '../img/game_images/spider/cards/webs.png';
 
 export default{
+  "conjure"       : conjure,
+  "dedication"    : dedication,
+  "disdain"       : disdain,
+  "divination"    : divination,
+  "illuminate"    : illuminate,
+  "pathfinder"    : pathfinder,
+  "pillarOfLight" : pillarOfLight,
+  "radiantLamps"  : radiantLamps,
+  "vigor"         : vigor,
+  "favorBack" : favorBack,
+
+  "armor"       : armor,
+  "fireBrand"   : fireBrand,
+  "halo"        : halo,
+  "holySymbol"  : holySymbol,
+  "magicMace"   : magicMace,
+  "prayerBeads" : prayerBeads,
+  "wingedBoots" : wingedBoots,
+  "treasureBack" : treasureBack,
+
   "casty"  : casty,
   "screamy": screamy,
   "shiny"  : shiny,
