@@ -132,9 +132,10 @@ export const VisibleTiles = (location,tileInfo) =>{
         foundDark){
       if(i == 0){
         tempLocation = tempLocation-7;
+        
         if(tempLocation<7){
           foundEdge = false;
-        }else if(tileInfo[tempLocation].value.facing == "down"){
+        }else if(tileInfo[tempLocation].value.facing == "down" || tileInfo[tempLocation].value == ""){
           foundDark = false;
         }
         if(tempLocation<0){
@@ -150,9 +151,14 @@ export const VisibleTiles = (location,tileInfo) =>{
         }
       }else if(i == 1){
         tempLocation = tempLocation+1;
+        //bandaid solution
+        if(tempLocation == 49){
+          break
+        }
         if(tempLocation%7 == 6){
+
           foundEdge = false
-        }else if(tileInfo[tempLocation].value.facing == "down"){
+        }else if(tileInfo[tempLocation].value.facing == "down"|| tileInfo[tempLocation].value == ""){
           foundDark = false;
         }
         if(tempLocation>=49){
@@ -169,9 +175,10 @@ export const VisibleTiles = (location,tileInfo) =>{
         
       }else if(i == 2){
         tempLocation = tempLocation+7;
+
         if(tempLocation>41){
           foundEdge = false
-        }else if(tileInfo[tempLocation].value.facing == "down"){
+        }else if(tileInfo[tempLocation].value.facing == "down"|| tileInfo[tempLocation].value == ""){
           foundDark = false;
         }
         if(tempLocation>=49){
@@ -192,7 +199,7 @@ export const VisibleTiles = (location,tileInfo) =>{
         }
         if(tempLocation%7 == 0){
           foundEdge = false
-        }else if(tileInfo[tempLocation].value.facing == "down"){
+        }else if(tileInfo[tempLocation].value.facing == "down"|| tileInfo[tempLocation].value == ""){
           foundDark = false;
         }
         if(tileInfo[tempLocation].value == ""){
@@ -206,6 +213,33 @@ export const VisibleTiles = (location,tileInfo) =>{
         }
         
       }
+    }
+  }
+  return ret;
+}
+
+//returns the crypts adjacent to a tile/or crypt faceup or down
+export const getcrypts = (location,tileInfo) => {
+  const ret = [[],[],[],[],[location]];
+
+  if(location-7>=0){
+    if(tileInfo[location-7].value == ""){
+      ret[0] = [location-7];
+    }
+  }
+  if(location%7 != 6){
+    if(tileInfo[location+1].value == ""){
+      ret[1] = [location+1];
+    }
+  }
+  if(location+7<=48){
+    if(tileInfo[location+7].value == ""){
+      ret[2] = [location+7]
+    }
+  }
+  if(location%7 != 0){
+    if(tileInfo[location-1].value == ""){
+      ret[3] = [location-1];
     }
   }
   return ret;
@@ -283,5 +317,5 @@ function checkOpenDoors(tileVals) {
       return [true, true, false, true];
     }
   }
-  return [false, false, false, false];
+  return [true, true, true, true];
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
-import {isAdjacentTiles2, isVisible2, VisibleTiles} from '../helperFunctions/Helpers'
+import {getcrypts, isAdjacentTiles2, isVisible2, VisibleTiles} from '../helperFunctions/Helpers'
 import { GameContext } from '../context/GameContext';
 import { ActionContext } from '../context/ActionContext';
 import { AuthContext } from '../context/AuthContext';
@@ -25,6 +25,7 @@ const Tile = (props)=>{
   const {tileInfo,setTileInfo} =useContext(TileContext);
   const fangTargets = ["paladin","casty","screamy","shiny","shooty","singy","slashy","smashy","sniffy","stabby",]
   
+  //checks for overlaps in 2 arrays 
   function checkOverlap(array1, array2) {
     // Create a Set from the first array for faster lookup
     const set = new Set(array1);
@@ -62,7 +63,7 @@ const Tile = (props)=>{
 
   function HandleBoardAction(here){
     if(currentUser.uid == gameInfo[0].roles.paladin 
-    && gameInfo[0].turn == "paladin"){
+      && gameInfo[0].turn == "paladin"){
       const tempPaladinLocation = paladinInfo.paladinLoc;
       if( action == "crusade"){
         if( actionInfo1 == "move"){
@@ -107,12 +108,13 @@ const Tile = (props)=>{
         }
       }
     }else if(currentUser.uid == gameInfo[0].roles.skeleton 
-    && gameInfo[0].turn == "skeleton"){
+      && gameInfo[0].turn == "skeleton"){
       if(gameInfo[0].phase == 2){
         if(skeletonInfo.movesLeft>0 && action == null){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
           const currentFieldName= skeletonInfo.currentSkeleton +"Loc";
           const currentSkeletonLocation = skeletonInfo[currentFieldName];
+          const tempCryptArray = getcrypts(here,tileInfo);
           if(!checkForStrikable(currentSkeletonLocation)){
             if(
             isAdjacentTiles2(
@@ -122,7 +124,15 @@ const Tile = (props)=>{
             )){
               skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
               // connect to move skeleton piece to {here}
-            }else{
+            }else if(
+              isAdjacentTiles2(
+                tempCryptArray,
+                currentSkeletonLocation,
+                false
+              )){
+                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
+                // connect to move skeleton piece to {here}
+              }else{
               console.log("not adjacnet")
             }
           } else {
@@ -133,7 +143,7 @@ const Tile = (props)=>{
         }
       }
     }else if(currentUser.uid == gameInfo[0].roles.spider 
-    && gameInfo[0].turn == "spider"){
+      && gameInfo[0].turn == "spider"){
       if(spiderInfo.form == "giantSpider"){
         if(action == "eyes" && actionInfo1 != null){
           const tempVisibleTileArray = VisibleTiles(here,tileInfo)
@@ -429,7 +439,7 @@ const Tile = (props)=>{
             spider.finsishTakeDamage(gameID[0],here);
           }
         }
-      }
+    }
   }
 
   return(
@@ -440,9 +450,9 @@ const Tile = (props)=>{
     }}
     onClick={()=>HandleBoardAction(props.num)}>
       <div className='pieceContainer' style={{transform: `rotate(${-rotation}deg)`}}>
-        {/* <p style={{color: 'white'}}>
+        <p style={{color: 'white'}}>
           {props.num}
-        </p> */}
+        </p>
         <div className='characters'>
           {props.characterIcons.map((e, k)=>{
             return(

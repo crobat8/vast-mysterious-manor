@@ -136,10 +136,12 @@ const FullGame = ()=>{
         const pieces = FindCharacters(groundNum);
         const characterIcons = handleCharacterIcons(pieces);
         const groundName = 'ground'+groundNum
+        const groundLocation = -1 * (key + 1);
         return(
           <Ground
           characterIcons = {characterIcons}
           groundName = {groundName}
+          groundLocation = {groundLocation} 
           />
         )
       })}

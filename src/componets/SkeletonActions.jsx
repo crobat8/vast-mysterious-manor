@@ -134,7 +134,13 @@ const SkeletonActions = () =>{
     const activeSkeletonLoc = skeletonInfo.currentSkeleton + "Loc";
     const activeSkeletonLocation = skeletonInfo[activeSkeletonLoc];
     
-    if(activeSkeletonLocation < 0){
+    if(activeSkeletonLocation < 0 ){
+      return 
+      <>
+      </>
+    }
+
+    if(tileInfo[activeSkeletonLocation].value == ""){
       return 
       <>
       </>
