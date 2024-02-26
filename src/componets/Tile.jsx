@@ -96,10 +96,12 @@ const Tile = (props)=>{
                 tempPaladinLocation,
                 false
               )){
+              if(tileInfo[here].value.tokens.indexOf("web") == -1){
                 setActionInfo1( actionInfo1-1);
-              paladin.move( gameID[0], here)
-              // need to add spend hero cube here
-              // need to add local move to speed up processing time
+              }else{
+                setActionInfo1(0);
+              }
+              paladin.move( gameID[0], here);
             }
           }
         }
@@ -413,7 +415,21 @@ const Tile = (props)=>{
         }
       }
 
-    }
+    }else if(currentUser.uid == gameInfo[0].roles.spider 
+      && gameInfo[0].specialTurn == "spider"){
+        if(gameInfo[0].specialPhase == "takeDamage"){
+          const tempVisibleTileArray = VisibleTiles(here,tileInfo)
+          const takeDamageLoc = spiderInfo.takeDamageLoc;
+          if(
+            isAdjacentTiles2(
+              tempVisibleTileArray,
+              takeDamageLoc,
+              false
+            )){
+            spider.finsishTakeDamage(gameID[0],here);
+          }
+        }
+      }
   }
 
   return(

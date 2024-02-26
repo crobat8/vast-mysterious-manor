@@ -29,7 +29,7 @@ const sendForm = async (ID,form) => {
 
 // takes in a game ID and a location to move the paladin to
 function spiderForm(ID,form){
-  sendForm(ID,form)
+  sendForm(ID,form);
 }
 
 const sendFeed = async (ID) => {
@@ -61,7 +61,7 @@ const sendFeed = async (ID) => {
 };
 
 function feed(ID){
-  sendFeed(ID)
+  sendFeed(ID);
 }
 
 const sendScare = async (ID,cardType) => {
@@ -94,7 +94,7 @@ const sendScare = async (ID,cardType) => {
 };
 
 function scare(ID,cardType){
-  sendScare(ID,cardType)
+  sendScare(ID,cardType);
 }
 
 const sendDiscard = async (ID,cardType) => {
@@ -127,7 +127,7 @@ const sendDiscard = async (ID,cardType) => {
 };
 
 function discard(ID,cardType){
-  sendDiscard(ID,cardType)
+  sendDiscard(ID,cardType);
 }
 
 const sendMove = async (ID,Loc,piece,fin) => {
@@ -162,7 +162,7 @@ const sendMove = async (ID,Loc,piece,fin) => {
 };
 
 function move(ID,location,piece,fin){
-  sendMove(ID,location,piece,fin)
+  sendMove(ID,location,piece,fin);
 }
 
 const sendBlood = async (ID,blood) => {
@@ -195,7 +195,7 @@ const sendBlood = async (ID,blood) => {
 };
 
 function changeBlood(ID,ammount){
-  sendBlood(ID,ammount)
+  sendBlood(ID,ammount);
 }
 
 const sendTend = async (ID) => {
@@ -227,7 +227,7 @@ const sendTend = async (ID) => {
 };
 
 function tend(ID){
-  sendTend(ID)
+  sendTend(ID);
 }
 
 const sendLoot = async (ID,treasures) => {
@@ -260,7 +260,73 @@ const sendLoot = async (ID,treasures) => {
 };
 
 function finishLoot(ID,treasureCount){
-  sendLoot(ID,treasureCount)
+  sendLoot(ID,treasureCount);
+}
+
+const sendTakeDamage = async (ID,piece) => {
+  const endpoint = 'https://takedamage-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+    piece: piece,
+  };
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+function takeDamage(ID,piece){
+  sendTakeDamage(ID,piece);
+}
+
+const sendFinishTakeDamage = async (ID,location) => {
+  const endpoint = 'https://finishtakedamage-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  
+  const requestData = {
+    documentId: ID,
+    location: location,
+  };
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+function finishTakeDamage(ID,location){
+  sendFinishTakeDamage(ID,location);
 }
 
 export default{
@@ -272,4 +338,6 @@ export default{
   "changeBlood": changeBlood,
   "tend": tend,
   "finishLoot": finishLoot,
+  "takeDamage": takeDamage,
+  "finsishTakeDamage": finishTakeDamage,
 }

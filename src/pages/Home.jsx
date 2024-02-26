@@ -20,7 +20,7 @@ const Home = () =>{
   const[mode,setMode]=useState("Online")
 
   const handleGameMode = async (e,x) =>{
-    if(gameInfo.length == 0){
+    if(gameInfo == null || gameInfo.length == 0){
       // not in a game
       await setDoc(doc(db,"searching",userInfo[0].uid), {
         uid:userInfo[0].uid,
@@ -51,15 +51,31 @@ const Home = () =>{
     return null; // Return null if no match is found
   };
 
-  function UserCorner()  {
+  function UserCorner(){
+    if(!userInfo){
+      return(
+        <div>
+        <p>
+          name: loading
+        </p>
+        <p>
+          my role: loading
+        </p>
+        <button onClick={()=>signOut(auth)}> 
+          logout
+        </button>
+      </div>
+      )
+    }
     try {
+      const tempRole = findKey();
       return(
         <div>
           <p>
             name: {userInfo[0].displayName}
           </p>
-          <p> 
-            my role: {findKey()}
+          <p>
+            my role: {tempRole}
           </p>
           <button onClick={()=>signOut(auth)}> 
             logout
@@ -70,10 +86,10 @@ const Home = () =>{
       return(
         <div>
           <p>
-            name: loading
+            name: {userInfo[0].displayName}
           </p>
           <p>
-            mmr: loading
+            my role: not in game
           </p>
           <button onClick={()=>signOut(auth)}> 
             logout

@@ -118,16 +118,13 @@ const Landing = () =>{
             <HandleSwap/>
             
           </div>
-          
           <div className='pills'>
-            
               {pillInfo.map((e,i)=>{
                 return(
                   <Pill data={e} count={i}/>
                 )
                 
               })}
-            
           </div>
         </FadeIn>
       </main>

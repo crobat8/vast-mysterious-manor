@@ -6,13 +6,16 @@ import { PaladinContext } from '../context/PaldinContext';
 
 import general from '../playerFunctions/general';
 import paladin from '../playerFunctions/paladin';
+import spider from '../playerFunctions/spider';
 import { FindCharacters } from '../helperFunctions/Helpers';
 import skeleton from '../playerFunctions/skeleton';
+import { SpiderContext } from '../context/SpiderContext';
 
 const PaladinActions = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
+  const {spiderInfo} = useContext(SpiderContext);
   function prepare (ID){
     paladin.prep(ID[0]);
   }
@@ -29,38 +32,6 @@ const PaladinActions = () =>{
     // this is how many spaces the player can move 
     settingActionInfo1(2);
     paladin.spendHeroCube(ID[0]);
-  }
-
-  function attackUnit (piece,ID,paladinInfo,characters){
-    const skeletonNames = [
-      "casty",
-      "screamy",
-      "shiny",
-      "shooty",
-      "singy",
-      "slashy",
-      "smashy",
-      "sniffy",
-      "stabby",
-    ];
-
-    // attacking skeleton
-    if(skeletonNames.includes(piece)){
-      let skeletonCount = 0;
-      for(let i = 0; i<characters.length;i++){
-        if(skeletonNames.includes(characters[i])){
-          skeletonCount++;
-        }
-      }
-      console.log(skeletonCount);
-      if(paladinInfo.preps>skeletonCount){
-        skeleton.respawn(ID[0],piece);
-      }else{
-        // move paladin back to origin tile
-      }
-
-    }
-
   }
 
   function cancel(clear) {
@@ -151,8 +122,24 @@ const PaladinActions = () =>{
     const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions} = useContext(ActionContext)
     const {paladinInfo} = useContext(PaladinContext);
     const characters = FindCharacters(paladinInfo.paladinLoc);
-    const indextOfPaladin = characters.indexOf("paladin");
-    characters.splice(indextOfPaladin,1);
+    const indexOfPaladin = characters.indexOf("paladin");
+    characters.splice(indexOfPaladin,1);
+    const skeletonNames = [
+      "casty",
+      "screamy",
+      "shiny",
+      "shooty",
+      "singy",
+      "slashy",
+      "smashy",
+      "sniffy",
+      "stabby",
+    ];
+    const spiderNames = [
+      "giantSpider",
+      "caster",
+      "spiderling",
+    ]
     return(
       <div className="actions">
         <div>
@@ -160,11 +147,35 @@ const PaladinActions = () =>{
         </div>
         <div>
           {characters.map((character,key)=>{
-            return(
-              <button onClick={()=>attackUnit(character,gameID,paladinInfo,characters)}>
-                {character}
-              </button>
-            )
+            const first10 = character.substring(0,10);
+            
+            if(skeletonNames.indexOf(character) != -1){
+              let skeletonCount = 0;
+              for(let i = 0; i<characters.length;i++){
+                if(skeletonNames.includes(characters[i])){
+                  skeletonCount++;
+                }
+              }
+              if(paladinInfo.preps>skeletonCount){
+                return(
+                  <button onClick={()=>skeleton.respawn(gameID[0],character)}>
+                    {character}
+                  </button>
+                )  
+              }
+
+            }else if(spiderNames.indexOf(character) != -1 || spiderNames.indexOf(first10) != -1){
+              
+              if(paladinInfo.preps>spiderInfo.defense){
+                return(
+                  <button onClick={()=>spider.takeDamage(gameID[0],character)}>
+                    {character}
+                  </button>
+                )
+              }
+
+            }
+
           })}
           <button onClick={()=>prepare(gameID)}>
             prepare
