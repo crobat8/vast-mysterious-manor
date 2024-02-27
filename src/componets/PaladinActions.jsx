@@ -79,9 +79,7 @@ const PaladinActions = () =>{
         <button onClick={()=>cancel(clearActions)}>
           cancel Action
         </button> 
-        <button>
-          end phase
-        </button>
+        <FinalChoices/>
       </div>
     )
   }
@@ -115,6 +113,11 @@ const PaladinActions = () =>{
 
       </div>
     )
+  }
+
+  function hitSpider (character) {
+    paladin.paladinHitSpider(gameID[0]);
+    spider.takeDamage(gameID[0],character);
   }
 
   const AttackChoices = ()=>{
@@ -168,7 +171,7 @@ const PaladinActions = () =>{
               
               if(paladinInfo.preps>spiderInfo.defense){
                 return(
-                  <button onClick={()=>spider.takeDamage(gameID[0],character)}>
+                  <button onClick={()=>hitSpider(character)}>
                     {character}
                   </button>
                 )
@@ -359,7 +362,11 @@ const PaladinActions = () =>{
         <ActionList1/>:
         <div className='otherPlayers'></div>
       }
-      {gameInfo[0].phase == 2?
+      {gameInfo[0].specialTurn == "spider"?
+        <h3>
+          waiting for spider to place spiderlings
+        </h3>
+      :gameInfo[0].phase == 2?
         <ActionList2/>:
         <div className='otherPlayers'></div>
       }

@@ -108,8 +108,7 @@ const SkeletonActions = () =>{
 
   // set action to tunnel so we can select a pit to move to
   const tunnel = () =>{
-    // need to implement tunnel here
-    // skeleton.endMarch(gameID[0]);
+    setAction("tunnel")
   }
 
 
@@ -135,15 +134,16 @@ const SkeletonActions = () =>{
     const activeSkeletonLocation = skeletonInfo[activeSkeletonLoc];
     
     if(activeSkeletonLocation < 0 ){
-      return 
-      <>
-      </>
+      return(
+        <EndMarchButton/>
+      )
+      
     }
 
     if(tileInfo[activeSkeletonLocation].value == ""){
-      return 
-      <>
-      </>
+      return(
+        <EndMarchButton/>
+      )
     }
 
     if(checkForStrikeable(activeSkeletonLocation)){
@@ -225,8 +225,13 @@ const SkeletonActions = () =>{
         <h3>
           march order
         </h3>
-        {
-          skeletonInfo.currentSkeleton == ""?
+        {action == "tunnel"?
+          <div>
+            <h3>
+              select a pit to move to
+            </h3>
+          </div>
+        :skeletonInfo.currentSkeleton == ""?
           <div>
             <h3>
               out of skeletons

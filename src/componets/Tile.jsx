@@ -79,6 +79,7 @@ const Tile = (props)=>{
             if( tileInfo[here].value.facing == "up"){
               setActionInfo1("attack");
             }else{
+              paladin.changeGrit(gameID[0],2,"G")
               setActionInfo1("rotate");
               setActionInfo4(0)
               tileInfo[here].value.facing = "up";
@@ -130,28 +131,33 @@ const Tile = (props)=>{
                 currentSkeletonLocation,
                 false
               )){
-                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
-                // connect to move skeleton piece to {here}
-              }else if(here == 45 && currentSkeletonLocation == -1 ){
-                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
-              }else if(here == 35 && currentSkeletonLocation == -3 ){
-                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
-              }else if(here == 7  && currentSkeletonLocation == -5 ){
-                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
-              }else if(here == 1  && currentSkeletonLocation == -6 ){
-                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
-              }else if(here == 5  && currentSkeletonLocation == -8 ){
-                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
-              }else if(here == 13 && currentSkeletonLocation == -9 ){
-                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
-              }else if(here == 41 && currentSkeletonLocation == -11){
-                skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
-              }else{
-                console.log("not adjacnet")
-              }
-            
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
+              // connect to move skeleton piece to {here}
+            }else if(here == 45 && currentSkeletonLocation == -1 ){
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
+            }else if(here == 35 && currentSkeletonLocation == -3 ){
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
+            }else if(here == 7  && currentSkeletonLocation == -5 ){
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
+            }else if(here == 1  && currentSkeletonLocation == -6 ){
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
+            }else if(here == 5  && currentSkeletonLocation == -8 ){
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
+            }else if(here == 13 && currentSkeletonLocation == -9 ){
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
+            }else if(here == 41 && currentSkeletonLocation == -11){
+              skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
+            }else{
+              console.log("not adjacnet")
+            }
           } else {
             console.log("tile has something strikable")
+          }
+        }else if(action == "tunnel" ){
+          if(tileInfo[here].value.floorType == "pit" && tileInfo[here].value.facing == "up"){
+            skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton);
+            skeleton.endMarch(gameID[0]);
+            clearActions();
           }
         }else{
           console.log("out of movements");
