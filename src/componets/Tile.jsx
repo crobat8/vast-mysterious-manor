@@ -471,9 +471,9 @@ const Tile = (props)=>{
     }}
     onClick={()=>HandleBoardAction(props.num)}>
       <div className='pieceContainer' style={{transform: `rotate(${-rotation}deg)`}}>
-        <p style={{color: 'white'}}>
+        {/* <p style={{color: 'white'}}>
           {props.num}
-        </p>
+        </p> */}
         <div className='characters'>
           {props.characterIcons.map((e, k)=>{
             return(

@@ -10,12 +10,14 @@ import spider from '../playerFunctions/spider';
 import { FindCharacters } from '../helperFunctions/Helpers';
 import skeleton from '../playerFunctions/skeleton';
 import { SpiderContext } from '../context/SpiderContext';
+import { TileContext } from '../context/TileContext';
 
 const PaladinActions = () =>{ 
   const {gameInfo,gameID} = useContext(GameContext);
   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
   const {paladinInfo} = useContext(PaladinContext);
   const {spiderInfo} = useContext(SpiderContext);
+  const {tileInfo,setTileInfo} =useContext(TileContext);
   function prepare (ID){
     paladin.prep(ID[0]);
   }
@@ -53,8 +55,14 @@ const PaladinActions = () =>{
     settingActionInfo1("treasure");
   }
 
-  const confirmTreasure = (clearing) =>{
-    clearing();
+  const confirmTreasure = () =>{
+    console.log(tileInfo[paladinInfo.paladinLoc])
+    if(tileInfo[paladinInfo.paladinLoc].value.tokens.indexOf("treasure") != -1){
+      console.log("true")
+      paladin.drawTreasureCard(gameID[0]);
+      general.removeToken(gameID[0],paladinInfo.paladinLoc,"treasure");
+    }
+    clearActions();
   }
 
   const ConfirmSprint = ()=>{
@@ -205,9 +213,6 @@ const PaladinActions = () =>{
     return(
       <div className="actions">
         <div>
-          choose all the enemies to attack
-        </div>
-        <div>
           <button onClick={()=>confirmShrine(setActionInfo1)}>
             finish Shrine
           </button>
@@ -224,10 +229,7 @@ const PaladinActions = () =>{
     return(
       <div className="actions">
         <div>
-          choose all the enemies to attack
-        </div>
-        <div>
-          <button onClick={()=>confirmTreasure(clearActions)}>
+          <button onClick={()=>confirmTreasure()}>
             finish Treasure
           </button>
         </div>
