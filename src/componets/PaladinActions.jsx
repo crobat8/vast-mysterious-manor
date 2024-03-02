@@ -18,26 +18,31 @@ const PaladinActions = () =>{
   const {paladinInfo} = useContext(PaladinContext);
   const {spiderInfo} = useContext(SpiderContext);
   const {tileInfo,setTileInfo} =useContext(TileContext);
-  function prepare (ID){
-    paladin.prep(ID[0]);
+
+  function prepare (){
+    paladin.prep(gameID[0]);
   }
 
-  function crusade (settingAction,settingActionInfo1,ID){
-    settingAction("crusade");
+  function crusade (){
+    setAction("crusade");
     //this is the step of the crusade the user is on
-    settingActionInfo1("move");
-    paladin.spendHeroCube(ID[0]);
+    setActionInfo1("move");
+    paladin.spendHeroCube(gameID[0]);
   }
 
-  function sprint (settingAction,settingActionInfo1,ID){
-    settingAction("sprint");
-    // this is how many spaces the player can move 
-    settingActionInfo1(2);
-    paladin.spendHeroCube(ID[0]);
+  function sprint (){
+    setAction("sprint");
+    if(paladinInfo.treasureCards.indexOf("wingedBoots") == -1){
+      setActionInfo1(2);
+    } else {
+      setActionInfo1(4);
+    }
+
+    paladin.spendHeroCube(gameID[0]);
   }
 
-  function cancel(clear) {
-    clear();
+  function cancel() {
+    clearActions();
   }
 
   const ConfirmCrusadeRotation = (ID,Loc,Rot,setActionInfo1,setActionInfo2)=>{
@@ -75,16 +80,16 @@ const PaladinActions = () =>{
 
     return(
       <div className="actions">
-        <button onClick={()=>prepare(gameID)}>
+        <button onClick={()=>prepare()}>
           prepare
         </button>
-        <button onClick={()=>crusade(setAction,setActionInfo1,gameID)}>
+        <button onClick={()=>crusade()}>
           cursade
         </button>
-        <button onClick={()=>sprint(setAction,setActionInfo1,gameID)}>
+        <button onClick={()=>sprint()}>
           sprint
         </button>
-        <button onClick={()=>cancel(clearActions)}>
+        <button onClick={()=>cancel()}>
           cancel Action
         </button> 
         <FinalChoices/>
@@ -124,7 +129,9 @@ const PaladinActions = () =>{
   }
 
   function hitSpider (character) {
-    paladin.paladinHitSpider(gameID[0]);
+    // change paladin hit spider to general hit to take care of situations
+    // with spider, skeletons and ghosts 
+    paladin.paladinAttacked(gameID[0],"spider");
     spider.takeDamage(gameID[0],character);
   }
 

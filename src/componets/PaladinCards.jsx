@@ -46,7 +46,7 @@ const PaladinCards = () =>{
 
   return(
     <div className='cardHolder'>
-      <h1 className='cardTitle'>
+      {/* <h1 className='cardTitle'>
        favors in play
       </h1>
       <div className='marchOrderDisplay'>
@@ -63,7 +63,7 @@ const PaladinCards = () =>{
             />
           )
         })}
-      </div>
+      </div> */}
       <h1>
         treasures in play
       </h1>

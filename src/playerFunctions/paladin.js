@@ -158,10 +158,11 @@ function changeGrit(ID,ammount,gainOrLoose){
   sendChangeGrit(ID,ammount,gainOrLoose)
 }
 
-const sendPaladinHitSpider = async (ID) => {
-  const endpoint = 'https://paladinhitspider-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+const sendPaladinAttacked = async (ID,targetType) => {
+  const endpoint = 'https://paladinattacked-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
   const requestData = {
     documentId: ID,
+    targetType: targetType,
   };
   try {
     const response = await fetch(endpoint, {
@@ -184,8 +185,8 @@ const sendPaladinHitSpider = async (ID) => {
   }
 };
 
-function paladinHitSpider(ID){
-  sendPaladinHitSpider(ID)
+function paladinAttacked(ID,targetType){
+  sendPaladinAttacked(ID,targetType)
 }
 
 const sendDrawTreasureCard = async (ID) => {
@@ -225,6 +226,6 @@ export default{
   "spendHeroCube": spendHeroCube,
   "changeHealth": changeHealth,
   "changeGrit": changeGrit,
-  "paladinHitSpider": paladinHitSpider,
+  "paladinAttacked": paladinAttacked,
   "drawTreasureCard": drawTreasureCard,
 }

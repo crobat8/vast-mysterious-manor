@@ -58,6 +58,7 @@ const GameInformation = () =>{
           <p> Health: {paladinInfo.health}</p>
           <p> Grit: {paladinInfo.grit}</p>
           <p> Fury: {paladinInfo.fury}</p>
+          <p> Light: {paladinInfo.light}</p>
           <p> Hero Cubes: {paladinInfo.heroCubes}</p>
           <p> Strength: {paladinInfo.preps}</p>
           <p> Defense: {paladinInfo.preps}</p>
