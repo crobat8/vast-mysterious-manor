@@ -17,6 +17,8 @@ const GameInformation = () =>{
   const{spiderInfo} = useContext(SpiderContext);
   const{manorInfo} = useContext(ManorContext);
 
+  
+
   if(gameInfo==null){
     return(
       <h1>
@@ -113,6 +115,22 @@ const GameInformation = () =>{
         <div className='right'>
           <p>Omen Cubes: {manorInfo.omenCubes}</p>
           <p>Rituals: {spiderInfo.terror}</p>
+          <div style={{display:'flex'}}>
+            <p>reveal:</p>
+            {manorInfo.revealOmens.map((e)=>{
+              const manorOmenHolder = {
+                width: '20px',
+                height: '20px',
+                backgroundColor: e === 'T' ? 'white' : 'darkmagenta',
+                border: '2px solid black'
+              };
+              return(
+                <div style={manorOmenHolder}>
+                  
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </div>

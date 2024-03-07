@@ -14,6 +14,7 @@ import ManorActions from './ManorActions';
 import SpiderCards from './SpiderCards';
 import SkeletonCards from './SkeletonCards';
 import PaladinCards from './PaladinCards';
+import ManorCards from './ManorCards';
 
 const Cards = () =>{ 
   
@@ -38,15 +39,11 @@ const Cards = () =>{
     <div className="cardContainer" >
       
       {gameInfo[0].roles.paladin == userInfo[0].uid?
-        <p>
-          <PaladinCards/>
-        </p>:
+          <PaladinCards/>:
         <div className='otherPlayers'></div>
       }
       {gameInfo[0].roles.skeleton == userInfo[0].uid?
-        <p>
-          <SkeletonCards/>
-        </p>:
+        <SkeletonCards/>:
         <div className='otherPlayers'></div>
       }
       {gameInfo[0].roles.spider == userInfo[0].uid?
@@ -54,12 +51,9 @@ const Cards = () =>{
         <div className='otherPlayers'></div>
       }
       {gameInfo[0].roles.manor == userInfo[0].uid?
-        <p>
-          card area need to be manor cards later
-        </p>:
+        <ManorCards/>:
         <div className='otherPlayers'></div>
       }
-      
     </div>
   )
 }

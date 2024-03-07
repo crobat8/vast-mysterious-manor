@@ -319,3 +319,121 @@ function checkOpenDoors(tileVals) {
   }
   return [true, true, true, true];
 }
+
+// takes in a ritual number and returns the raw data for it
+// ritual number = used to identify the data and tie it to a card
+// path
+// 0 = north
+// 1 = east
+// 2 = south
+// 3 = west
+// ghostIndex = after the move of the index on the path 
+// seals = amount of seals gained on completion
+// portent = what bonus is gained on completion
+export function manorRitualInfo (ritualNumber) {
+  if(ritualNumber == "ritual_1"){
+    return {
+      ritualNumber,
+      path: [0,1,2],
+      ghostIndex: 1,
+      seals: 1,
+      portent: "reveal"
+    }
+  } else if(ritualNumber == "ritual_2"){
+    return {
+      ritualNumber,
+      path: [1,1,0],
+      ghostIndex: 1,
+      seals: 1,
+      portent: "swap"
+    }
+  } else if(ritualNumber == "ritual_3"){
+    return {
+      ritualNumber,
+      path: [2,1,1],
+      ghostIndex: 0,
+      seals: 1,
+      portent: "shift"
+    }
+  } else if(ritualNumber == "ritual_4"){
+    return {
+      ritualNumber,
+      path: [1,1,1],
+      ghostIndex: 1,
+      seals: 1,
+      portent: "wall"
+    }
+  } else if(ritualNumber == "ritual_5"){
+    return {
+      ritualNumber,
+      path: [1,0,1],
+      ghostIndex: 1,
+      seals: 1,
+      portent: "draw"
+    }
+  } else if(ritualNumber == "ritual_6"){
+    return {
+      ritualNumber,
+      path: [1,0,1,0,1,1],
+      ghostIndex: 2,
+      seals: 3,
+      portent: "NONE"
+    }
+  } else if(ritualNumber == "ritual_7"){
+    return {
+      ritualNumber,
+      path: [1,1,1,1,1],
+      ghostIndex: 2,
+      seals: 2,
+      portent: "NONE"
+    }
+  } else if(ritualNumber == "ritual_8"){
+    return {
+      ritualNumber,
+      path: [1,1,1,1,1,1],
+      ghostIndex: 2,
+      seals: 3,
+      portent: "NONE"
+    }
+  } else if(ritualNumber == "ritual_9"){
+    return {
+      ritualNumber,
+      path: [1,2,1,1,1],
+      ghostIndex: 2,
+      seals: 2,
+      portent: "NONE"
+    }
+  } else if(ritualNumber == "ritual_10"){
+    return {
+      ritualNumber,
+      path: [2,1,2,1,1],
+      ghostIndex: 2,
+      seals: 2,
+      portent: "NONE"
+    }
+  } else if(ritualNumber == "ritual_11"){
+    return {
+      ritualNumber,
+      path: [3,0,3],
+      ghostIndex: 1,
+      seals: 1,
+      portent: "wraith"
+    }
+  } else if(ritualNumber == "ritual_12"){
+    return {
+      ritualNumber,
+      path: [0,0,1,1,1],
+      ghostIndex: 2,
+      seals: 2,
+      portent: "NONE"
+    }
+  } else if(ritualNumber == "ritual_13"){
+    return {
+      ritualNumber,
+      path: [2,1,2,1,1,1],
+      ghostIndex: 2,
+      seals: 3,
+      portent: "NONE"
+    }
+  }
+}

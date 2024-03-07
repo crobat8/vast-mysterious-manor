@@ -8,7 +8,7 @@ import { GameContext } from '../context/GameContext';
 import paladin from '../playerFunctions/paladin';
 import { PaladinContext } from '../context/PaldinContext';
 
-const PaladinCards = () =>{
+const ManorCards = () =>{
   const {spiderInfo} = useContext(SpiderContext);
   const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions,ActionUses,setActionUses} = useContext(ActionContext)
   const {gameInfo,gameID} = useContext(GameContext);
@@ -86,4 +86,4 @@ const PaladinCards = () =>{
     </div>
   )
 }
-export default PaladinCards;
+export default ManorCards;
