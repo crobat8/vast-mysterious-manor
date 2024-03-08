@@ -48,6 +48,33 @@ const GameInformation = () =>{
     return ret
   }
   
+  const OmenDisplayRow = (props)=>{
+    const omenKey = props.rowName + "Omens";
+    return(
+      <div style={{
+        display:'grid',
+        gridTemplateColumns: '3fr 1fr 1fr 1fr', 
+        gap: '5px', 
+        }}>
+        <p>{props.rowName}:</p>
+        {manorInfo[omenKey].map((e)=>{
+          const manorOmenHolder = {
+            width: '15px',
+            height: '15px',
+            backgroundColor: e === 'T' ? 'white' : e== 'P'?'grey':'',
+            border: '2px solid black'
+          };
+          return(
+            <div style={manorOmenHolder}>
+              
+            </div>
+          )
+        })}
+      </div>
+    )
+    
+  }
+
   return (
     <div className="Info" >
       <div className='playerInfo' {...gameInfo[0].turn == "paladin" ? {id:'paladin'}:{id:''}}>
@@ -115,22 +142,12 @@ const GameInformation = () =>{
         <div className='right'>
           <p>Omen Cubes: {manorInfo.omenCubes}</p>
           <p>Rituals: {spiderInfo.terror}</p>
-          <div style={{display:'flex'}}>
-            <p>reveal:</p>
-            {manorInfo.revealOmens.map((e)=>{
-              const manorOmenHolder = {
-                width: '20px',
-                height: '20px',
-                backgroundColor: e === 'T' ? 'white' : 'darkmagenta',
-                border: '2px solid black'
-              };
-              return(
-                <div style={manorOmenHolder}>
-                  
-                </div>
-              )
-            })}
-          </div>
+          <OmenDisplayRow rowName="reveal"/>
+          <OmenDisplayRow rowName="shift"/>
+          <OmenDisplayRow rowName="swap"/>
+          <OmenDisplayRow rowName="wall"/>
+          <OmenDisplayRow rowName="move"/>
+          <OmenDisplayRow rowName="ritual"/>
         </div>
       </div>
     </div>
