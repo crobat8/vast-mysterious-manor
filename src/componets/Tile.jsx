@@ -9,10 +9,12 @@ import { AuthContext } from '../context/AuthContext';
 import { PaladinContext } from '../context/PaldinContext';
 import { SkeletonContext } from '../context/SkeletonContext';
 import { SpiderContext } from '../context/SpiderContext';
+import { ManorContext } from '../context/ManorContext';
 import { TileContext } from '../context/TileContext';
 
 import skeleton from '../playerFunctions/skeleton';
 import spider from '../playerFunctions/spider';
+import manor from '../playerFunctions/manor';
 
 const Tile = (props)=>{
   const rotation = props.tileRotation*90;
@@ -22,6 +24,7 @@ const Tile = (props)=>{
   const {paladinInfo,setPaladinInfo} = useContext(PaladinContext);
   const {skeletonInfo,setSkeletonInfo} = useContext(SkeletonContext);
   const {spiderInfo} = useContext(SpiderContext);
+  const {manorInfo} = useContext(ManorContext);
   const {tileInfo,setTileInfo} =useContext(TileContext);
   const fangTargets = ["paladin","casty","screamy","shiny","shooty","singy","slashy","smashy","sniffy","stabby",]
   
@@ -458,6 +461,16 @@ const Tile = (props)=>{
               false
             )){
             spider.finsishTakeDamage(gameID[0],here);
+          }
+        }
+    }else if(currentUser.uid == gameInfo[0].roles.manor 
+      && gameInfo[0].turn == "manor"){
+        if(gameInfo[0].phase == 4){
+          if(tileInfo[here].value.facing == "down"){
+            if(manorInfo.treasuresToPlay > 0){
+              general.addToken(gameID[0],here,"treasure");
+              manor.placeTreasure(gameID[0]);
+            }
           }
         }
     }

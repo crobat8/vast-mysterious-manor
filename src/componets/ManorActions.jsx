@@ -309,21 +309,23 @@ const ManorActions = () =>{
   //   )
   // }
   
-  // const ActionList4  = () =>{
-  //   const {gameInfo,gameID} = useContext(GameContext);
-  //   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
-  //   const {skeletonInfo} = useContext(SkeletonContext);
-  
-  //   return(
-  //     <div>
-  //       <h3>
-  //         draw more cards
-  //       </h3>
-  //       <FinalChoices/>
-  //     </div>
-  
-  //   )
-  // }
+  const ActionList4  = () =>{
+    return(
+      <div>
+        {manorInfo.treasuresToPlay > 0?
+        <div>
+          <h3>
+            select a face down tile to add treasures to them
+          </h3>
+          <h3>
+            you have {manorInfo.treasuresToPlay} treasures left to place
+          </h3>
+        </div>:
+        <FinalChoices/>
+        }
+      </div>
+    )
+  }
   
   if(!manorInfo){
     return(
@@ -353,10 +355,12 @@ const ManorActions = () =>{
         <ActionList3/>:
         <div className='otherPlayers'></div>
       }
+      */}
+      <FinalChoices/>
       {gameInfo[0].phase == 4?
         <ActionList4/>:
         <div className='otherPlayers'></div>
-      } */}
+      } 
     </div>
   )
 }
