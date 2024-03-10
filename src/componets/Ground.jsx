@@ -21,8 +21,6 @@ const Ground = (props)=>{
   const {spiderInfo} = useContext(SpiderContext);
   const {tileInfo,setTileInfo} =useContext(TileContext);
 
-  
-
   function HandleGroundAction(here){
     if(currentUser.uid == gameInfo[0].roles.skeleton 
       && gameInfo[0].turn == "skeleton"){
