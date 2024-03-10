@@ -96,49 +96,35 @@ const ManorActions = () =>{
     )
   }
   
-  // const ActionList2  = () =>{
-  //   const {gameInfo,gameID} = useContext(GameContext);
-  //   const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
-  //   const {spiderInfo} = useContext(SpiderContext);
-  //   return(
-  //     <div>
-  //       <h3>
-  //         choose to gain terror this turn 
-  //       </h3>
-  //       {action == null
-  //       ?
-  //       <div className="actions">
-  //         {spiderInfo.blood>=3 && !spiderInfo.fedThisTurn
-  //         ?
-  //         <button onClick={()=>feed(gameID)}>
-  //           Feed
-  //         </button>
-  //         :
-  //         <div/>
-  //         }
+  const EndPowerButton = () => {
+    const {gameInfo,gameID} = useContext(GameContext);
+    return(
+      <div className="finale">
+        <button onClick={()=>manor.endPower(gameID)}>
+          end power
+        </button>
+      </div>
+    )
+  }
+
+  const ActionList2  = () =>{
+    const {gameInfo,gameID} = useContext(GameContext);
+    const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
+    
+    return(
+      <div>
+        <h3>
+          use powers
+        </h3>
+        <h3>
+          current power {manorInfo.currentPower}
+        </h3>
+        
+        <EndPowerButton/>
+      </div>
   
-  //         {CountToken("web",tileInfo)>=6 
-  //         && spiderInfo.spellCards.length>=1
-  //         &&!spiderInfo.scaredThisTurn
-  //         ?
-  //         <button onClick={()=>scare(gameID,setAction)}>
-  //           Scare
-  //         </button>
-  //         :
-  //         <div/>
-  //         }
-          
-  //       </div>
-  //       :
-  //       <h4>
-  //         pick a card to discard
-  //       </h4>
-  //       }
-  //       <FinalChoices/>
-  //     </div>
-  
-  //   )
-  // }
+    )
+  }
 
   // const ActionList3  = () =>{
   //   const {gameInfo,gameID} = useContext(GameContext);
@@ -347,16 +333,17 @@ const ManorActions = () =>{
         <ActionList1/>:
         <div className='otherPlayers'></div>
       }
-      {/* {gameInfo[0].phase == 2?
+       {gameInfo[0].phase == 2?
         <ActionList2/>:
         <div className='otherPlayers'></div>
       }
+      {/*
       {gameInfo[0].phase == 3?
         <ActionList3/>:
         <div className='otherPlayers'></div>
       }
       */}
-      <FinalChoices/>
+      {/* <FinalChoices/> */}
       {gameInfo[0].phase == 4?
         <ActionList4/>:
         <div className='otherPlayers'></div>
