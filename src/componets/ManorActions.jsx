@@ -100,7 +100,7 @@ const ManorActions = () =>{
     const {gameInfo,gameID} = useContext(GameContext);
     return(
       <div className="finale">
-        <button onClick={()=>manor.endPower(gameID)}>
+        <button onClick={()=>manor.endPower(gameID[0])}>
           end power
         </button>
       </div>
@@ -113,14 +113,20 @@ const ManorActions = () =>{
     
     return(
       <div>
-        <h3>
-          use powers
-        </h3>
-        <h3>
-          current power {manorInfo.currentPower}
-        </h3>
+        {manorInfo.currentPower != ""?
+        <div>
+          <h3>
+            use powers
+          </h3>
+          <h3>
+            current power {manorInfo.currentPower}
+          </h3>
+          <EndPowerButton/>
+        </div>
+        :
+        <FinalChoices/>
+        }
         
-        <EndPowerButton/>
       </div>
   
     )

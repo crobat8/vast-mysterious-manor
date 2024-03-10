@@ -23,7 +23,6 @@ const Crypt = (props)=>{
   const {tileInfo,setTileInfo} =useContext(TileContext);
 
   function HandleCryptAction(here){
-    console.log(here)
     if(currentUser.uid == gameInfo[0].roles.skeleton 
       && gameInfo[0].turn == "skeleton"){
       if(gameInfo[0].phase == 2){
@@ -32,8 +31,6 @@ const Crypt = (props)=>{
           const currentFieldName= skeletonInfo.currentSkeleton +"Loc";
           const currentSkeletonLocation = skeletonInfo[currentFieldName];
           const tempCryptArray = getcrypts(here,tileInfo);
-          console.log(tempVisibleTileArray)
-          console.log(tempCryptArray)
           if(here == 0){
             console.log(gameID[0])
             console.log(here)

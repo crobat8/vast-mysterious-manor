@@ -24,7 +24,6 @@ const Ground = (props)=>{
   
 
   function HandleGroundAction(here){
-    console.log("clicked",here)
     if(currentUser.uid == gameInfo[0].roles.skeleton 
       && gameInfo[0].turn == "skeleton"){
       if(gameInfo[0].phase == 2){
@@ -33,8 +32,6 @@ const Ground = (props)=>{
           const currentSkeletonLoc = skeletonInfo[currentSkeletonLocKey];
           if(skeletonInfo[currentSkeletonLocKey]<0){
             const distanceFromCurrent = Math.abs(currentSkeletonLoc-here )
-            console.log("currentSkeletonLoc",currentSkeletonLoc)
-            console.log("here",here)
             if(distanceFromCurrent == 1 || distanceFromCurrent == 11){
               skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
             }
@@ -53,8 +50,6 @@ const Ground = (props)=>{
           }else if(here == -11 && currentSkeletonLoc == 41){
             skeleton.move(gameID[0],here,skeletonInfo.currentSkeleton)
           }
-        }else{
-          console.log("out of movements");
         }
       }
     }

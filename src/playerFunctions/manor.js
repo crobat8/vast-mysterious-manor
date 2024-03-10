@@ -92,5 +92,5 @@ function endPower(ID){
 export default{
   "assignOmen": assignOmen,
   "placeTreasure": placeTreasure,
-  "endPower" : sendEndPower,
+  "endPower" : endPower,
 }
