@@ -110,7 +110,7 @@ const ManorActions = () =>{
   const ActionList2  = () =>{
     const {gameInfo,gameID} = useContext(GameContext);
     const {action,setAction,actionInfo1,setActionInfo1,clearActions} = useContext(ActionContext)
-    
+    console.log(manorInfo)
     return(
       <div>
         {manorInfo.currentPower != ""?
@@ -121,6 +121,34 @@ const ManorActions = () =>{
           <h3>
             current power {manorInfo.currentPower}
           </h3>
+          {manorInfo.currentPower == "reveal"
+          ?
+          <h3>
+            tiles left to reveal: {manorInfo.revealTodo} 
+          </h3>
+          :manorInfo.currentPower == "shift"
+          ?
+          <h3>
+            distance able to shift: {manorInfo.shiftTodo} 
+          </h3>
+          :manorInfo.currentPower == "swap"
+          ?
+          <h3>
+            distance able to swap {manorInfo.swapTodo} 
+          </h3>
+          :manorInfo.currentPower == "wall"
+          ?
+          <h3>
+            {manorInfo.wallTodo} walls left to place
+          </h3>
+          :manorInfo.currentPower == "move"
+          ?
+          <h3>
+            {manorInfo.moveTodo} spaces left to move wraith
+          </h3>
+          :
+          <>
+          </>}
           <EndPowerButton/>
         </div>
         :
@@ -339,7 +367,7 @@ const ManorActions = () =>{
         <ActionList1/>:
         <div className='otherPlayers'></div>
       }
-       {gameInfo[0].phase == 2?
+      {gameInfo[0].phase == 2?
         <ActionList2/>:
         <div className='otherPlayers'></div>
       }

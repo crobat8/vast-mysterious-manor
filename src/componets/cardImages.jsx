@@ -64,6 +64,22 @@ import eyes  from '../img/game_images/spider/cards/eyes.png';
 import fangs from '../img/game_images/spider/cards/fangs.png';
 import webs  from '../img/game_images/spider/cards/webs.png';
 
+import ritual_1  from '../img/game_images/manor/rituals/ritual_1.png'
+import ritual_2  from '../img/game_images/manor/rituals/ritual_2.png'
+import ritual_3  from '../img/game_images/manor/rituals/ritual_3.png'
+import ritual_4  from '../img/game_images/manor/rituals/ritual_4.png'
+import ritual_5  from '../img/game_images/manor/rituals/ritual_5.png'
+import ritual_6  from '../img/game_images/manor/rituals/ritual_6.png'
+import ritual_7  from '../img/game_images/manor/rituals/ritual_7.png'
+import ritual_8  from '../img/game_images/manor/rituals/ritual_8.png'
+import ritual_9  from '../img/game_images/manor/rituals/ritual_8.png'
+import ritual_10 from '../img/game_images/manor/rituals/ritual_10.png'
+import ritual_11 from '../img/game_images/manor/rituals/ritual_11.png'
+import ritual_12 from '../img/game_images/manor/rituals/ritual_12.png'
+import ritual_13 from '../img/game_images/manor/rituals/ritual_13.png'
+import ritual_back  from '../img/game_images/manor/rituals/ritual_back.png'
+
+
 export default{
   "conjure"       : conjure,
   "dedication"    : dedication,
@@ -131,4 +147,20 @@ export default{
   "fangs" : fangs,
   "webs"  : webs,
   "spiderSpellBack": spiderSpellBack,
+
+  "ritual_1"  :ritual_1,
+  "ritual_2"  :ritual_2,
+  "ritual_3"  :ritual_3,
+  "ritual_4"  :ritual_4,
+  "ritual_5"  :ritual_5,
+  "ritual_6"  :ritual_6,
+  "ritual_7"  :ritual_7,
+  "ritual_8"  :ritual_8,
+  "ritual_9"  :ritual_9,
+  "ritual_10" :ritual_10,
+  "ritual_11" :ritual_11,
+  "ritual_12" :ritual_12,
+  "ritual_13" :ritual_13,
+  "ritual_back" :ritual_back,
+
 }
