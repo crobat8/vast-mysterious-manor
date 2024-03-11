@@ -357,28 +357,21 @@ const ManorActions = () =>{
 
   return (
     <div className="manorActionContainer">
+      
       <h1>
-        current actions 
-      </h1>
-      <h2>
         current phase: {gameInfo[0].phase}
-      </h2>
-      {gameInfo[0].phase == 1?
+      </h1>
+      {manorInfo.wraithLoc < 0?
+        <h2>
+          select a tile to put the wraith
+        </h2>:
+      gameInfo[0].phase == 1?
         <ActionList1/>:
-        <div className='otherPlayers'></div>
-      }
-      {gameInfo[0].phase == 2?
+      gameInfo[0].phase == 2?
         <ActionList2/>:
-        <div className='otherPlayers'></div>
-      }
-      {/*
-      {gameInfo[0].phase == 3?
-        <ActionList3/>:
-        <div className='otherPlayers'></div>
-      }
-      */}
-      {/* <FinalChoices/> */}
-      {gameInfo[0].phase == 4?
+      gameInfo[0].phase == 3?
+        <FinalChoices/>:
+      gameInfo[0].phase == 4?
         <ActionList4/>:
         <div className='otherPlayers'></div>
       } 

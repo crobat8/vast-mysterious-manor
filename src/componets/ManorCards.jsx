@@ -1,7 +1,7 @@
 import React, { useContext, useState,useEffect,memo } from 'react';
 import { SpiderContext } from '../context/SpiderContext';
 
-import {HandleCardPictures} from '../helperFunctions/Helpers'
+import {HandleCardPictures,manorRitualInfo} from '../helperFunctions/Helpers'
 import { ActionContext } from '../context/ActionContext';
 import { GameContext } from '../context/GameContext';
 
@@ -24,12 +24,10 @@ const ManorCards = () =>{
     setHoveredIndex(null);
   };
 
-  function handleFavorClick(clickedFavor){
-    
-  }
-
-  function handleTreasureClick(clickedTreasure){
-
+  function handleRitualClick(clickedRitualName){
+    console.log(clickedRitualName)
+    const temp = manorRitualInfo(clickedRitualName)
+    console.log(temp)
   }
 
   if(!manorInfo){
@@ -50,16 +48,17 @@ const ManorCards = () =>{
       </h1>
       <div className='marchOrderDisplay'>
         {ritualHand.map((cardImage,key)=>{
-          
+          const playable = true;
           return(
             <img 
             key={key}
             src={cardImage}
             alt={`Image ${key}`}
             className={`card ${hoveredIndex === key ? 'active' : ''}`}
+            style={playable?{filter:'none'}:{filter:'grayscale(100%)'}}
             onMouseEnter={() => handleMouseEnter(key)}
             onMouseLeave={handleMouseLeave}
-            onClick={()=>handleTreasureClick(manorInfo.ritualHand[key])}
+            onClick={()=>handleRitualClick(manorInfo.ritualHand[key])}
             />
           )
         })}

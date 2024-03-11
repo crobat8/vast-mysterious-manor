@@ -465,14 +465,16 @@ const Tile = (props)=>{
         }
     }else if(currentUser.uid == gameInfo[0].roles.manor 
       && gameInfo[0].turn == "manor"){
-        if(gameInfo[0].phase == 4){
-          if(tileInfo[here].value.facing == "down"){
-            if(manorInfo.treasuresToPlay > 0){
-              general.addToken(gameID[0],here,"treasure");
-              manor.placeTreasure(gameID[0]);
-            }
+      if(manorInfo.wraithLoc < 0){
+        manor.wraithMove(gameID[0],here);
+      } else if(gameInfo[0].phase == 4){
+        if(tileInfo[here].value.facing == "down"){
+          if(manorInfo.treasuresToPlay > 0){
+            general.addToken(gameID[0],here,"treasure");
+            manor.placeTreasure(gameID[0]);
           }
         }
+      }
     }
   }
 

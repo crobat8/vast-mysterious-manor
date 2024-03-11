@@ -7,12 +7,14 @@ import { TileContext } from '../context/TileContext';
 
 import cardImages from '../componets/cardImages';
 import e from 'cors';
+import { ManorContext } from '../context/ManorContext';
 
 //takes in a location and returns a list of all the player pieces on that space
 export const FindCharacters = (location) => {
   const {paladinInfo} = useContext(PaladinContext);
   const {spiderInfo} = useContext(SpiderContext);
   const {skeletonInfo} = useContext(SkeletonContext);
+  const {manorInfo} = useContext(ManorContext);
   // add more if statements to this for each other character piece as they become needed
   let ret = []
   //paladin
@@ -69,6 +71,11 @@ export const FindCharacters = (location) => {
   }
   if(skeletonInfo.stabbyLoc === location){
     ret.push("stabby");
+  }
+
+  // manor
+  if(manorInfo.wraithLoc === location){
+    ret.push("wraith");
   }
   return ret
 }

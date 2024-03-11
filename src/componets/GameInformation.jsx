@@ -61,7 +61,7 @@ const GameInformation = () =>{
           const manorOmenHolder = {
             width: '15px',
             height: '15px',
-            backgroundColor: e === 'T' ? 'white' : e== 'P'?'grey':'',
+            backgroundColor: e === 'P' ? 'white' : e== 'T'? 'grey':'',
             border: '2px solid black'
           };
           return(

@@ -14,7 +14,7 @@ import caster from '../img/game_images/pieces/characters/spider/caster.png'
 import giantSpider from '../img/game_images/pieces/characters/spider/giantSpider.png'
 import spiderling from '../img/game_images/pieces/characters/spider/spiderling.png'
 
-import manor from '../img/game_images/pieces/characters/manor/manor.png'
+import wraith from '../img/game_images/pieces/characters/manor/wraith.png'
 
 import warlock from '../img/game_images/pieces/characters/warlock/warlock.png'
 
@@ -37,7 +37,7 @@ export default {
   "giantSpider" : giantSpider,
   "spiderling" : spiderling,
 
-  "manor" : manor,
+  "wraith" : wraith,
 
   "warlock" : warlock,
 
