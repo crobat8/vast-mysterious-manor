@@ -81,6 +81,7 @@ import ritual_back  from '../img/game_images/manor/rituals/ritual_back.png'
 
 
 export default{
+  // paladin favor cards
   "conjure"       : conjure,
   "dedication"    : dedication,
   "disdain"       : disdain,
@@ -91,7 +92,8 @@ export default{
   "radiantLamps"  : radiantLamps,
   "vigor"         : vigor,
   "favorBack" : favorBack,
-
+  
+  // paladin treasure cards
   "armor"       : armor,
   "fireBrand"   : fireBrand,
   "halo"        : halo,
@@ -101,6 +103,7 @@ export default{
   "wingedBoots" : wingedBoots,
   "treasureBack" : treasureBack,
 
+  // skeleton character cards
   "casty"  : casty,
   "screamy": screamy,
   "shiny"  : shiny,
@@ -112,7 +115,7 @@ export default{
   "stabby" : stabby,
   "skeletonCharacterBack": skeletonCharacterBack,
 
-
+  // skeleton gear cards
   "ashStaff"      : ashStaff,
   "fetish"        : fetish,
   "runestone"     : runestone,
@@ -142,12 +145,13 @@ export default{
   "poison"        : poison,
   "gear_back"     : gear_back,
 
-
+  // spider action cards
   "eyes"  : eyes,
   "fangs" : fangs,
   "webs"  : webs,
   "spiderSpellBack": spiderSpellBack,
 
+  // manor ritual cards
   "ritual_1"  :ritual_1,
   "ritual_2"  :ritual_2,
   "ritual_3"  :ritual_3,
