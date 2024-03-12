@@ -66,7 +66,9 @@ const ManorCards = () =>{
             playable = playable || pathResults[i].playablePath;
             
           }
-          
+          if(playable){
+            console.log(pathResults)
+          }
           return(
             <img 
             key={key}

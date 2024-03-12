@@ -449,26 +449,38 @@ export function findValidRitualPath(tileInfo,currentLocation,ritualPath,ghostSte
   if(!tileInfo){
     return {playablePath : false}
   }
-  if(ritualPath.length == 0){
+
+  const tileChararcters = FindCharacters(currentLocation);
+  const index = tileChararcters.indexOf("wraith");
+
+  if (index !== -1) {
+    tileChararcters.splice(index, 1);
+  }
+
+  if(
+    tileInfo[currentLocation].value.facing != "up"
+    || tileChararcters.length != 0){
+    return {
+      playablePath: false,
+    }
+  }else if(ritualPath.length == 0){
     return {
       playablePath: true,
       ghostLocation: currentLocation,
       endPoint : currentLocation 
     }
   }else{
-    const currentWalls = checkOpenDoors(tileInfo[currentLocation].value);
-    // console.log("currentWalls",currentWalls)
-    // console.log("ritualPath",ritualPath)
     let ret;
-    if(currentWalls[ritualPath[0]]){
-      
-      const tempMoveAmmouts = [-7,1,7,-1]; 
-      const updatedStartLocation = currentLocation + tempMoveAmmouts[ritualPath[0]]
+    const currentWalls = checkOpenDoors(tileInfo[currentLocation].value);
+    const tempMoveAmmouts = [-7,1,7,-1]; 
+    const nextStartLocation = currentLocation + tempMoveAmmouts[ritualPath[0]]
+    const nextWalls = checkOpenDoors(tileInfo[nextStartLocation].value)
+    if(currentWalls[ritualPath[0]] 
+      && nextWalls[((ritualPath[0]+2)%4)]){
       ritualPath.shift();
       const updatedRitualPath = ritualPath
-
-      ret = findValidRitualPath(tileInfo,updatedStartLocation,updatedRitualPath,ghostStepsAway-1);
-      if(ghostStepsAway == 0){
+      ret = findValidRitualPath(tileInfo,nextStartLocation,updatedRitualPath,ghostStepsAway-1);
+      if(ghostStepsAway < 0){
         ret.ghostLocation = currentLocation;
       }
     }else{
@@ -480,3 +492,4 @@ export function findValidRitualPath(tileInfo,currentLocation,ritualPath,ghostSte
     return ret
   }
 }
+
