@@ -84,7 +84,7 @@ const Tile = (props)=>{
             }else{
               paladin.changeGrit(gameID[0],2,"G")
               setActionInfo1("rotate");
-              setActionInfo4(0)
+              setActionInfo4(0);
               tileInfo[here].value.facing = "up";
               setTileInfo([... tileInfo]);
             }

@@ -444,3 +444,39 @@ export function manorRitualInfo (ritualNumber) {
     }
   }
 }
+
+export function findValidRitualPath(tileInfo,currentLocation,ritualPath,ghostStepsAway) {
+  if(!tileInfo){
+    return {playablePath : false}
+  }
+  if(ritualPath.length == 0){
+    return {
+      playablePath: true,
+      ghostLocation: currentLocation,
+      endPoint : currentLocation 
+    }
+  }else{
+    const currentWalls = checkOpenDoors(tileInfo[currentLocation].value);
+    // console.log("currentWalls",currentWalls)
+    // console.log("ritualPath",ritualPath)
+    let ret;
+    if(currentWalls[ritualPath[0]]){
+      
+      const tempMoveAmmouts = [-7,1,7,-1]; 
+      const updatedStartLocation = currentLocation + tempMoveAmmouts[ritualPath[0]]
+      ritualPath.shift();
+      const updatedRitualPath = ritualPath
+
+      ret = findValidRitualPath(tileInfo,updatedStartLocation,updatedRitualPath,ghostStepsAway-1);
+      if(ghostStepsAway == 0){
+        ret.ghostLocation = currentLocation;
+      }
+    }else{
+      ret = {
+        playablePath: false,
+      }
+    }
+
+    return ret
+  }
+}

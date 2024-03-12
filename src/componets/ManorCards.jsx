@@ -1,19 +1,21 @@
 import React, { useContext, useState,useEffect,memo } from 'react';
 import { SpiderContext } from '../context/SpiderContext';
 
-import {HandleCardPictures,manorRitualInfo} from '../helperFunctions/Helpers'
+import {HandleCardPictures,manorRitualInfo,findValidRitualPath} from '../helperFunctions/Helpers'
 import { ActionContext } from '../context/ActionContext';
 import { GameContext } from '../context/GameContext';
 
 import paladin from '../playerFunctions/paladin';
 import { PaladinContext } from '../context/PaldinContext';
 import { ManorContext } from '../context/ManorContext';
+import { TileContext } from '../context/TileContext';
 
 const ManorCards = () =>{
   const {spiderInfo} = useContext(SpiderContext);
   const {action,setAction,actionInfo1,setActionInfo1,actionInfo2,setActionInfo2,clearActions,ActionUses,setActionUses} = useContext(ActionContext)
   const {gameInfo,gameID} = useContext(GameContext);
   const {manorInfo} = useContext(ManorContext);
+  const {tileInfo,setTileInfo} =useContext(TileContext);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const handleMouseEnter = (index) => {
@@ -48,7 +50,23 @@ const ManorCards = () =>{
       </h1>
       <div className='marchOrderDisplay'>
         {ritualHand.map((cardImage,key)=>{
-          const playable = true;
+          const currentRitualInfo = manorRitualInfo(manorInfo.ritualHand[key]);
+          // console.log(currentRitualInfo)
+          let playable = !(gameInfo[0].turn == "manor" && gameInfo[0].phase == 3);
+          const pathResults = ["","","",""];
+          for(let i = 0;i<4;i++ ){
+            const currentPath = currentRitualInfo.path.map(num => (num + i)%4);
+            pathResults[i] = 
+              findValidRitualPath(
+                tileInfo,
+                manorInfo.wraithLoc,
+                currentPath,
+                currentRitualInfo.ghostIndex
+              );
+            playable = playable || pathResults[i].playablePath;
+            
+          }
+          
           return(
             <img 
             key={key}

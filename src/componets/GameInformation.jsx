@@ -135,7 +135,7 @@ const GameInformation = () =>{
       </div>
       <div className='playerInfo' {...gameInfo[0].turn == "manor" ? {id:'manor'}:{id:''}}>
         <div className='left'>
-          <img src={characterImages.manor}/>
+          <img src={characterImages.wraith}/>
           <h3> Manor</h3>
           <h6> player Name</h6>
         </div>

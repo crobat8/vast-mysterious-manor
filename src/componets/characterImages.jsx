@@ -18,8 +18,6 @@ import wraith from '../img/game_images/pieces/characters/manor/wraith.png'
 
 import warlock from '../img/game_images/pieces/characters/warlock/warlock.png'
 
-import ghost from '../img/game_images/pieces/characters/general/ghost.png'
-
 export default {
   "paladin" : paladin,
 
@@ -40,6 +38,4 @@ export default {
   "wraith" : wraith,
 
   "warlock" : warlock,
-
-  "ghost" : ghost,
 }

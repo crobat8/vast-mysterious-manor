@@ -8,6 +8,8 @@ import blood from '../img/game_images/pieces/tokens/spider/blood.png'
 import egg from '../img/game_images/pieces/tokens/spider/egg.png'
 import web from '../img/game_images/pieces/tokens/spider/web.png'
 
+import ghost from '../img/game_images/pieces/characters/general/ghost.png'
+
 import treasure from '../img/game_images/pieces/tokens/general/treasure.png'
 
 export default {
@@ -20,6 +22,8 @@ export default {
   "blood" : blood,
   "egg" : egg,
   "web" : web,
+
+  "ghost" : ghost,
 
   "treasure" : treasure,
 }
