@@ -120,10 +120,42 @@ function wraithMove(ID,Loc){
   sendWraithMove(ID,Loc)
 }
 
+const sendSubmitRitual = async (ID,cardInfo,pathInfo) => {
+  const endpoint = 'https://submitritual-bquiaqmt4q-uc.a.run.app'; // Replace with your Cloud Function endpoint
+  const requestData = {
+    documentId: ID,
+    cardInfo: cardInfo,
+    pathInfo: pathInfo,
+  };
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (response.ok) {
+      const result = await response.text();
+      console.log("Update successful:", result);
+    } else {
+      const errorMessage = await response.text();
+      console.error("Error:", errorMessage);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+function submitRitual(ID,cardInfo,pathInfo){
+  sendSubmitRitual(ID,cardInfo,pathInfo)
+}
 
 export default{
   "assignOmen": assignOmen,
   "placeTreasure": placeTreasure,
   "endPower" : endPower,
   "wraithMove" : wraithMove,
+  "submitRitual": submitRitual,
 }

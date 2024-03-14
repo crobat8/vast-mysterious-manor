@@ -26,10 +26,12 @@ const ManorCards = () =>{
     setHoveredIndex(null);
   };
 
-  function handleRitualClick(clickedRitualName){
-    console.log(clickedRitualName)
+  function handleRitualClick(clickedRitualName,playable,pathResults){
     const temp = manorRitualInfo(clickedRitualName)
-    console.log(temp)
+    if(playable){
+      setAction(temp)
+      setActionInfo1(pathResults)
+    }
   }
 
   if(!manorInfo){
@@ -51,7 +53,6 @@ const ManorCards = () =>{
       <div className='marchOrderDisplay'>
         {ritualHand.map((cardImage,key)=>{
           const currentRitualInfo = manorRitualInfo(manorInfo.ritualHand[key]);
-          // console.log(currentRitualInfo)
           let playable = !(gameInfo[0].turn == "manor" && gameInfo[0].phase == 3);
           const pathResults = ["","","",""];
           for(let i = 0;i<4;i++ ){
@@ -64,10 +65,6 @@ const ManorCards = () =>{
                 currentRitualInfo.ghostIndex
               );
             playable = playable || pathResults[i].playablePath;
-            
-          }
-          if(playable){
-            console.log(pathResults)
           }
           return(
             <img 
@@ -78,7 +75,7 @@ const ManorCards = () =>{
             style={playable?{filter:'none'}:{filter:'grayscale(100%)'}}
             onMouseEnter={() => handleMouseEnter(key)}
             onMouseLeave={handleMouseLeave}
-            onClick={()=>handleRitualClick(manorInfo.ritualHand[key])}
+            onClick={()=>handleRitualClick(manorInfo.ritualHand[key],playable,pathResults)}
             />
           )
         })}

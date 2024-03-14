@@ -376,7 +376,7 @@ export function manorRitualInfo (ritualNumber) {
       path: [1,0,1],
       ghostIndex: 1,
       seals: 1,
-      portent: "draw"
+      portent: "ritual"
     }
   } else if(ritualNumber == "ritual_6"){
     return {
@@ -424,7 +424,7 @@ export function manorRitualInfo (ritualNumber) {
       path: [3,0,3],
       ghostIndex: 1,
       seals: 1,
-      portent: "wraith"
+      portent: "move"
     }
   } else if(ritualNumber == "ritual_12"){
     return {
@@ -474,7 +474,13 @@ export function findValidRitualPath(tileInfo,currentLocation,ritualPath,ghostSte
     const currentWalls = checkOpenDoors(tileInfo[currentLocation].value);
     const tempMoveAmmouts = [-7,1,7,-1]; 
     const nextStartLocation = currentLocation + tempMoveAmmouts[ritualPath[0]]
-    const nextWalls = checkOpenDoors(tileInfo[nextStartLocation].value)
+    //still need to clean this up some for edge of map
+    if(nextStartLocation>49){
+      return {
+        playablePath: false,
+      }
+    }
+    const nextWalls = checkOpenDoors(tileInfo[nextStartLocation].value);
     if(currentWalls[ritualPath[0]] 
       && nextWalls[((ritualPath[0]+2)%4)]){
       ritualPath.shift();

@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-import general from '../playerFunctions/general';
-import paladin from '../playerFunctions/paladin';
 import {getcrypts, isAdjacentTiles2, isVisible2, VisibleTiles} from '../helperFunctions/Helpers'
 import { GameContext } from '../context/GameContext';
 import { ActionContext } from '../context/ActionContext';
@@ -12,6 +10,8 @@ import { SpiderContext } from '../context/SpiderContext';
 import { ManorContext } from '../context/ManorContext';
 import { TileContext } from '../context/TileContext';
 
+import general from '../playerFunctions/general';
+import paladin from '../playerFunctions/paladin';
 import skeleton from '../playerFunctions/skeleton';
 import spider from '../playerFunctions/spider';
 import manor from '../playerFunctions/manor';

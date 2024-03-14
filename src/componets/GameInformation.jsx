@@ -141,7 +141,7 @@ const GameInformation = () =>{
         </div>
         <div className='right'>
           <p>Omen Cubes: {manorInfo.omenCubes}</p>
-          <p>Rituals: {spiderInfo.terror}</p>
+          <p>Seals: {manorInfo.completedSeals}</p>
           <OmenDisplayRow rowName="reveal"/>
           <OmenDisplayRow rowName="shift"/>
           <OmenDisplayRow rowName="swap"/>
